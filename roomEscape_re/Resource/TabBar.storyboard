@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zxg-Pb-tr6">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="d8L-fE-1us">
+            <objects>
+                <tabBarController storyboardIdentifier="tabbar" id="zxg-Pb-tr6" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nrh-IS-kBc" customClass="CustomTabBar">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                <real key="value" value="200"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kF4-vG-txJ" kind="relationship" relationship="viewControllers" id="rbv-95-Ljp"/>
+                        <segue destination="yeY-6F-dLb" kind="relationship" relationship="viewControllers" id="3g4-Hy-uRa"/>
+                        <segue destination="Am0-Y3-zcf" kind="relationship" relationship="viewControllers" id="ApQ-kf-Y2D"/>
+                        <segue destination="G2W-7G-28s" kind="relationship" relationship="viewControllers" id="U6u-i5-D49"/>
+                        <segue destination="u1z-z4-SaT" kind="relationship" relationship="viewControllers" id="KPe-dt-li5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NEa-ru-hla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484" y="-53"/>
+        </scene>
+        <!--Thema-->
+        <scene sceneID="Dna-ti-gCF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Thema" id="yeY-6F-dLb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" image="back" largeContentSizeImage="adult" badgeValue="0" selectedImage="backButton" id="aui-Fp-iqs"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aro-QH-RIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123" y="-163"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Snz-vd-Cs2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="Am0-Y3-zcf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="7SD-93-QZ2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8NI-Ux-wZM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="283" y="-54"/>
+        </scene>
+        <!--Community-->
+        <scene sceneID="MU6-l8-UYB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Community" id="G2W-7G-28s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="s4D-qC-tBE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iuB-Yq-Ffg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="46"/>
+        </scene>
+        <!--My-->
+        <scene sceneID="szZ-BV-IQe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="My" id="u1z-z4-SaT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="OlM-se-649"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2E6-cB-XoY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107" y="172"/>
+        </scene>
+        <!--Cafe-->
+        <scene sceneID="ujV-tq-IAN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Cafe" id="kF4-vG-txJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="0sG-iY-1Dy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hUS-2f-hoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="-283"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="adult" width="61" height="50"/>
+        <image name="back" width="23" height="23"/>
+        <image name="backButton" width="46" height="46"/>
+    </resources>
+</document>
