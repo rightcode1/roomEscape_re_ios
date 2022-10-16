@@ -52,7 +52,7 @@ class CafeVC: BaseViewController, WishDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    print("!!")
     //      let indexPath :IndexPath = IndexPath(row: 0 , section: 0)
     //      self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     

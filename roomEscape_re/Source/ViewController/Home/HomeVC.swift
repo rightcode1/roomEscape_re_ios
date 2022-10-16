@@ -356,7 +356,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     else if collectionView == bannerCollectionView {
       let phoneWidth = APP_WIDTH()
       let bannerSize = (phoneWidth - 30)
-      let diff = bannerSize / 2
+      let diff = bannerSize / 720 * 250
       let height = diff
       
       return CGSize(width: bannerSize, height: height)

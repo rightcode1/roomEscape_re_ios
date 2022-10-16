@@ -1327,7 +1327,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1339,7 +1339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8.6;
+				MARKETING_VERSION = 5.8.7;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/inamgi/Desktop/work/ios/roomEscape_re/roomEscape_re-Bridging-Header.h";
@@ -1357,7 +1357,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1369,7 +1369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8.6;
+				MARKETING_VERSION = 5.8.7;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/inamgi/Desktop/work/ios/roomEscape_re/roomEscape_re-Bridging-Header.h";

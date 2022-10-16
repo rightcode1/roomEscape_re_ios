@@ -53,7 +53,6 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
     initAddress()
     contentTableView.isScrollEnabled = true
     
-    print("themeFilter : \(themeFilter)")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -98,10 +97,6 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
       genreCollectionView.reloadData()
       areaCollectionView.reloadData()
     }
-    self.page=1
-//    self.themeList.removeAll()
-//    contentTableView.reloadData()
-//    contentTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     if selectedAddressFromHomeVC == "추천테마"{
       recommend()
     }else{
