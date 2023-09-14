@@ -97,8 +97,8 @@ class ThemeReviewVC: BaseViewController {
     var request = URLRequest(url: requestURL)
     request.httpMethod = HTTPMethod.get.rawValue
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    
+    print(selectSort)
+    print(requestURL)
     AF.request(request).responseJSON { (response) in
       switch response.result {
       case .success(let value):
@@ -192,6 +192,13 @@ extension ThemeReviewVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 extension ThemeReviewVC: ReviewCellMyButtonsDelegate{
+  func didGoUserReview(_ index: IndexPath) {
+      let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
+      vc.isOther = true
+    vc.userName = reviewList[index.row].userName
+      self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
   func didRemoveButtonTapped(_ index: IndexPath) {
     callYesNoMSGDialog(message: "해당 리뷰를 삭제하시겠습니까?") {
       self.removeReview(self.reviewList[index.row].id)

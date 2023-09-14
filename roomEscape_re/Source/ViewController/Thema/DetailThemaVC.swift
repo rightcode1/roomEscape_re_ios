@@ -13,8 +13,6 @@ import RxSwift
 import Cosmos
 
 class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
-
-    
   
   @IBOutlet weak var thumbnailView: UIView!
   @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -128,6 +126,13 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
       vc.reviewData = reviewList[index.row]
       self.navigationController?.pushViewController(vc, animated: true)
     }
+  
+    func didGoUserReview(_ index: IndexPath) {
+      let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
+      vc.isOther = true
+      vc.userName = reviewList[index.row].userName
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
     func removeReview(_ reviewId: Int) {
       let apiurl = "/v1/themeReview/remove"
       
@@ -150,6 +155,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
           
           if let data = jsonData, let value = try? decoder.decode(DefaultResponse.self, from: data) {
             if value.statusCode == 200 {
+              self.detailThema()
               self.themeReviewList()
             }
           }
@@ -284,13 +290,11 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
             self.reviewList.removeAll()
             self.reviewCountLabel.text = "\(value.list.count)"
               if value.list.count > 2 {
-                  self.reviewList.append(value.list.rows[0])
-                  self.reviewList.append(value.list.rows[1])
               self.moreReviewButton.isHidden = false
             } else {
-                self.reviewList = value.list.rows
               self.moreReviewButton.isHidden = true
             }
+            self.reviewList = value.list.rows
             
             self.reviewTableView.reloadData()
             

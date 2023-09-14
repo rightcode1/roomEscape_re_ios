@@ -58,6 +58,22 @@ struct DefualtThemeReviewResponse: Codable {
   let message: String
   let list: [ThemeReview]
 }
+struct AdvertiseDetailResponse: Codable {
+  let statusCode: Int
+  let message: String
+  let data: AdDetail
+}
+struct AdDetail: Codable {
+    let id: Int
+    let title: String
+    let diff: String
+    let location: String
+    let url: String?
+    let thumbnail: String
+    let image: String?
+    let themeId: Int?
+    let companyId: Int?
+}
 
 struct SubResponseReview: Codable {
   let count: Int

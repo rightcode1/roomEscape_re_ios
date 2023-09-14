@@ -33,6 +33,7 @@ class RegistCafeReviewVC: UIViewController {
     contentTextView.delegate = self
     ratingView.rating = 5
     ratingView.settings.minTouchRating = 1
+    rating = 5
     ratingView.settings.fillMode = .full
     ratingView.didFinishTouchingCosmos = { rating in
       self.rating = rating

@@ -498,11 +498,11 @@ class CommunityDetailViewController: UIViewController {
     
   }
   
-  @IBAction func tapModify(_ sender: UIButton) {
+  @IBAction func tapModify(_ sender: Any) {
     performSegue(withIdentifier: "modify", sender: nil)
   }
   
-  @IBAction func tapDelete(_ sender: UIButton) {
+  @IBAction func tapDelete(_ sender: Any) {
     choiceAlert(message: "해당 게시글을 삭제하시겠습니까?") {
       self.removeBoard()
     }

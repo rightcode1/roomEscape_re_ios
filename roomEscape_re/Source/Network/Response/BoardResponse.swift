@@ -99,3 +99,32 @@ struct NoticeBoard: Codable {
   let title: String
   let content: String
 }
+
+struct GraduationListResponse: Codable {
+  let statusCode: Int
+  let message: String
+  let list: [Graduation]
+}
+
+
+struct Graduation: Codable {
+  let area: String
+ let area1: String
+  let successCount,themeCount: Int
+  let successPer: Double
+}
+
+struct StatisticsResponse: Codable {
+  let statusCode: Int
+  let message: String
+  let data: Statistics
+}
+
+struct Statistics: Codable {
+  let totalCompanyCount: Int
+  let totalThemeCount: Int
+  let totalReviewCount: Int
+  let overlappingThemeCount: Int
+  let reviewedOverlapCompanyCount: Int
+  let totalOverlapThemeReviewCount: Int
+}

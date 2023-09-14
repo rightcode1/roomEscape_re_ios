@@ -29,12 +29,12 @@ class MyReviewListVC: BaseViewController {
   var check : Bool = false
   var page : Int = 1
   var isOther: Bool = false
+  var userName: String?
   
   var reviewList: [ThemeReview] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBar.isHidden = true
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
     reviewTableView.layoutTableHeaderView()
@@ -43,10 +43,13 @@ class MyReviewListVC: BaseViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    navigationController?.navigationBar.isHidden = true
     initWithIsOther()
     if(!isOther && index != nil){
       themeReviewList(index!,nil)
     }else if !isOther{
+      themeReviewList()
+    }else{
       themeReviewList()
     }
   }
@@ -106,10 +109,11 @@ class MyReviewListVC: BaseViewController {
     let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
     let requestURL : URL
     if(isOther){
+      userName = searchTextField.text!.isEmpty ? userName : searchTextField.text
       requestURL = url
         .appending("page", value:"\(page)")
         .appending("limit", value: "10")
-        .appending("userName", value: searchTextField.text!.isEmpty ? nil : searchTextField.text)
+        .appending("userName", value: userName)
         .appending("sort", value:selectSort)
     }else{
       requestURL = url
@@ -257,9 +261,22 @@ extension MyReviewListVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let dict = reviewList[indexPath.row]
+    let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
+    vc.id = dict.themeId
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
   
 }
 extension MyReviewListVC:ReviewCellMyButtonsDelegate{
+  func didGoUserReview(_ index: IndexPath) {
+        let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
+        vc.isOther = true
+      vc.searchTextField.text = reviewList[index.row].userName
+        self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
   func didRemoveButtonTapped(_ index: IndexPath) {
     callYesNoMSGDialog(message: "해당 리뷰를 삭제하시겠습니까?") {
       self.removeReview(index)

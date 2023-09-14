@@ -11,6 +11,7 @@ import SwiftyJSON
 import Cosmos
 
 class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegate {
+  
   @IBOutlet weak var wishBarButton: UIBarButtonItem!
   
   @IBOutlet weak var thumbnailView: UIView!
@@ -66,10 +67,10 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
     
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
+    initrx()
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    print("\(currentLocation!.1)!!!!")
     detailCafe()
     initThemeList()
     companyReviewList()
@@ -348,6 +349,8 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
     callYesNoMSGDialog(message: "해당 리뷰를 삭제하시겠습니까?") {
       self.removeReview(self.reviewList[index.row].id)
     }
+  }
+  func didGoUserReview(_ index: IndexPath) {
   }
   
 }

@@ -57,7 +57,6 @@ class HomeVC: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     categoryCollectionView.delegate = self
     categoryCollectionView.dataSource = self
     
@@ -266,6 +265,35 @@ class HomeVC: BaseViewController {
       })
       .disposed(by: disposeBag)
   }
+  func tapDetail(id:Int) {
+    let apiurl = "/v1/advertisement/detail"
+    
+    let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
+    let requestURL = url
+      .appending("id", value: "\(id)")
+    var request = URLRequest(url: requestURL)
+    request.httpMethod = HTTPMethod.get.rawValue
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    AF.request(request).responseJSON { (response) in
+      switch response.result {
+      case .success(let value):
+        let decoder = JSONDecoder()
+        let json = JSON(value)
+        let jsonData = try? json.rawData()
+        print("\(apiurl) responseJson: \(json)")
+        if let data = jsonData, let value = try? decoder.decode(AdvertiseDetailResponse.self, from: data) {
+          if value.statusCode == 200 {
+              
+          }
+        }
+        break
+      case .failure:
+        print("error: \(response.error!)")
+        break
+      }
+    }
+  }
   
   @IBAction func tapWish(_ sender: UIButton) {
     let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "wishList") as! WishListVC
@@ -385,6 +413,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
       print("indexPath.row : \(indexPath.row)")
       let dict = bannerList[indexPath.row]
       if dict.diff.contains(find: "url") {
+        tapDetail(id: dict.id)
         if let url = URL(string: dict.url ?? "") {
           if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -392,9 +421,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
         }
       } else {
         let vc = UIStoryboard.init(name: "Common", bundle: nil).instantiateViewController(withIdentifier: "advertisement") as! AdvertisementViewController
-        vc.imageURL = dict.image
-      vc.diff = "메인배너"
-      vc.url = dict.url
+          vc.id = dict.id
         self.navigationController?.pushViewController(vc, animated: true)
       }
     }

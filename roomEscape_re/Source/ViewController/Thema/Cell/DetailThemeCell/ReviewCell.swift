@@ -14,6 +14,8 @@ protocol ReviewCellMyButtonsDelegate: AnyObject {
   func didUpdateButtonTapped(_ index: IndexPath)
   
   func didRemoveButtonTapped(_ index: IndexPath)
+  
+  func didGoUserReview(_ index: IndexPath)
 }
 
 class ReviewCell: UITableViewCell {
@@ -82,10 +84,12 @@ class ReviewCell: UITableViewCell {
   }
   
   @IBAction func removeButtonTapped(_ sender: Any) {
-    print("!!!!!!")
     delegate?.didRemoveButtonTapped(index!)
   }
   
+  @IBAction func tapUser(_ sender: Any) {
+    delegate?.didGoUserReview(index!)
+  }
   func initWithCompanyReview(_ data: CompanyReview) {
     userNameLabel.text = data.userName
     dateLabel.text = data.createdAt
@@ -164,24 +168,7 @@ class ReviewCell: UITableViewCell {
         
       }
     }
-    
-    if data.grade == 1{
-      self.gradeImageView.image = UIImage(named: "userLevelImage1")
-    }else if data.grade == 2{
-      self.gradeImageView.image = UIImage(named: "userLevelImage2")
-    }else if data.grade == 3{
-      self.gradeImageView.image = UIImage(named: "userLevelImage3")
-    }else if data.grade == 4{
-      self.gradeImageView.image = UIImage(named: "userLevelImage4")
-    }else if data.grade == 5{
-      self.gradeImageView.image = UIImage(named: "userLevelImage5")
-    }else if data.grade == 6{
-      self.gradeImageView.image = UIImage(named: "userLevelImage6")
-    }else if data.grade == 7{
-      self.gradeImageView.image = UIImage(named: "userLevelImage7")
-    }else if data.grade == 8{
-      self.gradeImageView.image = UIImage(named: "userLevelImage8")
-    }
+    self.gradeImageView.image = UIImage(named: "userLevelImage\(data.grade)")
     contentLabel.text = data.content
   }
   

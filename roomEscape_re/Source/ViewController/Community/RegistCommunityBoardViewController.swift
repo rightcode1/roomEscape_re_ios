@@ -143,10 +143,11 @@ class RegistCommunityBoardViewController: BaseViewController {
       if (boardDiff == .일행구하기 || boardDiff == .방탈출정보) {
         categoryView.isHidden = false
       }
-      for _ in 0..<(6 - self.imageList.count) {
-        self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
-      }
-      
+//      for _ in 0..<(6 - self.imageList.count) {
+//        self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
+//      }
+      self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
+
       collectionView.reloadData()
     }
     
@@ -401,7 +402,6 @@ class RegistCommunityBoardViewController: BaseViewController {
         removeImage(id: imageList[index].1)
       }
       imageList.remove(at: index)
-      imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
       collectionView.reloadData()
     }
   }
@@ -470,12 +470,8 @@ extension RegistCommunityBoardViewController: UITextViewDelegate {
 // MARK: - imagePicker
 extension RegistCommunityBoardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    
-    
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      imageList.removeLast()
-      let insertIndex = self.imageList.filter { $0.0 != #imageLiteral(resourceName: "iconPlus") }.count
-      imageList.insert((image , 0), at: (insertIndex))
+      imageList.append((image , 1))
       
       collectionView.reloadData()
       picker.dismiss(animated: true, completion: nil)
@@ -488,9 +484,14 @@ extension RegistCommunityBoardViewController: UIImagePickerControllerDelegate, U
 }
 
 // MARK: - CollectionView
-extension RegistCommunityBoardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension RegistCommunityBoardViewController: UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: 70, height: 70)
+  }
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return imageList.count
+      return self.imageList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -513,23 +514,11 @@ extension RegistCommunityBoardViewController: UICollectionViewDelegate, UICollec
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if imageList.count > 6{
+      callOkActionMSGDialog(message: "사진은 최대 6장까지 첨부 가능합니다.") {
+      }
+      return
+    }
     openAlbum()
   }
-}
-
-extension RegistCommunityBoardViewController: UICollectionViewDelegateFlowLayout {
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//    return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-//  }
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 70, height: 70)
-  }
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//    return 10
-//
-//  }
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//    let spanicg = ((UIScreen.main.bounds.width - 30) - 270) / 2
-//    return spanicg
-//  }
 }

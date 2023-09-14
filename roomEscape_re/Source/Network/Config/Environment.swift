@@ -14,7 +14,7 @@ var updateDiff: String = "category"
 var updateId: Int = 0
 var FcmToken: String = ""
 //
-var currentLocation: (Double, Double)?
+var currentLocation: (Double, Double)? = (0.0,0.0)
 
 struct ApiEnvironment {
   static let baseUrl = "http://3.37.169.42:31311"

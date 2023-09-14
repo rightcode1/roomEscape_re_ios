@@ -12,7 +12,7 @@ target 'roomEscape_re' do
   pod 'RxSwift'
   pod 'RxGesture'
   pod 'RxAlamofire'
-
+pod 'Charts'
   # Firebase
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
@@ -32,7 +32,7 @@ target 'roomEscape_re' do
   pod 'CropViewController'
 
   # Download and Caching Images
-  pod 'Kingfisher'
+pod 'Kingfisher', :git => 'https://github.com/onevcat/Kingfisher.git', :branch => 'version6-xcode13'
   pod 'SDWebImage'
   pod 'DKImagePickerController'
 
@@ -52,5 +52,13 @@ target 'roomEscape_re' do
   pod 'SideMenu'
   pod 'FSCalendar'
   pod 'RangeSeekSlider'
+
+post_install do |pi|
+    pi.pods_project.targets.each do |t|
+        t.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+        end
+    end
+end
 
 end

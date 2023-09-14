@@ -48,60 +48,59 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     initDelegateDatasource()
-    initAddress()
     contentTableView.isScrollEnabled = true
-    
+    recommendTheme()
+    initAddress()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.navigationBar.isHidden = false
     if selectedAddressFromHomeVC != "" && selectedAddressFromHomeVC != nil {
-      if(selectedAddressFromHomeVC=="강남"||selectedAddressFromHomeVC=="홍대"||selectedAddressFromHomeVC=="신촌"||selectedAddressFromHomeVC=="건대"||selectedAddressFromHomeVC=="대학로"){
-        selectedArea = .서울
-        selectedAddress = selectedAddressFromHomeVC ?? "전체"
-        selectedGenre = .entire
-      }else if(selectedAddressFromHomeVC=="new"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .entire
-        self.themeFilter.type = [.신규테마]
-      }else if(selectedAddressFromHomeVC=="easy"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .entire
-        self.themeFilter.level = [.one,.two]
-      }else if(selectedAddressFromHomeVC=="hard"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .entire
-        self.themeFilter.level = [.five, .four]
-      }else if(selectedAddressFromHomeVC=="공포"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .horror
-      }else if(selectedAddressFromHomeVC=="19금"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .adult
-      }else if(selectedAddressFromHomeVC=="different"){
-        selectedAddress = "전체"
-        selectedArea = .전국
-        selectedGenre = .entire
-        self.themeFilter.type[0] = .이색컨텐츠
+        if(selectedAddressFromHomeVC=="강남"||selectedAddressFromHomeVC=="홍대"||selectedAddressFromHomeVC=="신촌"||selectedAddressFromHomeVC=="건대"||selectedAddressFromHomeVC=="대학로"){
+          selectedArea = .서울
+          selectedAddress = selectedAddressFromHomeVC ?? "전체"
+          selectedGenre = .entire
+        }else if(selectedAddressFromHomeVC=="new"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .entire
+          self.themeFilter.type = [.신규테마]
+        }else if(selectedAddressFromHomeVC=="easy"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .entire
+          self.themeFilter.level = [.one,.two]
+        }else if(selectedAddressFromHomeVC=="hard"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .entire
+          self.themeFilter.level = [.five, .four]
+        }else if(selectedAddressFromHomeVC=="공포"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .horror
+        }else if(selectedAddressFromHomeVC=="19금"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .adult
+        }else if(selectedAddressFromHomeVC=="different"){
+          selectedAddress = "전체"
+          selectedArea = .전국
+          selectedGenre = .entire
+          self.themeFilter.type[0] = .이색컨텐츠
+        }
+        DataHelper<ThemeListRequest>.setThemeListFilter(self.themeFilter)
+        recommendTheme()
+        initAddress()
+        guCollectionView.reloadData()
+        genreCollectionView.reloadData()
+        areaCollectionView.reloadData()
       }
-      DataHelper<ThemeListRequest>.setThemeListFilter(self.themeFilter)
-      initAddress()
-      guCollectionView.reloadData()
-      genreCollectionView.reloadData()
-      areaCollectionView.reloadData()
-    }
-    if selectedAddressFromHomeVC == "추천테마"{
-      recommend()
-    }else{
-      recommendTheme()
-    }
+      if selectedAddressFromHomeVC == "추천테마"{
+        recommend()
+      }
+      
   }
   
   override func viewWillDisappear(_ animated: Bool) {

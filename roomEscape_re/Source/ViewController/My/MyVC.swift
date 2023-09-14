@@ -32,6 +32,9 @@ class MyVC: BaseViewController {
   @IBOutlet var noHintReviewCount: UILabel!
   @IBOutlet var noHintRate: UILabel!
   
+  @IBOutlet var graduationView: UIView!
+  @IBOutlet var deleteView: UIView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -111,6 +114,19 @@ class MyVC: BaseViewController {
         self?.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: disposeBag)
+    graduationView.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "GraduationChartVC") as! GraduationChartVC
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
+    
+    deleteView.rx.tapGesture().when(.recognized)
+    .bind(onNext: { [weak self] _ in
+      let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "DeleteThemeVC") as! DeleteThemeVC
+      self?.navigationController?.pushViewController(vc, animated: true)
+    })
+    .disposed(by: disposeBag)
   }
   
 }

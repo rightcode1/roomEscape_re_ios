@@ -13,6 +13,7 @@ import Cosmos
 
 class CafeReviewVC: UIViewController, ReviewCellMyButtonsDelegate {
   
+  
   @IBOutlet weak var reviewRatingView: CosmosView!
   @IBOutlet weak var reviewRatingLabel: UILabel!
   @IBOutlet weak var reviewCountLabel: UILabel!
@@ -130,6 +131,8 @@ class CafeReviewVC: UIViewController, ReviewCellMyButtonsDelegate {
     callYesNoMSGDialog(message: "해당 리뷰를 삭제하시겠습니까?") {
       self.removeReview(self.reviewList[index.row].id)
     }
+  }
+  func didGoUserReview(_ index: IndexPath) {
   }
 }
 extension CafeReviewVC: UITableViewDelegate, UITableViewDataSource {

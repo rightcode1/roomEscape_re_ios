@@ -46,38 +46,35 @@ class CafeVC: BaseViewController, WishDelegate {
   
   var sort: CafeSortDiff = .전방추천순
   
-  var typeArray: [CafeTypeDiff] = []
+  var typeArray: [CafeTypeDiff] = []{
+    didSet{
+      tableView.scrollToRow(at: IndexPath(row: NSNotFound, section: 0), at: .top, animated: false)
+    }
+  }
   
   var premuimCount = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("!!")
     //      let indexPath :IndexPath = IndexPath(row: 0 , section: 0)
     //      self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     
+    initCafeList()
     initDelegateDatasource()
     self.page=1
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    tableView.scrollToRow(at: IndexPath(row: NSNotFound, section: 0), at: .top, animated: false)
-    if isFirstStart {
-      self.tabBarController?.selectedIndex = 2
-      isFirstStart = false
-    }
-    if(selectedAddressFromCafeVC == "different"){
-      typeArray.append(.different)
-    }
-    cafeList.removeAll()
-    tableView.reloadData()
-    if selectedAddressFromCafeVC == "추천카페"{
-      recommendCafe()
-    }else{
-      initCafeList()
-    }
     navigationController?.setNavigationBarHidden(false, animated: true)
     navigationController?.navigationBar.isHidden = false
+    if(selectedAddressFromCafeVC == "different"){
+      typeArray.removeAll()
+      typeArray.append(.different)
+    }
+    if selectedAddressFromCafeVC == "추천카페"{
+      cafeList.removeAll()
+      recommendCafe()
+    }
   }
   
   func initDelegateDatasource() {

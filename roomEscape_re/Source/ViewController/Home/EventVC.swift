@@ -112,9 +112,7 @@ extension EventVC: UITableViewDataSource, UITableViewDelegate {
     
       if dict.image != nil {
           let vc = UIStoryboard.init(name: "Common", bundle: nil).instantiateViewController(withIdentifier: "advertisement") as! AdvertisementViewController
-          vc.imageURL = dict.image
-        vc.diff = "이벤트"
-        vc.url = dict.url
+          vc.id = dict.id
           self.navigationController?.pushViewController(vc, animated: true)
         } else {
           if let url = URL(string: dict.url ?? "") {

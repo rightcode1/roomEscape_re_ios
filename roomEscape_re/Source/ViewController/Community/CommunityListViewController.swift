@@ -7,9 +7,6 @@
 //
 
 import UIKit
-
-var tabCommunityBoardId: Int?
-
 class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
   
   @IBOutlet var scrollView: UIScrollView!
@@ -57,6 +54,7 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
   
   @IBOutlet var registBoardButton: UIImageView!
   
+  var tabCommunityBoardId: Int?
   var isMine: Bool = false
   var reportList: [Int] = []
   var userReportList: [String] = []

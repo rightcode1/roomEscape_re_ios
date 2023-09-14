@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zxg-Pb-tr6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zxg-Pb-tr6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="d8L-fE-1us">
             <objects>
-                <tabBarController storyboardIdentifier="tabbar" id="zxg-Pb-tr6" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nrh-IS-kBc" customClass="CustomTabBar">
+                <tabBarController storyboardIdentifier="tabBar" id="zxg-Pb-tr6" customClass="TabBarViewController" customModule="roomEscape_re" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nrh-IS-kBc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -23,11 +23,11 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="kF4-vG-txJ" kind="relationship" relationship="viewControllers" id="rbv-95-Ljp"/>
-                        <segue destination="yeY-6F-dLb" kind="relationship" relationship="viewControllers" id="3g4-Hy-uRa"/>
-                        <segue destination="Am0-Y3-zcf" kind="relationship" relationship="viewControllers" id="ApQ-kf-Y2D"/>
-                        <segue destination="G2W-7G-28s" kind="relationship" relationship="viewControllers" id="U6u-i5-D49"/>
-                        <segue destination="u1z-z4-SaT" kind="relationship" relationship="viewControllers" id="KPe-dt-li5"/>
+                        <segue destination="kF4-vG-txJ" kind="relationship" relationship="viewControllers" id="FoA-4e-BqG"/>
+                        <segue destination="yeY-6F-dLb" kind="relationship" relationship="viewControllers" id="zJD-pr-2eA"/>
+                        <segue destination="Am0-Y3-zcf" kind="relationship" relationship="viewControllers" id="NCb-m5-KX7"/>
+                        <segue destination="G2W-7G-28s" kind="relationship" relationship="viewControllers" id="bUZ-dP-8uJ"/>
+                        <segue destination="u1z-z4-SaT" kind="relationship" relationship="viewControllers" id="XeH-TD-GVy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEa-ru-hla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

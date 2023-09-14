@@ -11,6 +11,7 @@ class NoticeDetailVC: UIViewController {
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var contentLabel: UILabel!
   
+  
   var titleString: String?
   var contentString: String?
   

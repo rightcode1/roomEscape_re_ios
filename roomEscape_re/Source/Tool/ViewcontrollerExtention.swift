@@ -254,10 +254,9 @@ extension UIViewController {
   }
   
   func goTabBar() {
-    let vc = UIStoryboard.init(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "tabbar")
+    let vc = UIStoryboard.init(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "tabBar") as! TabBarViewController
     vc.modalPresentationStyle = .fullScreen
-    vc.tabBarController?.selectedIndex = 3
-    
+    vc.selectedIndex = 2
     self.present(vc, animated: true, completion: nil)
   }
   

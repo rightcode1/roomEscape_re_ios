@@ -159,12 +159,20 @@
 		CBDEDFCA27AA602C00312F07 /* CafeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDEDFC927AA602C00312F07 /* CafeDetailVC.swift */; };
 		CBDEDFCC27AA6A7500312F07 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDEDFCB27AA6A7500312F07 /* SearchVC.swift */; };
 		DF0092B62847987800D8A04E /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0092B52847987800D8A04E /* SettingVC.swift */; };
+		DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */; };
 		DF383A1528475DB400F89E5F /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF383A1428475DB400F89E5F /* MapVC.swift */; };
 		DF451F73281C09C70072A9D8 /* EventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF451F72281C09C70072A9D8 /* EventVC.swift */; };
 		DF451F75281C0B530072A9D8 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF451F74281C0B530072A9D8 /* EventCell.swift */; };
+		DF5858AA2A31C12800F793D4 /* CommunitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */; };
 		DF64CA1D287C1D6000F08143 /* LevelMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */; };
 		DF7488D128505F03007BEC3D /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7488D028505F03007BEC3D /* UpdateViewController.swift */; };
+		DF96042229FA7667008DA83A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF96042129FA7667008DA83A /* TabBarViewController.swift */; };
 		DFB8D91828D1C96A00BC4FC6 /* SortFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */; };
+		DFC9FE0728FD41470020E6B3 /* GraduationDeatilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */; };
+		DFC9FE0928FD462D0020E6B3 /* GraduationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */; };
+		DFC9FE0B28FD5C640020E6B3 /* DeleteThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0A28FD5C640020E6B3 /* DeleteThemeVC.swift */; };
+		DFC9FE0D28FD645C0020E6B3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC9FE0C28FD645C0020E6B3 /* SwiftUI.framework */; };
+		DFDA7E9B292DE77100C1ED68 /* PieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA7E9A292DE77100C1ED68 /* PieTableViewCell.swift */; };
 		DFEAFEB4285F5684006BD890 /* AgreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEAFEB3285F5684006BD890 /* AgreeVC.swift */; };
 		DFEAFEB6285F56D8006BD890 /* registerAgreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEAFEB5285F56D8006BD890 /* registerAgreeVC.swift */; };
 /* End PBXBuildFile section */
@@ -371,12 +379,20 @@
 		DF0092AD28476D6100D8A04E /* map_pin_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_shadow.png; sourceTree = "<group>"; };
 		DF0092AE28476D6100D8A04E /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		DF0092B52847987800D8A04E /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationChartVC.swift; sourceTree = "<group>"; };
 		DF383A1428475DB400F89E5F /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		DF451F72281C09C70072A9D8 /* EventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVC.swift; sourceTree = "<group>"; };
 		DF451F74281C0B530072A9D8 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchViewController.swift; sourceTree = "<group>"; };
 		DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuVC.swift; sourceTree = "<group>"; };
 		DF7488D028505F03007BEC3D /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		DF96042129FA7667008DA83A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterViewController.swift; sourceTree = "<group>"; };
+		DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationDeatilVC.swift; sourceTree = "<group>"; };
+		DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationCell.swift; sourceTree = "<group>"; };
+		DFC9FE0A28FD5C640020E6B3 /* DeleteThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteThemeVC.swift; sourceTree = "<group>"; };
+		DFC9FE0C28FD645C0020E6B3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DFDA7E9A292DE77100C1ED68 /* PieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieTableViewCell.swift; sourceTree = "<group>"; };
 		DFEAFEB3285F5684006BD890 /* AgreeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgreeVC.swift; sourceTree = "<group>"; };
 		DFEAFEB5285F56D8006BD890 /* registerAgreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerAgreeVC.swift; sourceTree = "<group>"; };
 		DFF718202850A00600573E17 /* roomEscape_re.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = roomEscape_re.entitlements; sourceTree = "<group>"; };
@@ -387,6 +403,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFC9FE0D28FD645C0020E6B3 /* SwiftUI.framework in Frameworks */,
 				CB0D995427C8AE2600E5B483 /* libc++.tbd in Frameworks */,
 				CB0D995227C8AE1300E5B483 /* QuartzCore.framework in Frameworks */,
 				CB0D995827C8AE4300E5B483 /* libsqlite3.tbd in Frameworks */,
@@ -405,6 +422,7 @@
 		196E5A1A697379DBABAE8068 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFC9FE0C28FD645C0020E6B3 /* SwiftUI.framework */,
 				CB0D99A727C8AEFE00E5B483 /* DaumMap.embeddedframework */,
 				CB0D995727C8AE4000E5B483 /* libsqlite3.tbd */,
 				CB0D995527C8AE3000E5B483 /* libxml2.tbd */,
@@ -435,6 +453,7 @@
 				CB1642D427C613F6007B4499 /* CommunityListViewController.swift */,
 				CB1642D327C613F6007B4499 /* CommunityDetailViewController.swift */,
 				CB1642D527C613F6007B4499 /* RegistCommunityBoardViewController.swift */,
+				DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -450,6 +469,9 @@
 				CB86705827E1EEB8009C5CD8 /* NoticeDetailVC.swift */,
 				DF0092B52847987800D8A04E /* SettingVC.swift */,
 				DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */,
+				DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */,
+				DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */,
+				DFC9FE0A28FD5C640020E6B3 /* DeleteThemeVC.swift */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -595,6 +617,8 @@
 			isa = PBXGroup;
 			children = (
 				CB1642DE27C6442A007B4499 /* ThemeReviewListCell.swift */,
+				DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */,
+				DFDA7E9A292DE77100C1ED68 /* PieTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -634,6 +658,7 @@
 				DFF718202850A00600573E17 /* roomEscape_re.entitlements */,
 				CB3D0F962740EE7D00A84E1B /* Source */,
 				CB3D0F952740EE7600A84E1B /* Resource */,
+				DF96042129FA7667008DA83A /* TabBarViewController.swift */,
 				CB3D0F812740EC1E00A84E1B /* AppDelegate.swift */,
 				CB3D0F852740EC1E00A84E1B /* ViewController.swift */,
 				CB3D0F8A2740EC2100A84E1B /* Assets.xcassets */,
@@ -1071,6 +1096,7 @@
 				CB736AFD27ABEF3A0093102E /* ReviewRequest.swift in Sources */,
 				CBDEDFBF27A93E9A00312F07 /* CafeVC.swift in Sources */,
 				CBB6FD00274102010013F278 /* ApiResponse.swift in Sources */,
+				DFC9FE0B28FD5C640020E6B3 /* DeleteThemeVC.swift in Sources */,
 				CBB6FD05274102010013F278 /* VersionResponse.swift in Sources */,
 				CBB6FCE3274101970013F278 /* ImageFileManager.swift in Sources */,
 				C454CA6827636A4900339429 /* ThemaDetailResponse.swift in Sources */,
@@ -1097,8 +1123,10 @@
 				CB1642CE27C61387007B4499 /* CommunityBoardCommentListCell.swift in Sources */,
 				DFEAFEB4285F5684006BD890 /* AgreeVC.swift in Sources */,
 				CB3D0F862740EC1E00A84E1B /* ViewController.swift in Sources */,
+				DF96042229FA7667008DA83A /* TabBarViewController.swift in Sources */,
 				CBB6FCD7274101970013F278 /* UIImage+Extension.swift in Sources */,
 				CBB6FD07274102010013F278 /* Environment.swift in Sources */,
+				DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */,
 				CBB6FD08274102010013F278 /* NotificationResponse.swift in Sources */,
 				CBDEDFB227A39B1A00312F07 /* CompanyResponse.swift in Sources */,
 				CBDEDFC427A949E600312F07 /* CafeFilterPopupVC.swift in Sources */,
@@ -1126,6 +1154,7 @@
 				C4FFB7D427622DA900192E36 /* RecommendCafeCell.swift in Sources */,
 				CBB6FCD4274101970013F278 /* UITextField+Extension.swift in Sources */,
 				CBB6FCD2274101970013F278 /* UIView+DesignableExtenion.swift in Sources */,
+				DFDA7E9B292DE77100C1ED68 /* PieTableViewCell.swift in Sources */,
 				CBB6FD0E274102010013F278 /* AuthResponse.swift in Sources */,
 				CBB6FCE42741019F0013F278 /* FindID_2VC.swift in Sources */,
 				DF451F73281C09C70072A9D8 /* EventVC.swift in Sources */,
@@ -1142,6 +1171,7 @@
 				CB736B0127ACC95F0093102E /* UserInfoResponse.swift in Sources */,
 				CBB6FCDF274101970013F278 /* Class+DateList.swift in Sources */,
 				CBB6FCDB274101970013F278 /* URL+Extension.swift in Sources */,
+				DFC9FE0728FD41470020E6B3 /* GraduationDeatilVC.swift in Sources */,
 				CBDEDFCA27AA602C00312F07 /* CafeDetailVC.swift in Sources */,
 				DF451F75281C0B530072A9D8 /* EventCell.swift in Sources */,
 				C4FFB7C92762182900192E36 /* CategoryCell.swift in Sources */,
@@ -1159,6 +1189,7 @@
 				C454CA6427635DB800339429 /* FeeCell.swift in Sources */,
 				C4FFB7BC276215C700192E36 /* ThemaListResponse.swift in Sources */,
 				CB1642DA27C6153A007B4499 /* BoardApi.swift in Sources */,
+				DF5858AA2A31C12800F793D4 /* CommunitySearchViewController.swift in Sources */,
 				C4ED50572760A5CB0028E759 /* GenreCell.swift in Sources */,
 				CB1642D827C613F6007B4499 /* RegistCommunityBoardViewController.swift in Sources */,
 				CBB6FCD9274101970013F278 /* ViewcontrollerExtention.swift in Sources */,
@@ -1167,6 +1198,7 @@
 				CBB6FD06274102010013F278 /* ApiRequest.swift in Sources */,
 				C4ED50532760A5340028E759 /* AreaCell.swift in Sources */,
 				CB1642D227C613E2007B4499 /* BoardResponse.swift in Sources */,
+				DFC9FE0928FD462D0020E6B3 /* GraduationCell.swift in Sources */,
 				CB1642E127C6450D007B4499 /* MyReviewListVC.swift in Sources */,
 				CB3D0F822740EC1E00A84E1B /* AppDelegate.swift in Sources */,
 			);
@@ -1311,6 +1343,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1327,21 +1360,25 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = roomEscape_re/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8.7;
+				MARKETING_VERSION = 6.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/inamgi/Desktop/work/ios/roomEscape_re/roomEscape_re-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1357,21 +1394,25 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = roomEscape_re/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8.7;
+				MARKETING_VERSION = 6.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/inamgi/Desktop/work/ios/roomEscape_re/roomEscape_re-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

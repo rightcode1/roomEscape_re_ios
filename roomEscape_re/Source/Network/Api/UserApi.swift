@@ -12,10 +12,14 @@ enum UserApi: ApiRouter {
   
   case userInfo
   case userOut
+  case userGraduation
+  case statistics
   
   var method: HTTPMethod{
     switch self{
-    case .userInfo:
+    case .userInfo,
+        .userGraduation,
+        .statistics:
       return .get
     case .userOut:
       return .delete
@@ -26,6 +30,8 @@ enum UserApi: ApiRouter {
     switch self{
     case .userInfo : return "/v1/user/info"
     case .userOut : return "/v1/user/withdrawal"
+    case .userGraduation : return "/v1/user/graduation"
+    case .statistics : return "/v1/company/statistics"
     }
   }
   
@@ -41,9 +47,16 @@ enum UserApi: ApiRouter {
       urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
       urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
       
+      case .userGraduation:
+        urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
+        urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
+      
       case .userOut:
         urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
+    case .statistics:
+      urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
+      urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
     }
     return urlRequest
   }

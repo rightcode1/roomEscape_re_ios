@@ -37,6 +37,28 @@ struct CompanyListData: Codable {
   let themeThumbnails: [String]
   let latitude,longitude,thumbnail: String?
 }
+
+struct CompanyGradutaionListResponse: Codable {
+  let statusCode: Int
+  let message: String
+  let list: [GraduationCompanyListData]
+}
+struct GraduationCompanyListData: Codable {
+  let id: Int
+  let title : String
+  var wishCount: Int
+  let averageRate: Double
+  let reviewCount: Int
+  let themes: [Themes]
+  let thumbnail: String?
+}
+
+struct Themes: Codable {
+  let id: Int
+  let title : String
+  var isSuccess: Bool
+  
+}
 struct CompanyWishListResponse: Codable {
   let statusCode: Int
   let message: String
