@@ -29,6 +29,9 @@ extension String {
         let regex = "^[a-zA-Z0-9]{5,20}$"
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
     }
+    func isValidateCode() -> Bool {
+      return self.count >= 6
+    }
     
     func isPasswordValidate() -> Bool {
         // 영문 + 특수문자 + 숫자 8 ~ 13 자리
@@ -39,6 +42,11 @@ extension String {
   func isCheckEmoji() -> Bool {
     let regex = "^(?=.*[a-zA])(?=.*[0-9])(?=.*[!@#$%^&|:<>~/';\"`.,\\?\\}\\{\\|\\*\\[\\]\\(\\)-_/])(?=.{0,5000})"
     return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
+  }
+  
+  func isValidateEmail() -> Bool {
+    let emailRegEx = #"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}"#
+    return NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: self)
   }
   
   func isCommentValidate() -> Bool {

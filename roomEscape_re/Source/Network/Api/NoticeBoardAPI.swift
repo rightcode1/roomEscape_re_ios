@@ -36,7 +36,7 @@ enum NoticeBoardAPI: ApiRouter {
     
     urlRequest.httpMethod = method.rawValue
     
-    let urlStr: String = "\(ApiEnvironment.subBaseUrl)\(path)"
+    let urlStr: String = "\(ApiEnvironment.baseUrl)\(path)"
     let encoded  = urlStr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     var urlRequest2 = URLRequest(url: URL(string: encoded!)!)
     urlRequest2.httpMethod = method.rawValue

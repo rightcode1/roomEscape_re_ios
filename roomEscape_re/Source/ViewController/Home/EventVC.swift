@@ -113,7 +113,7 @@ extension EventVC: UITableViewDataSource, UITableViewDelegate {
       if dict.image != nil {
           let vc = UIStoryboard.init(name: "Common", bundle: nil).instantiateViewController(withIdentifier: "advertisement") as! AdvertisementViewController
           vc.id = dict.id
-          self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
         } else {
           if let url = URL(string: dict.url ?? "") {
             if UIApplication.shared.canOpenURL(url) {

@@ -225,11 +225,7 @@ class SettingVC :BaseViewController{
   
   @IBAction func tapLogout(_ sender: Any) {
     self.callYesNoMSGDialog(message:"로그아웃 하시겠습니까?") {
-      DataHelper<String>.remove(forKey: .userNickname)
-      DataHelper<String>.remove(forKey: .userId)
-      DataHelper<String>.remove(forKey: .userPw)
-      DataHelper<String>.remove(forKey: .userAppId)
-      DataHelper<String>.remove(forKey: .token)
+      DataHelper<String>.clearAll()
       self.moveToLogin()
       
     }

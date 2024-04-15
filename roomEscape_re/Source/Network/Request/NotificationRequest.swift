@@ -12,3 +12,7 @@ struct SettingNotificationRequest: Codable {
   let waterPush: String
   let feedPush: String
 }
+
+struct NotificationRequest: Codable {
+    var notificationToken: String
+}

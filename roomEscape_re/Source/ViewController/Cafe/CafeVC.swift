@@ -387,7 +387,7 @@ extension CafeVC: UITableViewDataSource, UITableViewDelegate {
     
     let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
     vc.id = dict.id
-    self.navigationController?.pushViewController(vc, animated: true)
+    self.goViewController(vc: vc)
     
   }
   

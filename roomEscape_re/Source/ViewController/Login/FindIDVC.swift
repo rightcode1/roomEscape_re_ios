@@ -9,16 +9,33 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class FindIDVC: UIViewController {
+class FindIDVC: BaseViewController {
   
   @IBOutlet weak var phoneNumTextField: UITextField!
   @IBOutlet weak var codeTextField: UITextField!
+  @IBOutlet var phoneCheck: UIButton!
+  @IBOutlet var certifiCheck: UIButton!
+  
   
   var oneTimeCertificate: Bool = false
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    phoneNumTextField.rx.text.orEmpty
+      .map({ $0.isPhone() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+          phoneCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
+    
+    codeTextField.rx.text.orEmpty
+      .map({ $0.isValidateCode() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+        certifiCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
   }
   
   func sendOneTimeCode() {
@@ -103,7 +120,7 @@ class FindIDVC: UIViewController {
               case 200...201:
                 let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "findId2") as! FindID_2VC
                 vc.id = value.data?.loginId
-                self.navigationController?.pushViewController(vc, animated: true)
+              self.navigationController?.pushViewController(vc, animated: true)
               case 202...500:
                 self.dismissHUD()
                 self.callMSGDialog(message: value.message)

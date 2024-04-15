@@ -22,3 +22,15 @@ struct UserInfoData: Codable {
   let active, isReviewSecret: Bool
 }
 
+struct UserListResponse: Codable {
+  let statusCode: Int
+  let message: String
+  let list: [UserListInfoData]
+}
+
+// MARK: - UserInfoData
+struct UserListInfoData: Codable {
+  let id,reviewLevel: Int
+  let name: String
+}
+

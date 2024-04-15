@@ -64,7 +64,7 @@ class AdvertisementViewController: BaseViewController {
                       .bind(onNext: { [weak self] _ in
                           let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
                           vc.id = value.data.companyId
-                          self?.navigationController?.pushViewController(vc, animated: true)
+                        self?.goViewController(vc: vc)
                       })
                       .disposed(by: self.disposeBag)
                 }else if value.data.themeId != nil{

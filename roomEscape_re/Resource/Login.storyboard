@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jZV-r7-396">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jZV-r7-396">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNC" id="jZV-r7-396" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G7G-dn-DwE">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5g-EA-ebt">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ols-Vx-Dy2">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="543"/>
@@ -290,6 +290,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kc-aP-FSf">
                                 <rect key="frame" x="15" y="784.5" width="384" height="52.5"/>
                                 <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7Kc-aP-FSf" secondAttribute="height" multiplier="330.5:45" id="OYA-BO-5Q0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="다음">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -304,7 +307,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q64-cu-DtT">
-                                <rect key="frame" x="0.0" y="88" width="414" height="217"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="217"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-4f-vcv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
@@ -500,7 +503,6 @@
                             <constraint firstItem="f7L-0m-A5x" firstAttribute="trailing" secondItem="7Kc-aP-FSf" secondAttribute="trailing" constant="15" id="Gzv-9M-lIZ"/>
                             <constraint firstItem="Q64-cu-DtT" firstAttribute="leading" secondItem="f7L-0m-A5x" secondAttribute="leading" id="LIf-7K-3T5"/>
                             <constraint firstItem="Q64-cu-DtT" firstAttribute="top" secondItem="f7L-0m-A5x" secondAttribute="top" id="NZS-xm-Qfc"/>
-                            <constraint firstItem="7Kc-aP-FSf" firstAttribute="width" secondItem="7Kc-aP-FSf" secondAttribute="height" multiplier="330.5:45" id="OYA-BO-5Q0"/>
                             <constraint firstItem="7Kc-aP-FSf" firstAttribute="leading" secondItem="f7L-0m-A5x" secondAttribute="leading" constant="15" id="TqP-Dx-yGh"/>
                             <constraint firstItem="f7L-0m-A5x" firstAttribute="bottom" secondItem="7Kc-aP-FSf" secondAttribute="bottom" constant="25" id="uI3-78-cjg"/>
                         </constraints>
@@ -514,7 +516,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="certifiCheck" destination="ls2-t6-5lh" id="hns-5I-wDz"/>
                         <outlet property="codeTextField" destination="J24-nR-vCM" id="hfq-a0-oBy"/>
+                        <outlet property="phoneCheck" destination="Y5y-KT-Wbt" id="thp-3L-3hK"/>
                         <outlet property="phoneNumTextField" destination="a6j-51-DXW" id="waQ-4B-jfG"/>
                         <segue destination="wm1-fI-YUQ" kind="show" identifier="" id="Fgt-77-121"/>
                     </connections>
@@ -534,6 +538,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZQ-fH-FRr">
                                 <rect key="frame" x="15" y="784.5" width="384" height="52.5"/>
                                 <color key="backgroundColor" red="1" green="0.63529411764705879" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1ZQ-fH-FRr" secondAttribute="height" multiplier="330.5:45" id="mww-2e-qiF"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="다음">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -548,7 +555,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kib-a4-7xy">
-                                <rect key="frame" x="0.0" y="88" width="414" height="326"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4l-0r-Ka4">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
@@ -830,7 +837,6 @@
                             <constraint firstItem="Kib-a4-7xy" firstAttribute="leading" secondItem="Flz-67-vIN" secondAttribute="leading" id="8kv-vp-F0N"/>
                             <constraint firstItem="Flz-67-vIN" firstAttribute="trailing" secondItem="Kib-a4-7xy" secondAttribute="trailing" id="ECW-5I-Kpi"/>
                             <constraint firstItem="Flz-67-vIN" firstAttribute="trailing" secondItem="1ZQ-fH-FRr" secondAttribute="trailing" constant="15" id="Fbv-ep-XIh"/>
-                            <constraint firstItem="1ZQ-fH-FRr" firstAttribute="width" secondItem="1ZQ-fH-FRr" secondAttribute="height" multiplier="330.5:45" id="mww-2e-qiF"/>
                             <constraint firstItem="Flz-67-vIN" firstAttribute="bottom" secondItem="1ZQ-fH-FRr" secondAttribute="bottom" constant="25" id="rmd-f8-iup"/>
                             <constraint firstItem="Kib-a4-7xy" firstAttribute="top" secondItem="Flz-67-vIN" secondAttribute="top" id="tEq-3n-0mF"/>
                         </constraints>
@@ -844,8 +850,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="certifiCheck" destination="6dN-Oo-yZo" id="Jyk-jh-giV"/>
                         <outlet property="codeTextField" destination="2C7-pd-wkb" id="MwN-gz-PFj"/>
+                        <outlet property="emailCheck" destination="hjV-OI-wUY" id="ifP-Pd-lXi"/>
                         <outlet property="idTextField" destination="Oam-y9-THk" id="EmH-eY-RlU"/>
+                        <outlet property="phoneCheck" destination="WnY-3l-eha" id="TZh-MJ-ovk"/>
                         <outlet property="phoneNumTextField" destination="gqw-Wi-sWL" id="LfR-84-OXL"/>
                         <segue destination="Ivf-Hv-ij4" kind="show" identifier="next" id="SfA-NO-zi5"/>
                     </connections>
@@ -865,6 +874,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRg-h4-Wud">
                                 <rect key="frame" x="15" y="784.5" width="384" height="52.5"/>
                                 <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZRg-h4-Wud" secondAttribute="height" multiplier="330.5:45" id="x2o-bG-JJv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="다음">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -879,7 +891,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PSa-f4-Hhs">
-                                <rect key="frame" x="0.0" y="88" width="414" height="268.5"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="268.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSu-NF-98W">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
@@ -1016,7 +1028,6 @@
                             <constraint firstItem="riH-Tj-V7b" firstAttribute="trailing" secondItem="PSa-f4-Hhs" secondAttribute="trailing" id="Kn8-Ou-hbG"/>
                             <constraint firstItem="ZRg-h4-Wud" firstAttribute="leading" secondItem="riH-Tj-V7b" secondAttribute="leading" constant="15" id="QYo-Ys-dEQ"/>
                             <constraint firstItem="PSa-f4-Hhs" firstAttribute="leading" secondItem="riH-Tj-V7b" secondAttribute="leading" id="RBN-Zg-lNr"/>
-                            <constraint firstItem="ZRg-h4-Wud" firstAttribute="width" secondItem="ZRg-h4-Wud" secondAttribute="height" multiplier="330.5:45" id="x2o-bG-JJv"/>
                             <constraint firstItem="riH-Tj-V7b" firstAttribute="bottom" secondItem="ZRg-h4-Wud" secondAttribute="bottom" constant="25" id="zjQ-E6-G2f"/>
                         </constraints>
                     </view>
@@ -1046,7 +1057,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evz-Q7-fwK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6c-Vs-Gia">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="656.5"/>
@@ -1527,9 +1538,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="certifiCheck" destination="sdV-wF-ZIn" id="KAJ-FR-krz"/>
                         <outlet property="codeTextField" destination="ZbS-cm-kOz" id="JC9-YW-4b3"/>
+                        <outlet property="emailCheck" destination="gOE-Xk-vBH" id="lqx-hy-2QM"/>
                         <outlet property="idTextField" destination="wp5-PQ-Wtw" id="jmg-7T-5Ym"/>
                         <outlet property="ownerNameTextField" destination="na4-MT-K8N" id="60q-Zz-W6A"/>
+                        <outlet property="phoneCheck" destination="16d-oZ-e6g" id="4fp-zW-bGB"/>
                         <outlet property="phoneNumTextField" destination="yMH-Si-iPw" id="ERq-Mk-TCh"/>
                         <outlet property="pwCheckTextField" destination="m6t-cY-yfk" id="ylb-Sp-KBb"/>
                         <outlet property="pwTextField" destination="k2f-Bn-e2d" id="4BC-4h-CXr"/>
@@ -1550,6 +1564,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN5-P5-EOH">
                                 <rect key="frame" x="15" y="784.5" width="384" height="52.5"/>
                                 <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eN5-P5-EOH" secondAttribute="height" multiplier="330.5:45" id="FdN-kM-C1h"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="로그인">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1564,7 +1581,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BgO-d4-Fxk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="262.5"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="262.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Y8-5j-TYo">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
@@ -1638,7 +1655,6 @@
                             <constraint firstItem="BgO-d4-Fxk" firstAttribute="top" secondItem="VBw-oJ-L2H" secondAttribute="top" id="7CC-DB-jMI"/>
                             <constraint firstItem="BgO-d4-Fxk" firstAttribute="leading" secondItem="VBw-oJ-L2H" secondAttribute="leading" id="8sO-AJ-fFS"/>
                             <constraint firstItem="VBw-oJ-L2H" firstAttribute="trailing" secondItem="eN5-P5-EOH" secondAttribute="trailing" constant="15" id="C6R-ul-cHk"/>
-                            <constraint firstItem="eN5-P5-EOH" firstAttribute="width" secondItem="eN5-P5-EOH" secondAttribute="height" multiplier="330.5:45" id="FdN-kM-C1h"/>
                             <constraint firstItem="eN5-P5-EOH" firstAttribute="leading" secondItem="VBw-oJ-L2H" secondAttribute="leading" constant="15" id="Jfy-fy-pYb"/>
                             <constraint firstItem="VBw-oJ-L2H" firstAttribute="trailing" secondItem="BgO-d4-Fxk" secondAttribute="trailing" id="hRJ-Yx-DOK"/>
                             <constraint firstItem="VBw-oJ-L2H" firstAttribute="bottom" secondItem="eN5-P5-EOH" secondAttribute="bottom" constant="25" id="nvD-Nc-sdI"/>
@@ -1672,6 +1688,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7w-PQ-gyb">
                                 <rect key="frame" x="15" y="784.5" width="384" height="52.5"/>
                                 <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z7w-PQ-gyb" secondAttribute="height" multiplier="330.5:45" id="23C-kt-AgH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="비밀번호 변경">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1686,7 +1705,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UCq-95-2hO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="162.5"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="162.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1e1-dH-Ve4">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
@@ -1801,7 +1820,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NIO-2H-f3F" firstAttribute="trailing" secondItem="z7w-PQ-gyb" secondAttribute="trailing" constant="15" id="17q-Bf-klG"/>
-                            <constraint firstItem="z7w-PQ-gyb" firstAttribute="width" secondItem="z7w-PQ-gyb" secondAttribute="height" multiplier="330.5:45" id="23C-kt-AgH"/>
                             <constraint firstItem="z7w-PQ-gyb" firstAttribute="leading" secondItem="NIO-2H-f3F" secondAttribute="leading" constant="15" id="9Br-q0-r85"/>
                             <constraint firstItem="NIO-2H-f3F" firstAttribute="bottom" secondItem="z7w-PQ-gyb" secondAttribute="bottom" constant="25" id="Re7-2D-W3p"/>
                             <constraint firstItem="UCq-95-2hO" firstAttribute="leading" secondItem="NIO-2H-f3F" secondAttribute="leading" id="qW9-jl-7ed"/>
@@ -1835,7 +1853,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-Xl-YKc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgF-2u-5Jz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
@@ -2020,7 +2038,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7m-A1-63p">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>

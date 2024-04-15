@@ -8,6 +8,7 @@ target 'roomEscape_re' do
   # Pods for roomEscape_re
 
 
+
 # Reactive
   pod 'RxSwift'
   pod 'RxGesture'
@@ -57,6 +58,8 @@ post_install do |pi|
     pi.pods_project.targets.each do |t|
         t.build_configurations.each do |config|
             config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
         end
     end
 end

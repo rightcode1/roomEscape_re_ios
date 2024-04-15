@@ -16,10 +16,11 @@ protocol ReviewCellMyButtonsDelegate: AnyObject {
   func didRemoveButtonTapped(_ index: IndexPath)
   
   func didGoUserReview(_ index: IndexPath)
+  
+  func didReportUser(_ reviewId: Int,_ index: IndexPath)
 }
 
 class ReviewCell: UITableViewCell {
-  
   @IBOutlet var commentContentView: UIView!
   @IBOutlet var commentView: UIView!
   @IBOutlet var commentLabel: UILabel!
@@ -47,6 +48,9 @@ class ReviewCell: UITableViewCell {
   @IBOutlet weak var removeButton: UIButton!
   
   @IBOutlet weak var lineView: UIView!
+  
+  @IBOutlet weak var bannedVIew: UIView!
+  @IBOutlet weak var reportButton: UIButton!
   
   var reviewid: Int = 0
   var isLike: Bool = false
@@ -87,6 +91,9 @@ class ReviewCell: UITableViewCell {
     delegate?.didRemoveButtonTapped(index!)
   }
   
+  @IBAction func reportButtonTapped(_ sender: Any) {
+    delegate?.didReportUser(reviewid,index!)
+  }
   @IBAction func tapUser(_ sender: Any) {
     delegate?.didGoUserReview(index!)
   }
@@ -119,6 +126,16 @@ class ReviewCell: UITableViewCell {
     }else{
       likeButton.setImage(UIImage(named: "reviewLikeButtonOff"), for: .normal)
     }
+    if data.reportCount >= 5{
+      bannedVIew.isHidden = false
+      contentLabel.isHidden = true
+      contentLabel.text = "신고중인 댓글"
+    }else{
+      bannedVIew.isHidden = true
+      contentLabel.isHidden = false
+      contentLabel.text = data.content
+    }
+    reportButton.setTitle("신고하기 \(data.reportCount)", for: .normal)
     likecount = data.likeCount
     likeButton.setTitle("\(likecount)", for: .normal)
     difficultyStackView.arrangedSubviews[0].isHidden = data.level != .매우쉬움
@@ -168,8 +185,7 @@ class ReviewCell: UITableViewCell {
         
       }
     }
-    self.gradeImageView.image = UIImage(named: "userLevelImage\(data.grade)")
-    contentLabel.text = data.content
+    self.gradeImageView.image = UIImage(named: "userLevelImage\(data.reviewLevel)")
   }
   
   func reviewLike(_ reviewId: Int){

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoticeListVC: UIViewController {
+class NoticeListVC: BaseViewController {
   @IBOutlet var tableView: UITableView!
   
   var boardList: [NoticeBoard] = []

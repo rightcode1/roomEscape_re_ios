@@ -21,7 +21,7 @@ struct ApiEnvironment {
   static let kakaoAppKey = Bundle.main.object(forInfoDictionaryKey: "KAKAO_APP_KEY") as! String
   static let kakaoRESTKey = Bundle.main.object(forInfoDictionaryKey: "KAKAO_REST_KEY") as! String
   //  static let serverGatewayStage = Bundle.main.object(forInfoDictionaryKey: "SERVER_GATEWAY_STAGE") as! String
-  static let subBaseUrl = "http://52.78.226.88:33667"
+//  static let subBaseUrl = "http://52.78.226.88:33667"
 }
 
 

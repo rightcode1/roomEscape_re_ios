@@ -11,7 +11,9 @@ import SwiftyJSON
 import RxSwift
 import Cosmos
 
-class CafeReviewVC: UIViewController, ReviewCellMyButtonsDelegate {
+class CafeReviewVC: BaseViewController, ReviewCellMyButtonsDelegate {
+  
+  
   
   
   @IBOutlet weak var reviewRatingView: CosmosView!
@@ -133,6 +135,9 @@ class CafeReviewVC: UIViewController, ReviewCellMyButtonsDelegate {
     }
   }
   func didGoUserReview(_ index: IndexPath) {
+  }
+  
+  func didReportUser(_ reviewId: Int, _ index: IndexPath) {
   }
 }
 extension CafeReviewVC: UITableViewDelegate, UITableViewDataSource {

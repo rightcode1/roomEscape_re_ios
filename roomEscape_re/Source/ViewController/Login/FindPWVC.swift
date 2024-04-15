@@ -7,11 +7,15 @@
 
 import UIKit
 
-class FindPWVC: UIViewController {
+class FindPWVC: BaseViewController {
   @IBOutlet weak var idTextField: UITextField!
   
   @IBOutlet weak var phoneNumTextField: UITextField!
   @IBOutlet weak var codeTextField: UITextField!
+  @IBOutlet var emailCheck: UIButton!
+  @IBOutlet var phoneCheck: UIButton!
+  @IBOutlet var certifiCheck: UIButton!
+  
   
   var isNotExist: Bool = false
   
@@ -19,8 +23,29 @@ class FindPWVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    idTextField.rx.text.orEmpty
+      .map({ $0.isValidateEmail() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+        emailCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
     
+    phoneNumTextField.rx.text.orEmpty
+      .map({ $0.isPhone() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+          phoneCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
     
+    codeTextField.rx.text.orEmpty
+      .map({ $0.isValidateCode() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+        certifiCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
   }
   
   func checkId() {

@@ -14,6 +14,8 @@ import Cosmos
 
 class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   
+  
+  
   @IBOutlet weak var thumbnailView: UIView!
   @IBOutlet weak var mainCollectionView: UICollectionView!
   @IBOutlet weak var mainCollectionViewHeightConstraint: NSLayoutConstraint!
@@ -38,10 +40,6 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   
   @IBOutlet weak var contentLabel: UILabel!
   
-  @IBOutlet weak var priceView: UIView!
-  @IBOutlet weak var feeTableView: UITableView!
-  @IBOutlet weak var feeTableViewHeightConstraint: NSLayoutConstraint!
-  
   @IBOutlet weak var reviewRatingView: CosmosView!
   @IBOutlet weak var reviewRatingLabel: UILabel!
   @IBOutlet weak var reviewCountLabel: UILabel!
@@ -49,9 +47,12 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   
   @IBOutlet weak var reviewTableView: UITableView!
   @IBOutlet weak var reviewTableViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var communityTableView: UITableView!
+  @IBOutlet weak var communityTableViewHeightConstraint: NSLayoutConstraint!
   
+  @IBOutlet weak var communityTotalLabel: UILabel!
   
-  
+  @IBOutlet var registCommunityButton: UIButton!
   //company
   @IBOutlet var companyBackView: UIView!
   @IBOutlet var companyThumbnail: UIImageView!
@@ -60,8 +61,36 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   @IBOutlet var compnayAverageText: UILabel!
   @IBOutlet var companyLIkeCount: UILabel!
   
+  @IBOutlet var exchangeMenuButton: UIButton!
+  @IBOutlet var exchangeSelectView: UIView!
+  @IBOutlet var togetherMenuButton: UIButton!
+  @IBOutlet var togetherSelectView: UIView!
+  @IBOutlet var freeBoardMenuButton: UIButton!
+  @IBOutlet var freeBoardSelectView: UIView!
+  
+  @IBOutlet var communityCategoryButton1: UIView!
+  @IBOutlet var communityCategoryLabel1: UILabel!
+  @IBOutlet var communityCategoryButton2: UIView!
+  @IBOutlet var communityCategoryLabel2: UILabel!
   
   
+  @IBOutlet var infoView: UIView!
+  
+  
+  var boardDiff: BoardDiff? = .양도교환{
+    didSet{
+      setNotSelectCategory(communityCategoryButton1,communityCategoryLabel1)
+      setNotSelectCategory(communityCategoryButton2,communityCategoryLabel2)
+      switch boardDiff {
+      case .양도교환:
+        setSelectCategory(communityCategoryButton1,communityCategoryLabel1)
+      case .일행구하기:
+        setSelectCategory(communityCategoryButton2,communityCategoryLabel2)
+      default:
+        break
+      }
+    }
+  }
   var id: Int!
   
   var detailData: ThemaDetailData?
@@ -73,32 +102,110 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   var themePriceList: [ThemePrice] = []
   
   var reviewList: [ThemeReview] = []
+  var boardsList: [BoardList] = []
   
   var mainCollectionViewHeight: CGFloat = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    detailThema()
+    DataHelper<Any>.appendAdCount()
     navigationController?.navigationBar.isHidden = false
+    setSelectCategory(communityCategoryButton1,communityCategoryLabel1)
     registDelegateDatasource()
+    initrx()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.isNavigationBarHidden = false
-    detailThema()
     themeReviewList()
+    themeCommunityList()
+  }
+  
+  func initrx(){
+    exchangeMenuButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.exchangeSelectView.isHidden = false
+        self?.togetherSelectView.isHidden = true
+        self?.freeBoardSelectView.isHidden = true
+        self?.infoView.isHidden = false
+        self?.reviewTableView.isHidden = true
+        self?.communityTableView.isHidden = true
+      })
+      .disposed(by: disposeBag)
+    togetherMenuButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.exchangeSelectView.isHidden = true
+        self?.togetherSelectView.isHidden = false
+        self?.freeBoardSelectView.isHidden = true
+        self?.infoView.isHidden = true
+        self?.reviewTableView.isHidden = false
+        self?.communityTableView.isHidden = true
+      })
+      .disposed(by: disposeBag)
+    freeBoardMenuButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.exchangeSelectView.isHidden = true
+        self?.togetherSelectView.isHidden = true
+        self?.freeBoardSelectView.isHidden = false
+        self?.infoView.isHidden = true
+        self?.reviewTableView.isHidden = true
+        self?.communityTableView.isHidden = false
+      })
+      .disposed(by: disposeBag)
+    
+  registCommunityButton.rx.tapGesture().when(.recognized)
+    .bind(onNext: { [weak self] _ in
+      let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "RegistCommunityBoardViewController") as! RegistCommunityBoardViewController
+      self?.navigationController?.pushViewController(vc, animated: true)
+    })
+    .disposed(by: disposeBag)
+    
+    communityCategoryLabel1.rx.tapGesture().when(.recognized)
+        .bind(onNext: { [weak self] _ in
+          self?.boardDiff = .양도교환
+          self?.boardsList.removeAll()
+          self?.themeCommunityList()
+        })
+        .disposed(by: disposeBag)
+    communityCategoryLabel2.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.boardDiff = .일행구하기
+        self?.boardsList.removeAll()
+        self?.themeCommunityList()
+      })
+      .disposed(by: disposeBag)
+    
+  }
+  
+  func setSelectCategory(_ view: UIView,_ textView : UILabel) {
+    view.backgroundColor = UIColor(red: 255, green: 239, blue: 188)
+    view.borderColor = .clear
+    textView.textColor = UIColor(red: 255, green: 162, blue: 0)
+  }
+  
+  func setNotSelectCategory(_ view: UIView,_ textView: UILabel) {
+    view.backgroundColor = .white
+    view.borderColor = #colorLiteral(red: 0.9294117093, green: 0.9294117093, blue: 0.9294117093, alpha: 1)
+    textView.textColor = .lightGray
   }
   
   func registDelegateDatasource() {
     mainCollectionView.delegate = self
     mainCollectionView.dataSource = self
     
-    feeTableView.delegate = self
-    feeTableView.dataSource = self
-    
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
     
     reviewTableView.estimatedRowHeight = 150
+    
+    let nibName = UINib(nibName: "CommunityBoardListCell", bundle: nil)
+    communityTableView.register(nibName, forCellReuseIdentifier: "CommunityBoardListCell")
+    
+    communityTableView.delegate = self
+    communityTableView.dataSource = self
+    
+    communityTableView.estimatedRowHeight = 150
   }
   
   func initLevelStackView(_ level: Int) {
@@ -126,6 +233,14 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
       vc.reviewData = reviewList[index.row]
       self.navigationController?.pushViewController(vc, animated: true)
     }
+  
+  func didReportUser(_ reviewId: Int, _ index: IndexPath) {
+    let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "themePopup") as! ThemeReportVC
+    vc.reviewId = reviewId
+    vc.index = index.row
+    vc.delegate = self
+    self.present(vc, animated: true, completion: nil)
+  }
   
     func didGoUserReview(_ index: IndexPath) {
       let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
@@ -189,9 +304,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     themeImages = [Image(id: 0, name: data.thumbnail ?? "")]
     imageCountLabel.text = "1/\(1)"
     
-    priceView.isHidden = data.themePrices.count <= 0
     themePriceList = data.themePrices
-    feeTableViewHeightConstraint.constant = CGFloat(data.themePrices.count * 40)
     
     isWish = data.isWish
     wishCount = data.wishCount
@@ -210,6 +323,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     }
     ratesView.settings.fillMode = .half
     reviewRatingView.settings.fillMode = .half
+    scoreView.text = "\(data.grade)"
     
     titleLabel.text = "\(data.title)  \(data.category)"
     contentLabel.text = data.intro
@@ -223,11 +337,11 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     
     initLevelStackView(data.level)
     
-    timeLabel.text = "\(data.time)분"
+    timeLabel.text = "제한시간 \(data.time)분"
+    timeLabel.changeTextBoldStyle(changeText: "제한시간", fontSize: CGFloat(11))
     featureLabel.text = "활동성 \(data.activity) • 장치비율 \(data.tool) • \(data.recommendPerson)인 이상"
     
     mainCollectionView.reloadData()
-    feeTableView.reloadData()
   }
   
   //   API
@@ -270,7 +384,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     
     let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
     let requestURL = url
-          .appending("limit", value: "2")
+          .appending("limit", value: "3")
           .appending("page", value: "1")
       .appending("themeId", value: "\(id ?? 0)")
     
@@ -287,9 +401,10 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
         
         if let data = jsonData, let value = try? decoder.decode(ThemeReviewResponse.self, from: data) {
           if value.statusCode == 200 {
+            
             self.reviewList.removeAll()
-            self.reviewCountLabel.text = "\(value.list.count)"
-              if value.list.count > 2 {
+            self.reviewCountLabel.text = "(\(value.list.count))"
+              if value.list.count > 3 {
               self.moreReviewButton.isHidden = false
             } else {
               self.moreReviewButton.isHidden = true
@@ -300,6 +415,47 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
             
             self.reviewTableView.layoutIfNeeded()
             self.reviewTableViewHeightConstraint.constant = self.reviewTableView.contentSize.height
+          }
+        }
+        break
+      case .failure:
+        print("error: \(response.error!)")
+        break
+      }
+    }
+  }
+  
+  func themeCommunityList() {
+    let apiurl = "/v1/boards/list"
+    
+    let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
+    let requestURL = url
+          .appending("limit", value: "3")
+          .appending("page", value: "1")
+      .appending("themeId", value: "\(id ?? 0)")
+      .appending("diff", value: boardDiff?.rawValue)
+    
+    var request = URLRequest(url: requestURL)
+    request.httpMethod = HTTPMethod.get.rawValue
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    AF.request(request).responseJSON { (response) in
+      switch response.result {
+      case .success(let value):
+        let decoder = JSONDecoder()
+        let json = JSON(value)
+        let jsonData = try? json.rawData()
+        print("\(apiurl) responseJson: \(json)")
+        
+        if let data = jsonData, let value = try? decoder.decode(BoardListResponse.self, from: data) {
+          if value.statusCode == 200 {
+              self.boardsList.removeAll()
+              self.communityTotalLabel.text = "총 (\(value.list.count))"
+              self.boardsList = value.list.rows
+              
+              self.communityTableView.reloadData()
+              
+              self.communityTableView.layoutIfNeeded()
+              self.communityTableViewHeightConstraint.constant = self.communityTableView.contentSize.height
           }
         }
         break
@@ -333,7 +489,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
             self.companyTitle.text = value.data.title
             self.companyAverage.rating = value.data.averageRate
             self.compnayAverageText.text = "\(value.data.averageRate) (\(value.data.reviewCount))"
-            self.companyLIkeCount.text = "(\(value.data.wishCount)"
+            self.companyLIkeCount.text = "\(value.data.wishCount)"
           }
         }
         break
@@ -434,46 +590,59 @@ extension DetailThemaVC: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension DetailThemaVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if feeTableView == tableView {
-      return themePriceList.count
-    } else {
+    if tableView.isEqual(reviewTableView){
       return reviewList.count
+    }else{
+      return boardsList.count
+    }
+  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if tableView.isEqual(communityTableView){
+      let dict = boardsList[indexPath.row]
+      let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityDetail") as! CommunityDetailViewController
+      vc.boardId = dict.id
+      self.navigationController?.pushViewController(vc, animated: true)
     }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if feeTableView == tableView {
-      let cell = feeTableView.dequeueReusableCell(withIdentifier: "feeCell", for: indexPath) as! FeeCell
-      let dict = themePriceList[indexPath.row]
-      cell.initWithThemePrice(dict)
-      
-      cell.selectionStyle = .none
-      
-      return cell
-    } else {
-      let cell = reviewTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReviewCell
-      let dict = reviewList[indexPath.row]
-        cell.delegate = self
-      cell.initWithThemeReview(dict,indexPath)
-      
-      cell.lineView.isHidden = indexPath.row == (reviewList.count - 1)
-      cell.isMineView.isHidden = (DataHelperTool.userAppId ?? 0) != dict.userId
-      
-      cell.selectionStyle = .none
-      
-      return cell
-    }
+    
+      if tableView.isEqual(reviewTableView){
+        let cell = reviewTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReviewCell
+        let dict = reviewList[indexPath.row]
+          cell.delegate = self
+        cell.initWithThemeReview(dict,indexPath)
+        
+        cell.lineView.isHidden = indexPath.row == (reviewList.count - 1)
+        cell.isMineView.isHidden = (DataHelperTool.userAppId ?? 0) != dict.userId
+        
+        cell.selectionStyle = .none
+        
+        return cell
+      }else{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityBoardListCell", for: indexPath) as! CommunityBoardListCell
+        let dict = boardsList[indexPath.row]
+        
+        cell.initWithBoardList(dict)
+        
+        cell.selectionStyle = .none
+        
+        return cell
+      }
     
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if feeTableView == tableView {
-      return 40
-    } else {
-      return UITableView.automaticDimension
-    }
+    return UITableView.automaticDimension
   }
   
+}
+
+extension DetailThemaVC: ReviewProtoDelegate {
+  func reportReview(_ index: Int) {
+    themeReviewList()
+    self.showToast(message: "리뷰 신고 완료하였습니다.")
+  }
 }
 
  

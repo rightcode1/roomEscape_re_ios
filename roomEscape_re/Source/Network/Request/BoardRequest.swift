@@ -37,19 +37,16 @@ struct BoardListRequest: Codable {
 }
 
 struct BoardCommentRegistRequest: Codable {
-  let boardId: Int
-  let user_pk: String
-  let nickname: String
-  let grade: String
+  let boardsId: Int
   let content: String
-  let boardCommentId: Int? 
+  let boardsCommentId: Int? 
 }
 
 struct RegistBoardRequest: Codable {
-  let user_pk, nickname, grade: String
   let title: String?
   let content: String
   let diff: BoardDiff
+  let themeId: Int?
   let company_name, theme_name, category: String?
 }
 
@@ -57,5 +54,23 @@ struct ModifyBoardRequest: Codable {
   let title: String?
   let company_name, theme_name: String?
   let content: String?
+  let themeId: Int?
   let category: String?
+  
+  
+  init(
+    category: String? = nil,
+    themeId: Int? = nil,
+    company_name: String? = nil,
+    theme_name: String? = nil,
+    title: String? = nil,
+    content: String? = nil
+  ) {
+    self.category = category
+    self.themeId = themeId
+    self.company_name = company_name
+    self.theme_name = theme_name
+    self.title = title
+    self.content = content
+  }
 }

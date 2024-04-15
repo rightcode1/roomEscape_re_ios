@@ -59,6 +59,52 @@ class ContentCell: UITableViewCell {
       levelStackView.arrangedSubviews[4-i].isHidden = true
     }
   }
+  func initRankingList(index: Int,_ data: ThemaListData) {
+    premiumImageView.isHidden = true
+    if index == 0{
+      premiumImageView.image = UIImage(named: "ranking1")
+      premiumImageView.isHidden = false
+    }else if index == 1{
+      premiumImageView.image = UIImage(named: "ranking2")
+      premiumImageView.isHidden = false
+    }else if index == 2{
+      premiumImageView.image = UIImage(named: "ranking3")
+      premiumImageView.isHidden = false
+    }
+    contentImageView.kf.setImage(with: URL(string: "\(data.thumbnail ?? "")"))
+    
+    if data.typeNew == false {
+      newImageView.isHidden = true
+      newDiffBackView.isHidden = true
+    } else {
+      newImageView.isHidden = false
+    }
+    
+    if data.typeDifferent == false {
+      differentImageView.isHidden = true
+      newDiffBackView.isHidden = true
+    } else {
+      differentImageView.isHidden = false
+    }
+    
+    titleLabel.text = "\(data.title)  \(data.category)"
+    titleLabel.changeTextStyle(changeText: data.category)
+//    conceptLabel.text = data.category
+    locationLabel.text = data.companyName
+    starRatesView.settings.fillMode = .half
+
+    starRatesView.rating = Double(data.grade)
+    starScoreLabel.text = "\(data.grade)"
+    favoritesScoreLabel.text = "\(data.wishCount)"
+    
+    initLevelStackView(data.level)
+    
+    timeLabel.text = "\(data.time)분"
+    featureLabel.text = "활동성 \(data.activity) • 장치비율 \(data.tool) • \(data.recommendPerson)인 이상"
+    
+    let wishImage = data.isWish ? UIImage(named: "isWishFull") : UIImage(named: "isWishEmpty")
+    isWishButton.setImage(wishImage, for: .normal)
+  }
   
   func initContentList(_ data: ThemaListData) {
      
@@ -78,7 +124,9 @@ class ContentCell: UITableViewCell {
       differentImageView.isHidden = false
     }
     
+    
     titleLabel.text = "\(data.title)  \(data.category)"
+    titleLabel.changeTextStyle(changeText: data.category)
 //    conceptLabel.text = data.category
     locationLabel.text = data.companyName
     starRatesView.settings.fillMode = .half
@@ -95,6 +143,7 @@ class ContentCell: UITableViewCell {
     let wishImage = data.isWish ? UIImage(named: "isWishFull") : UIImage(named: "isWishEmpty")
     isWishButton.setImage(wishImage, for: .normal)
   }
+  
   func initPremiumThemeList(_ data: ThemaListData,_ premiumSize: Int,_ index: Int) {
     if premiumSize < index+1{
       premiumImageView.isHidden = true
@@ -118,7 +167,9 @@ class ContentCell: UITableViewCell {
       differentImageView.isHidden = false
     }
     
+    
     titleLabel.text = "\(data.title)  \(data.category)"
+    titleLabel.changeTextStyle(changeText: data.category)
 //    conceptLabel.text = data.category
     locationLabel.text = data.companyName
     starRatesView.settings.fillMode = .half
@@ -136,3 +187,5 @@ class ContentCell: UITableViewCell {
     isWishButton.setImage(wishImage, for: .normal)
   }
 }
+
+

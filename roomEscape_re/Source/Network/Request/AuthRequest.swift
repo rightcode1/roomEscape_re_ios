@@ -64,3 +64,9 @@ struct UserUpdateRequest: Codable {
 struct reviewLikeRequest: Codable {
   var themeReviewId: Int?
 }
+
+struct reviewReportRequest: Codable {
+  var themeReviewId: Int?
+  var companyReviewId: Int?
+  var content: String?
+}

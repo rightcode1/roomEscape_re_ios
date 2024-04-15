@@ -229,6 +229,7 @@ class CommunitySearchViewController: BaseViewController,UIScrollViewDelegate {
     }
   }
   
+  
   func initBoardList() {
     let param = BoardListRequest(
       page: page, limit: 20,
@@ -487,26 +488,7 @@ extension CommunitySearchViewController: UICollectionViewDelegate, UICollectionV
     contentLabel.text = dict.company_name
     
     
-    switch dict.grade {
-    case "0":
-      gradeImageView.image = UIImage(named: "BigLevel0")
-    case "1":
-      gradeImageView.image = UIImage(named: "BigLevel1")
-    case "2":
-      gradeImageView.image = UIImage(named: "BigLevel2")
-    case "3":
-      gradeImageView.image = UIImage(named: "BigLevel3")
-    case "4":
-      gradeImageView.image = UIImage(named: "BigLevel4")
-    case "5":
-      gradeImageView.image = UIImage(named: "BigLevel5")
-    case "6":
-      gradeImageView.image = UIImage(named: "BigLevel6")
-    case "7":
-      gradeImageView.image = UIImage(named: "BigLevel7")
-    default:
-      gradeImageView.image = UIImage(named: "BigLevel8")
-    }
+    gradeImageView.image = UIImage(named: "BigLevel\(dict.grade)")
     
     nameLabel.text = dict.nickname
     
@@ -532,7 +514,6 @@ extension CommunitySearchViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let width = ((UIScreen.main.bounds.width - 50) / 2)
-    
     return CGSize(width: width, height: 218)
     
   }

@@ -19,6 +19,7 @@ class MyVC: BaseViewController {
   @IBOutlet var settingView: UIView!
   
   
+  @IBOutlet var myBoardView: UIView!
   @IBOutlet var hintView: UIView!
   
   @IBOutlet var yesHintView: UIView!
@@ -81,6 +82,14 @@ class MyVC: BaseViewController {
   }
   
   func bindInput() {
+    myBoardView.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityListVC") as! CommunityListViewController
+        vc.isMine = true
+        vc.hidesBottomBarWhenPushed = true
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
     myReviewView.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         self?.moveToReviewVC(isOther: false)

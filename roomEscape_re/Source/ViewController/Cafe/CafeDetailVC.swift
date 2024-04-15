@@ -12,6 +12,7 @@ import Cosmos
 
 class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegate {
   
+  
   @IBOutlet weak var wishBarButton: UIBarButtonItem!
   
   @IBOutlet weak var thumbnailView: UIView!
@@ -61,6 +62,7 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    DataHelper<Any>.appendAdCount()
     navigationController?.navigationBar.isHidden = false
     contentTableView.delegate = self
     contentTableView.dataSource = self
@@ -229,6 +231,8 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
         break
       }
     }
+  }
+  func didReportUser(_ reviewId: Int, _ index: IndexPath) {
   }
   
   func removeReview(_ reviewId: Int) {
@@ -427,7 +431,7 @@ extension CafeDetailVC: UITableViewDelegate, UITableViewDataSource {
       let dict = themeList[indexPath.row]
       let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     }
   }
   

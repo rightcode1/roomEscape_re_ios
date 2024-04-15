@@ -32,33 +32,27 @@ class LoginVC: BaseViewController {
       callMSGDialog(message: "비밀번호를 입력해주세요.")
       return
     }
-    // 인증번호 확인
     self.showHUD()
     ApiService.request(router: AuthApi.login(loginId: idTextField.text!, password: pwTextField.text!), success: { (response: ApiResponse<LoginResponse>) in
       guard let value = response.value else {
         return
       }
       self.dismissHUD()
-      if value.statusCode > 202 {
-        self.callMSGDialog(message: value.message)
-      } else {
-        DataHelper.set(self.idTextField.text!, forKey: .userId)
-        DataHelper.set("남은시간", forKey: .playTimeType)
-        
+      if value.statusCode == 200 { // 성공
+        DataHelper.set("bearer \(value.token ?? "")", forKey: .token)
         self.userInfo { UserInfoResponse in
-          if value.statusCode == 202 {
-            DataHelper.set("bearer \(value.token ?? "")", forKey: .token)
-            let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-          } else {
-            DataHelper.set("bearer \(value.token ?? "")", forKey: .token)
-            DataHelper.set(self.pwTextField.text!, forKey: .userPw)
-            self.userInfo { value in
-              self.goTabBar()
-            }
-          }
+          self.setNotificationToken()
+          DataHelper.set(self.idTextField.text!, forKey: .userId)
+          DataHelper.set(self.pwTextField.text!, forKey: .userPw)
+          DataHelper.set("남은시간", forKey: .playTimeType)
+          self.goTabBar()
         }
+      }else  if value.statusCode == 202 {
+        DataHelper.set("bearer \(value.message )", forKey: .token)
+        let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+        self.navigationController?.pushViewController(vc, animated: true)
+      } else{ //로그인 실패-
+        self.callMSGDialog(message: value.message)
       }
     }) { (error) in
       self.dismissHUD()
@@ -68,6 +62,22 @@ class LoginVC: BaseViewController {
       } else {
         self.callMSGDialog(message: "아이디가 없거나 비밀번호가 일치하지 않습니다.")
       }
+    }
+  }
+  
+  func setNotificationToken() {
+    self.showHUD()
+    let param = NotificationRequest (
+      notificationToken: DataHelper<String>.value(forKey: .pushToken) ?? ""
+    )
+    ApiService.request(router: NotificationApi.registNotificationToken(param: param), success: { [self] (response: ApiResponse<DefaultResponse>) in
+      guard let value = response.value else {
+        return
+      }
+      if value.statusCode < 202 {
+      }
+    }) { (error) in
+      self.dismissHUD()
     }
   }
   

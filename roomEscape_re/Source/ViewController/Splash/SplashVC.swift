@@ -17,12 +17,13 @@ class SplashVC: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-      versionCheck()
-    
+    DataHelper<Int>.set(1, forKey: .adCount)
+    self.versionCheck()
   }
   func versionCheck() {
-    self.showHUD()
+    DispatchQueue.main.async {
+      self.showHUD()
+    }
     ApiService.request(router: VersionApi.version, success: { [self] (response: ApiResponse<VersionResponse>) in
       guard let value = response.value else {
         return
@@ -30,26 +31,59 @@ class SplashVC: BaseViewController {
       if value.statusCode < 202 {
         let themeFilter = ThemeListRequest()
         DataHelper<ThemeListRequest>.setThemeListFilter(themeFilter)
-        print("version : \(self.version ?? "000000000")", value.data.ios)
         let versionNumber: Int = Int(self.version!) ?? 0
         print("version : \(versionNumber)", value.data.ios)
         if versionNumber  < value.data.ios {
           self.performSegue(withIdentifier: "update", sender: nil)
         } else {
-          if DataHelperTool.userId != nil && DataHelperTool.userPw != nil && DataHelperTool.playTimeType != nil && DataHelperTool.token != nil && DataHelperTool.userNickname != nil && DataHelperTool.userAppId != nil {
-            self.login()
-          } else {
-            self.moveToLogin()
-          }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
+            if didAllow {
+              self.setNotificationToken()
+            } else {
+              if DataHelperTool.userId != nil && DataHelperTool.userPw != nil && DataHelperTool.playTimeType != nil && DataHelperTool.token != nil && DataHelperTool.userNickname != nil && DataHelperTool.userAppId != nil {
+                self.login()
+              } else {
+                DispatchQueue.main.async {
+                  self.moveToLogin()
+                }
+              }
+            }
+        })
         }
       }
     }) { (error) in
-      self.dismissHUD()
+      DispatchQueue.main.async {
+        self.dismissHUD()
+      }
+    }
+  }
+  
+  func setNotificationToken() {
+    let param = NotificationRequest (
+      notificationToken: DataHelper<String>.value(forKey: .pushToken) ?? ""
+    )
+    ApiService.request(router: NotificationApi.registNotificationToken(param: param), success: { [self] (response: ApiResponse<DefaultResponse>) in
+      guard let value = response.value else {
+        return
+      }
+      if value.statusCode < 202 {
+        if DataHelperTool.userId != nil && DataHelperTool.userPw != nil && DataHelperTool.playTimeType != nil && DataHelperTool.token != nil && DataHelperTool.userNickname != nil && DataHelperTool.userAppId != nil {
+          self.login()
+        } else {
+          self.moveToLogin()
+        }
+      }
+    }) { (error) in
+      DispatchQueue.main.async {
+        self.dismissHUD()
+      }
     }
   }
   
   func login() {
-    self.showHUD()
+    DispatchQueue.main.async {
+      self.showHUD()
+    }
     ApiService.request(router: AuthApi.login(loginId: DataHelperTool.userId ?? "", password: DataHelperTool.userPw ?? ""), success: { (response: ApiResponse<LoginResponse>) in
       guard let value = response.value else {
         return
@@ -57,6 +91,10 @@ class SplashVC: BaseViewController {
       self.dismissHUD()
       if value.statusCode > 200 {
         self.moveToLogin()
+      }else if value.statusCode == 202{
+        DataHelper.set("bearer \(value.message )", forKey: .token)
+        let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+        self.navigationController?.pushViewController(vc, animated: true)
       } else {
         DataHelper.set("bearer \(value.token ?? "")", forKey: .token)
           self.userInfo { value in

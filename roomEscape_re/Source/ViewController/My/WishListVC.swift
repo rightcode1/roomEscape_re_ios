@@ -248,7 +248,7 @@ extension WishListVC: UITableViewDataSource, UITableViewDelegate {
       
       let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     } else {
       let dict = cafeList[indexPath.row]
       
@@ -256,7 +256,7 @@ extension WishListVC: UITableViewDataSource, UITableViewDelegate {
       //
       //    vc.id = dict.id
       //
-      //    self.navigationController?.pushViewController(vc, animated: true)
+      //    self.goViewController(vc: vc)
     }
   }
   

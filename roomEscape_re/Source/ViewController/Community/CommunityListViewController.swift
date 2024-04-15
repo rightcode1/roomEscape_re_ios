@@ -8,230 +8,205 @@
 
 import UIKit
 class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
-  
-  @IBOutlet var scrollView: UIScrollView!
-  
   @IBOutlet var collectionView: UICollectionView!
-  @IBOutlet var collectionViewHeight: NSLayoutConstraint!
   
   @IBOutlet var tableView: UITableView!
-  @IBOutlet var tableViewHeight: NSLayoutConstraint!
   
 //  @IBOutlet var diffLabel: UILabel!
   var page: Int = 1
   var check: Bool = false
   
+  @IBOutlet var selectView0: UIView!
   @IBOutlet var selectView1: UIView!
   @IBOutlet var selectView2: UIView!
   @IBOutlet var selectView3: UIView!
   @IBOutlet var selectView4: UIView!
   
-//  @IBOutlet var initSearchButton: UIButton!
+  @IBOutlet var searchView: UIView!
+  @IBOutlet var searchNavigationView: UIView!
+  //  @IBOutlet var initSearchButton: UIButton!
   
   @IBOutlet var categoryView: UIView!
+  @IBOutlet var categoryHeightView: NSLayoutConstraint!
   @IBOutlet var categoryStackView: UIStackView!
   
-  @IBOutlet var sortButton1: UIView!
-  @IBOutlet var sorLabel1: UILabel!
-  @IBOutlet var sortButton2: UIView!
-  @IBOutlet var sortLabel2: UILabel!
+  @IBOutlet var categoryView1: UIView!
+  @IBOutlet var categoryLabel1: UILabel!
+  @IBOutlet var categoryView2: UIView!
+  @IBOutlet var categoryLabel2: UILabel!
+  @IBOutlet var categoryView3: UIView!
+  @IBOutlet var categoryLabel3: UILabel!
+  @IBOutlet var categoryView4: UIView!
+  @IBOutlet var categoryLabel4: UILabel!
   
-  @IBOutlet var wholeRecruitButton: UIView!
-  @IBOutlet var wholeLabel: UILabel!
-  @IBOutlet var recruitButton: UIView!
-  @IBOutlet var recruitLabel: UILabel!
-  @IBOutlet var finishRecruitButton: UIView!
-  @IBOutlet var finishRecruitLabel: UILabel!
-  
-  @IBOutlet var infoCategoryButton1: UIView!
-  @IBOutlet var infoLabel1: UILabel!
-  @IBOutlet var infoCategoryButton2: UIView!
-  @IBOutlet var infoLabel2: UILabel!
-  @IBOutlet var infoCategoryButton3: UIView!
-  @IBOutlet var infoLabel3: UILabel!
-  @IBOutlet var infoCategoryButton4: UIView!
-  @IBOutlet var infoLabel4: UILabel!
   
   @IBOutlet var registBoardButton: UIImageView!
   
-  var tabCommunityBoardId: Int?
   var isMine: Bool = false
+  var isSearch: Bool = false
   var reportList: [Int] = []
   var userReportList: [String] = []
   
   let cellIdentifier: String = "CommunityBoardListCell"
   
-  var boardDiff: BoardDiff = .자유게시판 {
+  var selectBoardCategory: BoardCategory? = nil{
+    didSet{
+      page = 1
+      setNotSelectCategory(categoryView1,categoryLabel1)
+      setNotSelectCategory(categoryView2,categoryLabel2)
+      setNotSelectCategory(categoryView3,categoryLabel3)
+      setNotSelectCategory(categoryView4,categoryLabel4)
+      switch selectBoardCategory {
+      case .정보:
+        setSelectCategory(categoryView1,categoryLabel1)
+      case .소식:
+        setSelectCategory(categoryView2,categoryLabel2)
+      case .이벤트:
+        setSelectCategory(categoryView3,categoryLabel3)
+      case .후기:
+        setSelectCategory(categoryView4,categoryLabel4)
+      case .모집중:
+        setSelectCategory(categoryView2,categoryLabel2)
+      case .모집완료:
+        setSelectCategory(categoryView3,categoryLabel3)
+      case .진행:
+        setSelectCategory(categoryView2,categoryLabel2)
+      case .마감:
+        setSelectCategory(categoryView3,categoryLabel3)
+      case .최신순:
+        setSelectCategory(categoryView1,categoryLabel1)
+      case .추천순:
+        setSelectCategory(categoryView2,categoryLabel2)
+      case nil:
+        setSelectCategory(categoryView1,categoryLabel1)
+      default:
+        break
+      }
+    }
+  }
+  
+  var boardDiff: BoardDiff = .양도교환 {
     didSet {
-//      diffLabel.text = boardDiff.rawValue
-      
+      page = 1
+      selectView0.isHidden = boardDiff == .양도교환 ? false : true
       selectView1.isHidden = boardDiff == .자유게시판 ? false : true
-      
       selectView2.isHidden = boardDiff == .보드판갤러리 ? false : true
       collectionView.isHidden = boardDiff == .보드판갤러리 ? false : true
       tableView.isHidden = boardDiff == .보드판갤러리
-      
       selectView3.isHidden = boardDiff == .일행구하기 ? false : true
-      
       selectView4.isHidden = boardDiff == .방탈출정보 ? false : true
-      
       categoryView.isHidden = boardDiff == .자유게시판 || isMine ? true : false
-      
-      categoryStackView.arrangedSubviews[0].isHidden = boardDiff == .보드판갤러리 ? false : true
-      categoryStackView.arrangedSubviews[1].isHidden = boardDiff == .일행구하기 ? false : true
-      categoryStackView.arrangedSubviews[2].isHidden = boardDiff == .방탈출정보 ? false : true
+      categoryView1.isHidden = true
+      categoryView2.isHidden = true
+      categoryView3.isHidden = true
+      categoryView4.isHidden = true
+      categoryView.isHidden = false
+      switch boardDiff{
+      case .양도교환:
+        categoryView1.isHidden = false
+        categoryView2.isHidden = false
+        categoryView3.isHidden = false
+        categoryLabel1.text = "전체"
+        categoryLabel2.text = "진행"
+        categoryLabel3.text = "마감"
+      case .일행구하기:
+        categoryView1.isHidden = false
+        categoryView2.isHidden = false
+        categoryView3.isHidden = false
+        categoryLabel1.text = "전체"
+        categoryLabel2.text = "모집중"
+        categoryLabel3.text = "모집완료"
+      case .보드판갤러리:
+        categoryView1.isHidden = false
+        categoryView2.isHidden = false
+        categoryLabel1.text = "최신순"
+        categoryLabel2.text = "추천순"
+      case .방탈출정보:
+        categoryView1.isHidden = false
+        categoryView2.isHidden = false
+        categoryView3.isHidden = false
+        categoryView4.isHidden = false
+        categoryLabel1.text = "정보"
+        categoryLabel2.text = "소식"
+        categoryLabel3.text = "이벤트"
+        categoryLabel4.text = "후기"
+      default:
+        categoryView.isHidden = true
+        break
+      }
     }
   }
   
   var boardList: [BoardList] = [] {
     didSet {
+      collectionView.reloadData()
+      tableView.reloadData()
       if boardDiff != .보드판갤러리 {
-        collectionViewHeight.constant = 0
-        initTableViewHeightWithBoardList()
+        collectionView.isHidden = true
       } else {
-        tableViewHeight.constant = 0
-        initCollectionViewHeightWithBoardList()
+        tableView.isHidden = true
       }
-    }
-  }
-  
-  var category: String = "전체" {
-    didSet{
-      initCategoryButtonWithCategory()
-    }
-  }
-  
-  var sortDiff: String = "최신순" {
-    didSet{
-      initSortButtonWithSortDiff()
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    page = 1
     registerXib()
     initrx()
-    scrollView.delegate = self
-    boardList.removeAll()
+    setSelectCategory(categoryView1,categoryLabel1)
     tableView.dataSource = self
     tableView.delegate = self
     collectionView.dataSource = self
     collectionView.delegate = self
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    
+    navigationController?.navigationBar.isHidden = false
     check = false
     page = 1
     boardList.removeAll()
-    if tabCommunityBoardId != nil {
-      performSegue(withIdentifier: "detail", sender: tabCommunityBoardId!)
-      tabCommunityBoardId = nil
-    }
-    initBoardList()
-    initWithIsMine()
-  }
-  
-  
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "detail", let vc = segue.destination as? CommunityDetailViewController, let boardId = sender as? Int {
-      vc.boardId = boardId
-    }
-    
-    if segue.identifier == "regist", let vc = segue.destination as? RegistCommunityBoardViewController {
-      vc.boardDiff = boardDiff
-      vc.boardId = nil
+    if isSearch || isMine{
+      searchView.isHidden = false
+      searchNavigationView.isHidden = false
+      navigationController?.navigationBar.isHidden = true
+    }else{
+      initBoardList()
     }
   }
-  
   private func registerXib() {
     let nibName = UINib(nibName: cellIdentifier, bundle: nil)
     tableView.register(nibName, forCellReuseIdentifier: cellIdentifier)
   }
   
-  func initWithIsMine() {
-    registBoardButton.isHidden = isMine
-//    categoryView.isHidden = boardDiff == .자유게시판 || isMine ? true : false
-  }
-  
-  func setSelectButtonColor(_ button: UIView,_ textView : UILabel) {
-    button.backgroundColor = UIColor(red: 255, green: 239, blue: 188)
-    button.borderColor = .clear
+  func setSelectCategory(_ view: UIView,_ textView : UILabel) {
+    view.backgroundColor = UIColor(red: 255, green: 239, blue: 188)
+    view.borderColor = .clear
     textView.textColor = UIColor(red: 255, green: 162, blue: 0)
   }
   
-  func setNotSelectButtonColor(_ button: UIView,_ textView: UILabel) {
-    button.backgroundColor = .white
-    button.borderColor = .lightGray
+  func setNotSelectCategory(_ view: UIView,_ textView: UILabel) {
+    view.backgroundColor = .white
+    view.borderColor = #colorLiteral(red: 0.9294117093, green: 0.9294117093, blue: 0.9294117093, alpha: 1)
     textView.textColor = .lightGray
   }
   
-  func initTableViewHeightWithBoardList() {
-    tableViewHeight.constant = CGFloat(boardList.count * 77)
-  }
+//  func initTableViewHeightWithBoardList() {
+////    self.tableViewHeight.constant = self.tableView.contentSize.height
+//    tableViewHeight.constant = CGFloat(boardList.count * 77)
+//  }
   
-  func initCollectionViewHeightWithBoardList() {
-    collectionViewHeight.constant = CGFloat(((boardList.count / 2) + (boardList.count % 2 != 0 ? 1 : 0)) * 228)
-  }
+//  func initCollectionViewHeightWithBoardList() {
+//    collectionViewHeight.constant = CGFloat(((boardList.count / 2) + (boardList.count % 2 != 0 ? 1 : 0)) * 228)
+//  }
   
-  func initCategoryButtonWithCategory() {
-    if boardDiff == .일행구하기 {
-      if category == "전체" {
-        setSelectButtonColor(wholeRecruitButton,wholeLabel)
-        setNotSelectButtonColor(recruitButton,recruitLabel)
-        setNotSelectButtonColor(finishRecruitButton,finishRecruitLabel)
-      } else if category == "모집중" {
-        setSelectButtonColor(recruitButton,recruitLabel)
-        setNotSelectButtonColor(wholeRecruitButton,wholeLabel)
-        setNotSelectButtonColor(finishRecruitButton,finishRecruitLabel)
-      } else {
-        setSelectButtonColor(finishRecruitButton,finishRecruitLabel)
-        setNotSelectButtonColor(recruitButton,recruitLabel)
-        setNotSelectButtonColor(wholeRecruitButton,wholeLabel)
-      }
-    } else {
-      if category == "정보" {
-        setSelectButtonColor(infoCategoryButton1,infoLabel1)
-        setNotSelectButtonColor(infoCategoryButton2,infoLabel2)
-        setNotSelectButtonColor(infoCategoryButton3,infoLabel3)
-        setNotSelectButtonColor(infoCategoryButton4,infoLabel4)
-      } else if category == "소식" {
-        setSelectButtonColor(infoCategoryButton2,infoLabel2)
-        setNotSelectButtonColor(infoCategoryButton3,infoLabel3)
-        setNotSelectButtonColor(infoCategoryButton4,infoLabel4)
-        setNotSelectButtonColor(infoCategoryButton1,infoLabel1)
-      }else if category == "이벤트" {
-        setSelectButtonColor(infoCategoryButton3,infoLabel3)
-        setNotSelectButtonColor(infoCategoryButton2,infoLabel2)
-        setNotSelectButtonColor(infoCategoryButton1,infoLabel1)
-        setNotSelectButtonColor(infoCategoryButton4,infoLabel4)
-      } else if category == "후기" {
-        setSelectButtonColor(infoCategoryButton4,infoLabel4)
-        setNotSelectButtonColor(infoCategoryButton2,infoLabel2)
-        setNotSelectButtonColor(infoCategoryButton3,infoLabel3)
-        setNotSelectButtonColor(infoCategoryButton1,infoLabel1)
-      }
-    }
-  }
-  
-  func initSortButtonWithSortDiff() {
-    if sortDiff == "최신순" {
-      setSelectButtonColor(sortButton1,sorLabel1)
-      setNotSelectButtonColor(sortButton2,sortLabel2)
-    } else {
-      setSelectButtonColor(sortButton2,sortLabel2)
-      setNotSelectButtonColor(sortButton1,sorLabel1)
-    }
-  }
   
   func initBoardList(_ searchKeyword: String? = nil) {
     let param = BoardListRequest(
       page: page, limit: 20,
       diff: boardDiff,
-      category: boardDiff == .자유게시판 || boardDiff == .보드판갤러리 ? nil : category,
-      sort: boardDiff == .보드판갤러리 ? sortDiff : nil,
+      category:  boardDiff == .자유게시판 || boardDiff == .보드판갤러리 ? nil : selectBoardCategory?.rawValue,
+      sort: boardDiff == .보드판갤러리 ? selectBoardCategory?.rawValue : nil,
       user_pk: isMine ? DataHelperTool.userAppId ?? 0 : nil,
       search: searchKeyword
     )
@@ -308,78 +283,76 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
     registBoardButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "RegistCommunityBoardViewController") as! RegistCommunityBoardViewController
-        vc.boardDiff = self!.boardDiff
         self?.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: disposeBag)
     
-      sortButton1.rx.tapGesture().when(.recognized)
+    categoryLabel1.rx.tapGesture().when(.recognized)
         .bind(onNext: { [weak self] _ in
-          self?.sortDiff = "최신순"
+          if let category = BoardCategory(rawValue: self?.categoryLabel1.text ?? "") {
+              self?.selectBoardCategory = category
+            } else {
+              self?.selectBoardCategory = nil
+          }
           self?.boardList.removeAll()
           self?.initBoardList()
         })
         .disposed(by: disposeBag)
-    sortButton2.rx.tapGesture().when(.recognized)
+    categoryLabel2.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
-        self?.sortDiff = "추천순"
+        if let category = BoardCategory(rawValue: self?.categoryLabel2.text ?? "") {
+            self?.selectBoardCategory = category
+          } else {
+            self?.selectBoardCategory = nil
+        }
         self?.boardList.removeAll()
         self?.initBoardList()
       })
       .disposed(by: disposeBag)
-    wholeRecruitButton.rx.tapGesture().when(.recognized)
+    categoryLabel3.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
-        self?.category = "전체"
+        if let category = BoardCategory(rawValue: self?.categoryLabel3.text ?? "") {
+            self?.selectBoardCategory = category
+          } else {
+            self?.selectBoardCategory = nil
+        }
         self?.boardList.removeAll()
         self?.initBoardList()
       })
       .disposed(by: disposeBag)
-    recruitButton.rx.tapGesture().when(.recognized)
+    categoryLabel4.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
-        self?.category = self?.boardDiff == .일행구하기 ? "모집중" : "공지"
-        self?.boardList.removeAll()
-        self?.initBoardList()
-      })
-      .disposed(by: disposeBag)
-    finishRecruitButton.rx.tapGesture().when(.recognized)
-      .bind(onNext: { [weak self] _ in
-        self?.category = self?.boardDiff == .일행구하기 ? "모집완료" : "정보"
-        self?.boardList.removeAll()
-        self?.initBoardList()
-      })
-      .disposed(by: disposeBag)
-    infoCategoryButton1.rx.tapGesture().when(.recognized)
-      .bind(onNext: { [weak self] _ in
-        self?.category = "정보"
-        self?.boardList.removeAll()
-        self?.initBoardList()
-      })
-      .disposed(by: disposeBag)
-    infoCategoryButton2.rx.tapGesture().when(.recognized)
-      .bind(onNext: { [weak self] _ in
-        self?.category = "소식"
-        self?.boardList.removeAll()
-        self?.initBoardList()
-      })
-      .disposed(by: disposeBag)
-    infoCategoryButton3.rx.tapGesture().when(.recognized)
-      .bind(onNext: { [weak self] _ in
-        self?.category = "이벤트"
-        self?.boardList.removeAll()
-        self?.initBoardList()
-      })
-      .disposed(by: disposeBag)
-    infoCategoryButton4.rx.tapGesture().when(.recognized)
-      .bind(onNext: { [weak self] _ in
-        self?.category = "후기"
+        if let category = BoardCategory(rawValue: self?.categoryLabel4.text ?? "") {
+            self?.selectBoardCategory = category
+          } else {
+            self?.selectBoardCategory = nil
+        }
         self?.boardList.removeAll()
         self?.initBoardList()
       })
       .disposed(by: disposeBag)
   }
+  @IBAction func search(_ sender: Any) {
+    initBoardList()
+  }
+  @IBAction func tapSearch(_ sender: Any) {
+    let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityListVC") as! CommunityListViewController
+    vc.isSearch = true
+    vc.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  @IBAction func tapDiff0(_ sender: Any) {
+    selectBoardCategory = nil
+    boardDiff = .양도교환
+    check = false
+    page = 1
+    boardList.removeAll()
+    initBoardList()
+  }
   
   @IBAction func tapDiff1(_ sender: UIButton) {
-    boardDiff = .자유게시판
+    selectBoardCategory = nil
+    boardDiff = .일행구하기
     check = false
     page = 1
     boardList.removeAll()
@@ -387,30 +360,33 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
   }
   
   @IBAction func tapDiff2(_ sender: UIButton) {
-    boardDiff = .보드판갤러리
+    selectBoardCategory = nil
+    boardDiff = .자유게시판
     check = false
-    category = "최신순"
     page = 1
     boardList.removeAll()
     initBoardList()
   }
   
   @IBAction func tapDiff3(_ sender: UIButton) {
-    boardDiff = .일행구하기
+    selectBoardCategory = .최신순
+    boardDiff = .보드판갤러리
     check = false
-    category = "전체"
     page = 1
     boardList.removeAll()
     initBoardList()
   }
   
   @IBAction func tapDiff4(_ sender: UIButton) {
+    selectBoardCategory = nil
     boardDiff = .방탈출정보
     check = false
-    category = "정보"
     page = 1
     boardList.removeAll()
     initBoardList()
+  }
+  @IBAction func backPress(_ sender: Any) {
+    backPress()
   }
 }
 
@@ -422,10 +398,8 @@ extension CommunityListViewController: UITableViewDelegate, UITableViewDataSourc
         page += 1
         check = false
         initBoardList()
-        
       }
     }
-    
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -446,11 +420,13 @@ extension CommunityListViewController: UITableViewDelegate, UITableViewDataSourc
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let dict = boardList[indexPath.row]
-    performSegue(withIdentifier: "detail", sender: dict.id)
+    let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityDetail") as! CommunityDetailViewController
+    vc.boardId = dict.id
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 77
+    return UITableView.automaticDimension
   }
   
 }
@@ -492,26 +468,7 @@ extension CommunityListViewController: UICollectionViewDelegate, UICollectionVie
     contentLabel.text = dict.company_name
     
     
-    switch dict.grade {
-    case "0":
-      gradeImageView.image = UIImage(named: "BigLevel0")
-    case "1":
-      gradeImageView.image = UIImage(named: "BigLevel1")
-    case "2":
-      gradeImageView.image = UIImage(named: "BigLevel2")
-    case "3":
-      gradeImageView.image = UIImage(named: "BigLevel3")
-    case "4":
-      gradeImageView.image = UIImage(named: "BigLevel4")
-    case "5":
-      gradeImageView.image = UIImage(named: "BigLevel5")
-    case "6":
-      gradeImageView.image = UIImage(named: "BigLevel6")
-    case "7":
-      gradeImageView.image = UIImage(named: "BigLevel7")
-    default:
-      gradeImageView.image = UIImage(named: "BigLevel8")
-    }
+    gradeImageView.image = UIImage(named: "BigLevel\(dict.grade)")
     
     nameLabel.text = dict.nickname
     
@@ -524,7 +481,9 @@ extension CommunityListViewController: UICollectionViewDelegate, UICollectionVie
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let dict = boardList[indexPath.row]
-    performSegue(withIdentifier: "detail", sender: dict.id)
+    let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityDetail") as! CommunityDetailViewController
+    vc.boardId = dict.id
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 

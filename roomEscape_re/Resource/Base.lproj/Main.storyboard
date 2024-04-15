@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TVQ-gE-Cnl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TVQ-gE-Cnl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -15,7 +15,7 @@
             <objects>
                 <navigationController id="TVQ-gE-Cnl" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IFn-Dy-cSS">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdz-DB-azD">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jT-w5-JVY">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
@@ -173,7 +173,7 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="245" id="gfV-ug-nG9">
-                                                        <rect key="frame" x="0.0" y="44.5" width="414" height="245"/>
+                                                        <rect key="frame" x="0.0" y="50" width="414" height="245"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfV-ug-nG9" id="5LH-oq-zGZ">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
@@ -209,6 +209,7 @@
                                                                             <rect key="frame" x="102.5" y="196.5" width="12.5" height="12.5"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="12.5" id="QCh-t3-p0I"/>
+                                                                                <constraint firstAttribute="width" secondItem="6bI-90-bEG" secondAttribute="height" multiplier="1:1" id="yVv-Au-VT3"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssz-A3-5pX">
@@ -330,7 +331,6 @@
                                                                         <constraint firstItem="ssz-A3-5pX" firstAttribute="top" secondItem="kcB-UY-iPu" secondAttribute="bottom" constant="13" id="j9L-GA-2Rw"/>
                                                                         <constraint firstItem="wpx-6b-gTT" firstAttribute="leading" secondItem="b0a-Nr-dSA" secondAttribute="leading" id="v3h-DM-ez4"/>
                                                                         <constraint firstItem="6bI-90-bEG" firstAttribute="centerY" secondItem="4jk-HW-Squ" secondAttribute="centerY" id="vr0-YK-whr"/>
-                                                                        <constraint firstItem="6bI-90-bEG" firstAttribute="width" secondItem="6bI-90-bEG" secondAttribute="height" multiplier="1:1" id="yVv-Au-VT3"/>
                                                                         <constraint firstItem="LYc-L3-aVh" firstAttribute="leading" secondItem="b0a-Nr-dSA" secondAttribute="leading" id="zfw-Id-EPn"/>
                                                                     </constraints>
                                                                 </view>
@@ -400,11 +400,6 @@
             <point key="canvasLocation" x="311" y="-289"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="LYc-L3-aVh">
-            <size key="intrinsicContentSize" width="65" height="9"/>
-        </designable>
-    </designables>
     <resources>
         <image name="isWishFull" width="23" height="23"/>
         <image name="starEmpty" width="32.5" height="31"/>

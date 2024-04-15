@@ -8,60 +8,67 @@
 
 import UIKit
 import Kingfisher
+import Cosmos
 
 extension UIStackView {
-    func removeAllArrangedSubviews() {
-        arrangedSubviews.forEach {
-            self.removeArrangedSubview($0)
-            NSLayoutConstraint.deactivate($0.constraints)
-            $0.removeFromSuperview()
-        }
+  func removeAllArrangedSubviews() {
+    arrangedSubviews.forEach {
+      self.removeArrangedSubview($0)
+      NSLayoutConstraint.deactivate($0.constraints)
+      $0.removeFromSuperview()
     }
+  }
 }
 
-class CommunityDetailViewController: UIViewController {
+class CommunityDetailViewController: BaseViewController {
+  @IBOutlet var communityLabel: UILabel!
   @IBOutlet var collectionView: UICollectionView!
   
   @IBOutlet var tableView: UITableView!
   @IBOutlet var tableViewHeight: NSLayoutConstraint!
   
-  @IBOutlet var galleryStackView: UIStackView!
-  @IBOutlet var cafeNameLabel: UILabel!
-  
-  @IBOutlet var titleStackView: UIStackView!
-  @IBOutlet var cruitImageView: UIImageView!
   @IBOutlet var titleLabel: UILabel!
   
-  @IBOutlet var aView: UIView!
-  @IBOutlet var gradeView: UIView!
+  @IBOutlet var gradeLabel: UILabel!
   
-  @IBOutlet var infoDiffImageView: UIImageView!
-  @IBOutlet var gradeImageView: UIImageView!
   @IBOutlet var nameLabel: UILabel!
   
   @IBOutlet var dateLabel: UILabel!
   @IBOutlet var commentCount: UILabel!
   //  @IBOutlet var reviewCountLabel: UILabel!
+  @IBOutlet var communityCategory: UIImageView!
+  @IBOutlet var communityCategoryWidth: NSLayoutConstraint!
   
-  @IBOutlet var contentLabel: UILabel!
   @IBOutlet var contentTextView: UITextView!
+  
+  @IBOutlet var themeStackView: UIView!
+  @IBOutlet var themeImageView: UIImageView!
+  @IBOutlet var themeTitleLabel: UILabel!
+  @IBOutlet var themeDiffLabel: UILabel!
+  @IBOutlet var themeCompanyLabel: UILabel!
+  @IBOutlet var themecompanyAverage: CosmosView!
+  @IBOutlet var themecompnayAverageText: UILabel!
+  @IBOutlet var themecompanyLIkeCount: UILabel!
   
   @IBOutlet var imageStackView: UIStackView!
   
   @IBOutlet var imageListView: UIView! // collectionView
   
-  @IBOutlet var buttonStackBackView: UIView!
-  @IBOutlet var buttonStackView: UIStackView! // 0 - 수정, 1 - 삭제, 2 - 추천하기
   
   @IBOutlet var reviewTextView: UITextView!
   
   @IBOutlet weak var inputTextView: UITextView!
   
   @IBOutlet weak var registCommentButton: UIButton!
-  @IBOutlet var likeButton: UIButton!
   
   @IBOutlet weak var replyView: UIView!
   @IBOutlet weak var replyLabel: UILabel!
+  
+  @IBOutlet var reportButton: UILabel!
+  @IBOutlet var modifyButton: UILabel!
+  @IBOutlet var deleteButton: UILabel!
+  
+  
   
   let inputTextViewPlaceHolder = "댓글을 입력해주세요."
   
@@ -70,9 +77,7 @@ class CommunityDetailViewController: UIViewController {
   
   var boardDiff: BoardDiff = .자유게시판 {
     didSet{
-      navigationItem.title = boardDiff.rawValue
-      galleryStackView.isHidden = boardDiff != .보드판갤러리
-      titleStackView.isHidden = boardDiff == .보드판갤러리
+      communityLabel.text = boardDiff.rawValue
     }
   }
   
@@ -86,6 +91,8 @@ class CommunityDetailViewController: UIViewController {
   
   var sendCommentName: String?
   
+  var boardThemeId: Int?
+  
   var isLike: Bool = false
   
   override func viewDidLoad() {
@@ -94,28 +101,56 @@ class CommunityDetailViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     
-//    contentTextView.delegate = self
-    
     inputTextView.delegate = self
     reviewTextView.delegate = self
+    
+    initrx()
+  }
+  func initrx(){
+      modifyButton.rx.tapGesture().when(.recognized)
+        .bind(onNext: { [weak self] _ in
+          let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "RegistCommunityBoardViewController") as! RegistCommunityBoardViewController
+          vc.boardId = self?.boardId
+          self?.navigationController?.pushViewController(vc, animated: true)
+        })
+        .disposed(by: disposeBag)
+    deleteButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.callYesNoMSGDialog(message: "해당 게시글을 삭제하시겠습니까?") {
+          self?.removeBoard()
+        }
+      })
+      .disposed(by: disposeBag)
+    reportButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        self?.callYesNoMSGDialog(message: "게시물을 신고하시겠습니까?") {
+          self?.showToast(message: "게시물 신고 완료하였습니다.")
+          DataHelper<Int>.appendReportList(self?.boardId ?? 0)
+          self?.backPress()
+        }
+      })
+      .disposed(by: disposeBag)
+    themeStackView.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
+        vc.id = self?.boardThemeId
+        self?.goViewController(vc: vc)
+      })
+      .disposed(by: disposeBag)
+    
   }
   
+  
+  
   override func viewWillAppear(_ animated: Bool) {
+    navigationController?.navigationBar.isHidden = true
     boardDetail()
-    
     initBoardCommentList()
   }
   
   private func registerXib() {
     let nibName = UINib(nibName: cellIdentifier, bundle: nil)
     tableView.register(nibName, forCellReuseIdentifier: cellIdentifier)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "modify", let vc = segue.destination as? RegistCommunityBoardViewController {
-      vc.boardDiff = boardDiff
-      vc.boardId = boardId
-    }
   }
   
   func textViewSetupView() {
@@ -143,42 +178,42 @@ class CommunityDetailViewController: UIViewController {
     for i in 0..<(images.count) {
       KingfisherManager.shared.retrieveImage(with: URL(string: "https://d35jysenqmci34.cloudfront.net/fit-in/\(images[i].name)")!) { result in
         switch result {
-          case .success(let value):
-            let image = value.image.resizeToWidth(newWidth: self.view.frame.width - 30)
-            
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-            
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
-            view.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
-            
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-            
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
-            imageView.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
-            
-            imageView.contentMode = .scaleToFill
-            imageView.clipsToBounds = true
-            imageView.image = image
-            
-            view.addSubview(imageView)
-            
-            let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-            
-            showButton.translatesAutoresizingMaskIntoConstraints = false
-            showButton.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
-            showButton.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
-            
-            showButton.setTitle("", for: .normal)
-            showButton.tag = i + 1
-//            showButton.addTarget(self, action: #selector(self.tapDetailImage(_ :)), for: .touchUpInside)
-            
-            view.addSubview(showButton)
-            
-            self.imageStackView.addArrangedSubview(view)
-          case .failure:
-            break
+        case .success(let value):
+          let image = value.image.resizeToWidth(newWidth: self.view.frame.width - 30)
+          
+          let view = UIView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+          
+          view.translatesAutoresizingMaskIntoConstraints = false
+          view.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
+          view.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
+          
+          let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+          
+          imageView.translatesAutoresizingMaskIntoConstraints = false
+          imageView.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
+          imageView.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
+          
+          imageView.contentMode = .scaleToFill
+          imageView.clipsToBounds = true
+          imageView.image = image
+          
+          view.addSubview(imageView)
+          
+          let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+          
+          showButton.translatesAutoresizingMaskIntoConstraints = false
+          showButton.widthAnchor.constraint(equalToConstant: image.size.width).isActive = true
+          showButton.heightAnchor.constraint(equalToConstant: image.size.height).isActive = true
+          
+          showButton.setTitle("", for: .normal)
+          showButton.tag = i + 1
+          //            showButton.addTarget(self, action: #selector(self.tapDetailImage(_ :)), for: .touchUpInside)
+          
+          view.addSubview(showButton)
+          
+          self.imageStackView.addArrangedSubview(view)
+        case .failure:
+          break
         }
       }
     }
@@ -205,91 +240,94 @@ class CommunityDetailViewController: UIViewController {
   func initUIWithBoardDetailData(_ data: BoardDetail) {
     boardDiff = data.diff
     registUserId = data.user_pk
+    boardThemeId = data.theme?.id
     imageStackView.removeAllArrangedSubviews()
-    
-//    boardImageList = data.boardImages
-//    imageListView.isHidden = data.boardImages.count == 0
+    if data.theme != nil{
+      themeStackView.isHidden = false
+      themeDiffLabel.text = data.theme?.category
+      self.themeImageView.kf.setImage(with: URL(string: data.theme?.thumbnail ?? ""))
+      self.themeTitleLabel.text = data.theme?.title
+      self.themeCompanyLabel.text = data.theme?.companyName
+      self.themecompanyAverage.rating = data.theme?.grade ?? 0.0
+      self.themecompnayAverageText.text = "\(data.theme?.grade ?? 0) (\(data.theme?.grade ?? 0))"
+      self.themecompanyLIkeCount.text = "\(data.theme?.wishCount ?? 0)"
+    }else{
+      themeStackView.isHidden = true
+    }
+    //    boardImageList = data.boardImages
+    //    imageListView.isHidden = data.boardImages.count == 0
     
     if data.boardImages.count > 0 {
       initImageStackView(images: data.boardImages)
     }
     
-    cruitImageView.isHidden = data.diff != .일행구하기
-    cruitImageView.image = data.category == "공지" ? #imageLiteral(resourceName: "infoDiffIcon5") : (data.category == "모집중" ? #imageLiteral(resourceName: "recruitImage") : #imageLiteral(resourceName: "finishRecruitImage"))
-    
-    aView.isHidden = data.category != "공지"
-    gradeView.isHidden = data.category == "공지"
-    
+    switch data.grade{
+    case "0":
+      gradeLabel.text = "0+"
+    case "1":
+      gradeLabel.text = "1+"
+    case "2":
+      gradeLabel.text = "11+"
+    case "3":
+      gradeLabel.text = "51+"
+    case "4":
+      gradeLabel.text = "101+"
+    case "5":
+      gradeLabel.text = "301+"
+    case "6":
+      gradeLabel.text = "301+"
+    case "7":
+      gradeLabel.text = "501+"
+    case "8":
+      gradeLabel.text = "1001+"
+    default:
+      gradeLabel.text = "none"
+    }
     commentCount.text = "\(data.commentCount)"
     
-    
-    if data.diff == .방탈출정보 {
-      infoDiffImageView.isHidden = false
-      
-      if data.category == "정보" {
-        infoDiffImageView.image = #imageLiteral(resourceName: "infoDiffIcon1")
-      } else if data.category == "소식" {
-        infoDiffImageView.image = #imageLiteral(resourceName: "infoDiffIcon2")
-      } else if data.category == "이벤트" {
-        infoDiffImageView.image = #imageLiteral(resourceName: "infoDiffIcon3")
-      } else if data.category == "후기" {
-        infoDiffImageView.image = #imageLiteral(resourceName: "infoDiffIcon4")
-      } else {
-        infoDiffImageView.image = #imageLiteral(resourceName: "infoDiffIcon5")
-      }
-    } else {
-      infoDiffImageView.isHidden = true
-    }
-
-    switch data.grade {
-    case "0":
-      gradeImageView.image = UIImage(named: "BigLevel0")
-    case "1":
-      gradeImageView.image = UIImage(named: "BigLevel1")
-    case "2":
-      gradeImageView.image = UIImage(named: "BigLevel2")
-    case "3":
-      gradeImageView.image = UIImage(named: "BigLevel3")
-    case "4":
-      gradeImageView.image = UIImage(named: "BigLevel4")
-    case "5":
-      gradeImageView.image = UIImage(named: "BigLevel5")
-    case "6":
-      gradeImageView.image = UIImage(named: "BigLevel6")
-    case "7":
-      gradeImageView.image = UIImage(named: "BigLevel7")
+    switch data.category {
+    case "공지":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon5")
+    case "정보":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon1")
+    case "소식":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon2")
+    case "이벤트":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon3")
+    case "후기":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon4")
+    case "모집중":
+      communityCategory.image = #imageLiteral(resourceName: "recruitImage")
+    case "모집완료":
+      communityCategory.image = #imageLiteral(resourceName: "finishRecruitImage")
+    case "진행":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon6")
+    case "마감":
+      communityCategory.image = #imageLiteral(resourceName: "infoDiffIcon7")
     default:
-      gradeImageView.image = UIImage(named: "BigLevel8")
+      communityCategory.isHidden = true
+      break
     }
-    
-    cafeNameLabel.text = "\(data.company_name ?? "")"
-//    themeNameLabel.text = "테마명 : \(data.theme_name ?? "")"
+    let scale = (communityCategory.image?.size.width ?? 0) / (communityCategory.image?.size.height ?? 0)
+    communityCategoryWidth.constant = 15 * scale
     
     titleLabel.text = data.title
-    contentLabel.text = data.content
     
     contentTextView.text = data.content
     
     nameLabel.text = data.nickname
     dateLabel.text = data.createdAt
-//    reviewCountLabel.text = "\(data.commentCount)"
+    //    reviewCountLabel.text = "\(data.commentCount)"
     
     let userPk = "\(DataHelperTool.userAppId ?? 0)"
     
-    if userPk == data.user_pk || data.diff == .보드판갤러리 {
-      isLike = data.isLike == "true"
-      buttonStackBackView.isHidden = true
-      
-      buttonStackView.arrangedSubviews[0].isHidden = userPk != data.user_pk
-      buttonStackView.arrangedSubviews[1].isHidden = userPk != data.user_pk
-      
-      if userPk != data.user_pk {
-        buttonStackView.arrangedSubviews[2].isHidden = false
-      } else {
-        buttonStackView.arrangedSubviews[2].isHidden = true
-      }
+    if userPk == data.user_pk{
+      modifyButton.isHidden = false
+      deleteButton.isHidden = false
     }
-
+    
+    isLike = data.isLike == "true"
+    
     collectionView.reloadData()
     
     self.dismissHUD()
@@ -333,12 +371,9 @@ class CommunityDetailViewController: UIViewController {
     self.showHUD()
     
     let param = BoardCommentRegistRequest(
-      boardId: boardId ?? 0,
-      user_pk: "\(DataHelperTool.userAppId ?? 0)",
-      nickname: DataHelperTool.userNickname ?? "",
-      grade: "1",
+      boardsId: boardId ?? 0,
       content: inputTextView.text!,
-      boardCommentId: sendCommentId
+      boardsCommentId: sendCommentId
     )
     ApiService.request(router: BoardApi.boardCommentRegister(param: param), success: { (response: ApiResponse<DefaultResponse>) in
       guard let value = response.value else {
@@ -442,15 +477,18 @@ class CommunityDetailViewController: UIViewController {
       }
     }
   }
+  @IBAction func backPress(_ sender: Any) {
+    backPress()
+  }
   
   @IBAction func tapRecommand(_ sender: UIButton) {
     if DataHelperTool.userAppId == nil {
-//      let alertController = UIAlertController(title: nil, message: "로그인 후 이용해주세요", preferredStyle: .alert)
-//      let LoginAction = UIAlertAction(title: "확인", style: .default){ (action) in
-//        self.performSegue(withIdentifier: "LoginVC", sender: self)
-//      }
-//      alertController.addAction(LoginAction)
-//      self.present(alertController, animated: true, completion: nil)
+      //      let alertController = UIAlertController(title: nil, message: "로그인 후 이용해주세요", preferredStyle: .alert)
+      //      let LoginAction = UIAlertAction(title: "확인", style: .default){ (action) in
+      //        self.performSegue(withIdentifier: "LoginVC", sender: self)
+      //      }
+      //      alertController.addAction(LoginAction)
+      //      self.present(alertController, animated: true, completion: nil)
     } else{
       if isLike {
         callMSGDialog(message: "이미 좋아요한 게시물입니다.")
@@ -472,9 +510,8 @@ class CommunityDetailViewController: UIViewController {
       self.replyView.layoutIfNeeded()
     }
   }
-
+  
   @IBAction func registReview(_ sender: UIButton) {
-    
     self.view.endEditing(true)
     if DataHelperTool.userAppId == nil {
       let alertController = UIAlertController(title: nil, message: "로그인 후 이용해주세요", preferredStyle: .alert)
@@ -496,23 +533,6 @@ class CommunityDetailViewController: UIViewController {
       }
     }
     
-  }
-  
-  @IBAction func tapModify(_ sender: Any) {
-    performSegue(withIdentifier: "modify", sender: nil)
-  }
-  
-  @IBAction func tapDelete(_ sender: Any) {
-    choiceAlert(message: "해당 게시글을 삭제하시겠습니까?") {
-      self.removeBoard()
-    }
-  }
-  @IBAction func tapReport(_ sender: Any) {
-    self.callYesNoMSGDialog(message: "게시물을 신고하시겠습니까?") {
-      self.showToast(message: "게시물 신고 완료하였습니다.")
-      DataHelper<Int>.appendReportList(self.boardId!)
-      self.backPress()
-    }
   }
   @IBAction func tapUserReport(_ sender: Any) {
     self.callYesNoMSGDialog(message: "해당 유저를 신고하시겠습니까?") {
@@ -627,7 +647,7 @@ extension CommunityDetailViewController: UICollectionViewDelegate, UICollectionV
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     let page = Int(targetContentOffset.pointee.x / self.collectionView.bounds.width)
     print(page)
-//    pageControl.currentPage = page
+    //    pageControl.currentPage = page
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

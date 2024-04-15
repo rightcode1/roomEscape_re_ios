@@ -11,59 +11,148 @@ import RxSwift
 import RxGesture
 import RxCocoa
 import DropDown
+import Alamofire
+import SwiftyJSON
+
+
 
 class RegistCommunityBoardViewController: BaseViewController {
   @IBOutlet var collectionView: UICollectionView!
   @IBOutlet var collectionViewHeight: NSLayoutConstraint!
-  
-  @IBOutlet var modifyInfoView: UIView!
-  
-  @IBOutlet var galleryStackView: UIStackView!
-  @IBOutlet var cafeNameLabel: UILabel!
+  @IBOutlet var themeNameView: UIView!
   @IBOutlet var themeNameLabel: UILabel!
   
-  @IBOutlet var titleStackView: UIStackView!
-  @IBOutlet var cruitImageView: UIImageView!
-  @IBOutlet var titleLabel: UILabel!
-  
-  @IBOutlet var gradeImageView: UIImageView!
-  @IBOutlet var nameLabel: UILabel!
-  
-  @IBOutlet var dateLabel: UILabel!
-  @IBOutlet var reviewCountLabel: UILabel!
-  
-  @IBOutlet var cafeNameView: UIView!
-  @IBOutlet var themeNameView: UIView!
+  @IBOutlet var themeAddButton: UIView!
   
   @IBOutlet var titleView: UIView!
-  
-  @IBOutlet var cafeNameTextField: UITextField!
-  @IBOutlet var themeNameTextField: UITextField!
-  
   @IBOutlet var categoryView: UIView!
-  @IBOutlet var categoryDropDownTextField: UITextField!
-  @IBOutlet var categoryDropDownView: UIView!
-  
   
   @IBOutlet var titleTextField: UITextField!
   @IBOutlet var contentTextView: UITextView!
   
+  @IBOutlet var exchangButton: UIView!
+  @IBOutlet var getChildernButton: UIView!
+  @IBOutlet var freeBoardButton: UIView!
+  @IBOutlet var boardImageButton: UIView!
+  @IBOutlet var infoRoomButton: UIView!
+  
+  @IBOutlet var exchangLabel: UILabel!
+  @IBOutlet var getChildernLabel: UILabel!
+  @IBOutlet var freeBoardLabel: UILabel!
+  @IBOutlet var boardImageLabel: UILabel!
+  @IBOutlet var infoRoomLabel: UILabel!
+  
+  @IBOutlet var category1Button: UIView!
+  @IBOutlet var category2Button: UIView!
+  @IBOutlet var category3Button: UIView!
+  @IBOutlet var category4Button: UIView!
+  
+  @IBOutlet var category1Label: UILabel!
+  @IBOutlet var category2Label: UILabel!
+  @IBOutlet var category3Label: UILabel!
+  @IBOutlet var category4Label: UILabel!
+  
+  
   var imagePicker = UIImagePickerController()
+  var imageList:[(UIImage, Int)]  = [(UIImage(named: "iconPlus")!, -1)]
+  var companyName: String?
+  var themeName: String?{
+    didSet{
+      if themeName != nil{
+        themeNameLabel.text = themeName
+      }else{
+        themeNameLabel.text = "테마를 선택해주세요."
+      }
+    }
+  }
   
-  let categoryDropDown = DropDown()
-  
+  var themeId: Int?
   var boardId: Int?
-  
-  var boardDiff: BoardDiff = .자유게시판
-  
-  var boardImageList: [BoardImage] = []
-  var imageList:[(UIImage, Int)]  = []
-  
-  var isModify: Bool = false
-  
-  let recruitCategroyArray: [String] = ["모집중", "모집완료"]
-  
-  let infoCategoryArray: [String] = ["정보", "소식", "이벤트", "후기"]
+  var boardCategory: BoardCategory? = nil{
+    didSet{
+      setNotSelectButtonColor(category1Button, category1Label)
+      setNotSelectButtonColor(category2Button, category2Label)
+      setNotSelectButtonColor(category3Button, category3Label)
+      setNotSelectButtonColor(category4Button, category4Label)
+      switch boardCategory {
+      case .공지:
+        break
+      case .정보:
+        setSelectButtonColor(category1Button, category1Label)
+      case .소식:
+        setSelectButtonColor(category2Button, category2Label)
+      case .이벤트:
+        setSelectButtonColor(category3Button, category3Label)
+      case .후기:
+        setSelectButtonColor(category4Button, category4Label)
+      case .모집중:
+        setSelectButtonColor(category1Button, category1Label)
+      case .모집완료:
+        setSelectButtonColor(category2Button, category2Label)
+      case .진행:
+        setSelectButtonColor(category1Button, category1Label)
+      case .마감:
+        setSelectButtonColor(category2Button, category2Label)
+      case .최신순:
+        setSelectButtonColor(category1Button, category1Label)
+      case .추천순:
+        setSelectButtonColor(category2Button, category2Label)
+      case nil:
+        break
+      }
+    }
+  }
+  var boardDiff: BoardDiff? = nil{
+    didSet{
+      boardCategory = nil
+      setNotSelectButtonColor(exchangButton, exchangLabel)
+      setNotSelectButtonColor(getChildernButton, getChildernLabel)
+      setNotSelectButtonColor(freeBoardButton, freeBoardLabel)
+      setNotSelectButtonColor(boardImageButton, boardImageLabel)
+      setNotSelectButtonColor(infoRoomButton, infoRoomLabel)
+      switch boardDiff{
+      case .양도교환:
+        titleView.isHidden = false
+        themeNameView.isHidden = false
+        categoryView.isHidden = false
+        category1Label.text = "진행"
+        category2Label.text = "마감"
+        category3Button.isHidden = true
+        category4Button.isHidden = true
+        setSelectButtonColor(exchangButton, exchangLabel)
+      case .일행구하기:
+        titleView.isHidden = false
+        themeNameView.isHidden = false
+        categoryView.isHidden = false
+        category1Label.text = "모집중"
+        category2Label.text = "모집완료"
+        category3Button.isHidden = true
+        category4Button.isHidden = true
+        setSelectButtonColor(getChildernButton, getChildernLabel)
+      case .자유게시판:
+        titleView.isHidden = false
+        themeNameView.isHidden = true
+        categoryView.isHidden = true
+        setSelectButtonColor(freeBoardButton, freeBoardLabel)
+      case .보드판갤러리:
+        titleView.isHidden = true
+        themeNameView.isHidden = false
+        categoryView.isHidden = true
+        setSelectButtonColor(boardImageButton, boardImageLabel)
+      case .방탈출정보:
+        titleView.isHidden = false
+        themeNameView.isHidden = true
+        categoryView.isHidden = false
+        category1Label.text = "정보"
+        category2Label.text = "소식"
+        category3Button.isHidden = false
+        category4Button.isHidden = false
+        setSelectButtonColor(infoRoomButton, infoRoomLabel)
+      default:
+        break
+      }
+    }
+  }
   
   let contentTextViewPlaceHolder = "게시판 글을 입력해주세요."
   
@@ -71,10 +160,13 @@ class RegistCommunityBoardViewController: BaseViewController {
     super.viewDidLoad()
     imagePicker.delegate = self
     contentTextView.delegate = self
-    setDropDown()
     bindInput()
-    
-    initViews()
+    if boardId != nil{
+      boardDetail()
+    }
+  }
+  override func viewWillAppear(_ animated: Bool) {
+      navigationController?.navigationBar.isHidden = false
   }
   
   // 텍스트 뷰에 텍스트홀더 넣어주는법
@@ -87,23 +179,156 @@ class RegistCommunityBoardViewController: BaseViewController {
       contentTextView.textColor = UIColor.lightGray
     }
   }
+  func setSelectButtonColor(_ button: UIView,_ textView : UILabel) {
+    button.backgroundColor = UIColor(red: 255, green: 239, blue: 188)
+    button.borderColor = .clear
+    textView.textColor = UIColor(red: 255, green: 162, blue: 0)
+  }
   
-  func setDropDown() {
-    categoryDropDown.anchorView = categoryDropDownView
-    categoryDropDown.dataSource = boardDiff == .일행구하기 ? recruitCategroyArray : infoCategoryArray
-    categoryDropDown.backgroundColor = .white
-    categoryDropDown.direction = .bottom
-    categoryDropDown.selectionAction = { [weak self] (index: Int, item: String) in
-      guard let self = self else { return }
-      self.categoryDropDownTextField.text = item
-    }
+  func setNotSelectButtonColor(_ button: UIView,_ textView: UILabel) {
+    button.backgroundColor = .white
+    button.borderColor = #colorLiteral(red: 0.9294117093, green: 0.9294117093, blue: 0.9294117093, alpha: 1)
+    textView.textColor = .lightGray
   }
   
   func bindInput() {
-    categoryDropDownView.rx.gesture(.tap()).when(.recognized).subscribe(onNext: {  [weak self] _ in
-      guard let self = self else { return }
-      self.categoryDropDown.show()
-    }).disposed(by: disposeBag)
+    exchangButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if self?.boardId != nil{
+          return
+        }
+        self?.boardDiff = .양도교환
+      })
+      .disposed(by: disposeBag)
+    
+    getChildernButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if self?.boardId != nil{
+          return
+        }
+        self?.boardDiff = .일행구하기
+      })
+      .disposed(by: disposeBag)
+    
+    freeBoardButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if self?.boardId != nil{
+          return
+        }
+        self?.boardDiff = .자유게시판
+      })
+      .disposed(by: disposeBag)
+    
+    boardImageButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if self?.boardId != nil{
+          return
+        }
+        self?.boardDiff = .보드판갤러리
+      })
+      .disposed(by: disposeBag)
+    infoRoomButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if self?.boardId != nil{
+          return
+        }
+        self?.boardDiff = .방탈출정보
+      })
+      .disposed(by: disposeBag)
+    
+    category1Button.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if let category = BoardCategory(rawValue: self?.category1Label.text ?? "") {
+          self?.boardCategory = category
+        } else {
+          self?.boardCategory = nil
+        }
+      })
+      .disposed(by: disposeBag)
+    
+    category2Button.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if let category = BoardCategory(rawValue: self?.category2Label.text ?? "") {
+          self?.boardCategory = category
+        } else {
+          self?.boardCategory = nil
+        }
+      })
+      .disposed(by: disposeBag)
+    
+    category3Button.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if let category = BoardCategory(rawValue: self?.category3Label.text ?? "") {
+          self?.boardCategory = category
+        } else {
+          self?.boardCategory = nil
+        }
+      })
+      .disposed(by: disposeBag)
+    
+    category4Button.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        if let category = BoardCategory(rawValue: self?.category4Label.text ?? "") {
+          self?.boardCategory = category
+        } else {
+          self?.boardCategory = nil
+        }
+      })
+      .disposed(by: disposeBag)
+    
+    
+    themeAddButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "CommunityThemeListViewController") as! CommunityThemeListViewController
+        vc.delegate = self
+        self?.navigationController?.pushViewController(vc, animated: true)
+        
+      })
+      .disposed(by: disposeBag)
+    
+    
+  }
+  func regist() {
+    self.showHUD()
+    let apiUrl = "/v1/boards/register"
+    let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiUrl)")!
+    var request = URLRequest(url: url)
+    request.httpMethod = HTTPMethod.post.rawValue
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("\(DataHelperTool.token ?? "")", forHTTPHeaderField: "Authorization")
+    
+    request.httpBody = try! JSONSerialization.data(withJSONObject: [
+      "diff": boardDiff?.rawValue,
+      "category": (boardDiff == .일행구하기 || boardDiff == .양도교환 || boardDiff == .방탈출정보) ? boardCategory?.rawValue : nil,
+      "themeId": (boardDiff == .양도교환 || boardDiff == .일행구하기) ? themeId ?? 0 : nil,
+      "company_name": boardDiff == .보드판갤러리 ? companyName : nil,
+      "theme_name": boardDiff == .보드판갤러리 ? themeName : nil,
+      "title": boardDiff == .보드판갤러리 ? nil : titleTextField.text!,
+      "content": contentTextView.text! ], options: .prettyPrinted)
+    AF.request(request).responseJSON { [self] (response) in
+      switch response.result {
+      case .success(let value):
+        let decoder = JSONDecoder()
+        let json = JSON(value)
+        let jsonData = try? json.rawData()
+        
+        print("\(apiUrl) responseJson: \(json)")
+        
+        if let data = jsonData, let value = try? decoder.decode(DefaultIDResponse.self, from: data) {
+          if value.statusCode >= 202 {
+            self.dismissHUD()
+            self.callMSGDialog(message: value.message)
+          }else {
+            self.registDetailImages(boardId: value.data?.id ?? 0)
+          }
+        }
+        break
+      case .failure:
+        print("\(apiUrl) error: \(response.error!)")
+        self.dismissHUD()
+        break
+      }
+    }
   }
   
   func openAlbum() {
@@ -127,48 +352,21 @@ class RegistCommunityBoardViewController: BaseViewController {
     }
   }
   
-  func initViews() {
-    navigationItem.title = boardDiff.rawValue
-    galleryStackView.isHidden = boardDiff != .보드판갤러리
-    titleStackView.isHidden = boardDiff == .보드판갤러리
-    
-    cafeNameView.isHidden = boardDiff != .보드판갤러리
-    themeNameView.isHidden = boardDiff != .보드판갤러리
-    titleView.isHidden = boardDiff == .보드판갤러리
-    
-    if boardId != nil {
-      categoryView.isHidden = boardDiff != .일행구하기
-      boardDetail()
-    } else {
-      if (boardDiff == .일행구하기 || boardDiff == .방탈출정보) {
-        categoryView.isHidden = false
-      }
-//      for _ in 0..<(6 - self.imageList.count) {
-//        self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
+//  func initImageArray() {
+//    DispatchQueue.global().sync {
+//      if self.imageList.count > 0 {
+//        if self.imageList.count != 6 {
+//          for _ in 0 ..< self.imageList.count {
+//            self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
+//          }
+//        }
 //      }
-      self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
-
-      collectionView.reloadData()
-    }
-    
-    categoryDropDown.reloadAllComponents()
-  }
-  
-  func initImageArray() {
-    DispatchQueue.global().sync {
-      if self.imageList.count > 0 {
-        if self.imageList.count != 6 {
-          for _ in 0..<(6 - self.imageList.count) {
-            self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
-          }
-        }
-      }
-    }
-    print("imageList count 2: \(self.imageList.count)")
-    DispatchQueue.main.async {
-      self.collectionView.reloadData()
-    }
-  }
+//    }
+//    print("imageList count 2: \(self.imageList.count)")
+//    DispatchQueue.main.async {
+//      self.collectionView.reloadData()
+//    }
+//  }
   
   func appendImageArray(list: [BoardImage]) {
     
@@ -185,23 +383,14 @@ class RegistCommunityBoardViewController: BaseViewController {
               let image = imageData!.resizeToWidth(newWidth: self.view.frame.width)
               self.imageList.append(((image, id)))
               print("imageList Append : \(self.imageList)")
-              if i == (list.count - 1) {
-                self.initImageArray()
-              }
+//              if i == (list.count - 1) {
+//                self.initImageArray()
+//              }
             }
             
           }
         }
-      } else {
-        for _ in 0..<6 {
-          self.imageList.append((#imageLiteral(resourceName: "iconPlus"), 0))
-        }
-        DispatchQueue.main.async {
-          self.collectionView.reloadData()
-        }
       }
-      
-      
       DispatchQueue.main.async {
         self.collectionView.reloadData()
       }
@@ -211,63 +400,28 @@ class RegistCommunityBoardViewController: BaseViewController {
   }
   
   func initUIWithBoardDetailData(_ data: BoardDetail) {
-    cafeNameView.isHidden = data.diff != .보드판갤러리
-    themeNameView.isHidden = data.diff != .보드판갤러리
-    titleView.isHidden = data.diff == .보드판갤러리
-    
-    if (boardDiff == .일행구하기 || boardDiff == .방탈출정보) {
-      categoryView.isHidden = false
-    }
-    
-    modifyInfoView.isHidden = true
-    
     boardDiff = data.diff
-    
-    boardImageList = data.boardImages
-    appendImageArray(list: data.boardImages)
-    
-    cruitImageView.isHidden = data.category == nil
-    cruitImageView.image = data.category == "모집중" ? #imageLiteral(resourceName: "recruitImage") : #imageLiteral(resourceName: "finishRecruitImage")
-    
-    switch data.grade {
-      case "0":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_1_10")
-      case "1":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_11_50")
-      case "2":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_51_100")
-      case "3":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_101_200")
-      case "4":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_201_300")
-      case "5":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_301_500")
-      case "6":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_501_1000")
-      case "7":
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_1000")
-      default:
-        gradeImageView.image = #imageLiteral(resourceName: "user_medal_1_10")
+    if (boardDiff == .자유게시판 || boardDiff == .방탈출정보) {
+      categoryView.isHidden = true
     }
-    
-    cafeNameLabel.text = "카페명 : \(data.company_name ?? "")"
-    cafeNameTextField.text = data.company_name ?? ""
-    
-    themeNameLabel.text = "테마명 : \(data.theme_name ?? "")"
-    themeNameTextField.text = data.theme_name ?? ""
-    
-    titleLabel.text = data.title
+    if let category = BoardCategory(rawValue: data.category!) {
+      self.boardCategory = category
+    } else {
+      self.boardCategory = nil
+    }
+    titleView.isHidden = data.diff == .보드판갤러리
     titleTextField.text = data.title
     
     contentTextView.text = data.content
+    contentTextView.textColor = .black
     
-    categoryDropDownTextField.text = data.category
+    themeNameView.isHidden = !(data.diff == .보드판갤러리 || data.diff == .양도교환 || data.diff == .일행구하기)
     
-    nameLabel.text = data.nickname
-    dateLabel.text = data.createdAt
-    reviewCountLabel.text = "\(data.commentCount)"
+    themeId = data.theme != nil ? data.theme?.id : nil
+    themeName = data.theme != nil ? data.theme?.title : nil
+    companyName = data.theme != nil ? data.theme?.companyName : nil
     
-    
+    appendImageArray(list: data.boardImages)
     collectionView.reloadData()
     
     self.dismissHUD()
@@ -310,9 +464,12 @@ class RegistCommunityBoardViewController: BaseViewController {
   func registDetailImages(boardId: Int) {
     let uploadGroup = DispatchGroup()
     uploadGroup.enter()
+    print(self.imageList)
     let uploadImageList = self.imageList.filter { $0.0 != #imageLiteral(resourceName: "iconPlus") && $0.1 == 0 }
     
+    print(uploadImageList)
     if uploadImageList.count > 0 {
+      print("!!1")
       ApiService.upload(router: BoardApi.registBoardImage(boardId: boardId), multiPartFormHanler: { multipartFormData in
         DispatchQueue.global().sync {
           for (index, image) in uploadImageList.enumerated() {
@@ -331,67 +488,52 @@ class RegistCommunityBoardViewController: BaseViewController {
         self.finishRegist()
       }
     } else {
+      print("!!2")
       self.finishRegist()
     }
   }
   
-  func registBoard() {
+  func update() {
     self.showHUD()
-    boardUpdateId = boardId ?? 0
-    let param = RegistBoardRequest(
-      user_pk: "\(DataHelperTool.userAppId ?? 0)",
-      nickname: DataHelperTool.userNickname ?? "",
-      grade: "1",
-      title: boardDiff == .보드판갤러리 ? "title" : titleTextField.text!,
-      content: contentTextView.text!,
-      diff: boardDiff,
-      company_name: boardDiff == .보드판갤러리 ? cafeNameTextField.text! : nil,
-      theme_name: boardDiff == .보드판갤러리 ? themeNameTextField.text! : nil,
-      category: (boardDiff == .일행구하기 || boardDiff == .방탈출정보) ? categoryDropDownTextField.text! : nil
-    )
-    ApiService.request(router: BoardApi.registBoard(param: param), success: { (response: ApiResponse<DefaultIDResponse>) in
-      guard let value = response.value else {
-        return
-      }
-      
-      if value.statusCode >= 202 {
+    let apiUrl = "/v1/boards/update"
+    let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiUrl)")!
+    let requestURL = url.appending("id",value: "\(boardId!)")
+    var request = URLRequest(url: requestURL)
+    request.httpMethod = HTTPMethod.put.rawValue
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("\(DataHelperTool.token ?? "")", forHTTPHeaderField: "Authorization")
+    
+    request.httpBody = try! JSONSerialization.data(withJSONObject: [
+      "diff": boardDiff?.rawValue,
+      "category": (boardDiff == .일행구하기 || boardDiff == .양도교환 || boardDiff == .방탈출정보) ? boardCategory?.rawValue : nil,
+      "themeId": (boardDiff == .양도교환 || boardDiff == .일행구하기) ? themeId ?? 0 : nil,
+      "company_name": boardDiff == .보드판갤러리 ? companyName : nil,
+      "theme_name": boardDiff == .보드판갤러리 ? themeName : nil,
+      "title": boardDiff == .보드판갤러리 ? nil : titleTextField.text!,
+      "content": contentTextView.text! ], options: .prettyPrinted)
+    AF.request(request).responseJSON { [self] (response) in
+      switch response.result {
+      case .success(let value):
+        let decoder = JSONDecoder()
+        let json = JSON(value)
+        let jsonData = try? json.rawData()
+        
+        print("\(apiUrl) responseJson: \(json)")
+        
+        if let data = jsonData, let value = try? decoder.decode(DefaultIDResponse.self, from: data) {
+          if value.statusCode >= 202 {
+            self.dismissHUD()
+            self.callMSGDialog(message: value.message)
+          }else {
+            self.registDetailImages(boardId: value.data?.id ?? 0)
+          }
+        }
+        break
+      case .failure:
+        print("\(apiUrl) error: \(response.error!)")
         self.dismissHUD()
-        self.callMSGDialog(message: value.message)
-      }else {
-        self.registDetailImages(boardId: value.data?.id ?? 0)
+        break
       }
-      
-    }) { (error) in
-      self.dismissHUD()
-      self.callMSGDialog(message: "알수없는 오류입니다. 잠시후 다시 시도해주세요.")
-    }
-  }
-  
-  func updateBoard() {
-    self.showHUD()
-    boardUpdateId = boardId ?? 0
-    let param = ModifyBoardRequest(
-      title: boardDiff == .보드판갤러리 ? "title" : titleTextField.text!,
-      company_name: boardDiff == .보드판갤러리 ? cafeNameTextField.text! : nil,
-      theme_name: boardDiff == .보드판갤러리 ? themeNameTextField.text! : nil,
-      content: contentTextView.text!,
-      category: (boardDiff == .일행구하기 || boardDiff == .방탈출정보) ? categoryDropDownTextField.text! : nil 
-    )
-    ApiService.request(router: BoardApi.modifyBoard(param: param), success: { (response: ApiResponse<DefaultIDResponse>) in
-      guard let value = response.value else {
-        return
-      }
-      
-      if value.statusCode >= 202 {
-        self.dismissHUD()
-        self.callMSGDialog(message: value.message)
-      }else {
-        self.registDetailImages(boardId: boardUpdateId)
-      }
-      
-    }) { (error) in
-      self.dismissHUD()
-      self.callMSGDialog(message: "알수없는 오류입니다. 잠시후 다시 시도해주세요.")
     }
   }
   
@@ -407,43 +549,50 @@ class RegistCommunityBoardViewController: BaseViewController {
   }
   
   @IBAction func tapSave(_ sender: UIButton) {
-
-    if boardDiff == .보드판갤러리 {
-      if cafeNameTextField.text!.isEmpty {
-        callMSGDialog(message: "카페명을 입력해주세요.")
-        return
-      }
-
-      if themeNameTextField.text!.isEmpty {
-        callMSGDialog(message: "테마명을 입력해주세요.")
-        return
-      }
-
-      let isExistUploadImage = imageList.filter{ $0.0 != #imageLiteral(resourceName: "iconPlus") }.count > 0
-
-      if !isExistUploadImage {
-        callMSGDialog(message: "사진을 한장이상 선택해주세요.")
-        return
-      }
-    } else {
-      if titleTextField.text!.isEmpty {
-        callMSGDialog(message: "제목을 입력해주세요.")
+    if boardDiff == nil{
+      callMSGDialog(message: "게시판을 선택해주세요.")
+      return
+    }
+    if boardDiff == .양도교환 || boardDiff == .일행구하기 || boardDiff == .보드판갤러리{
+      if themeId == nil {
+        callMSGDialog(message: "테마를 선택해주세요.")
         return
       }
     }
-
+    
+    if boardDiff != .보드판갤러리 && titleTextField.text!.isEmpty {
+      callMSGDialog(message: "제목을 입력해주세요.")
+      return
+    }
+    
+    if boardDiff == .양도교환 || boardDiff == .일행구하기 || boardDiff == .방탈출정보{
+      if boardCategory == nil {
+        callMSGDialog(message: "정렬을 선택해주세요.")
+        return
+      }
+    }
+    
     if contentTextView.text == contentTextViewPlaceHolder || contentTextView.text!.isEmpty {
       callMSGDialog(message: "게시판 글을 입력해주세요.")
       return
     }
-
+    
+    
+    let isExistUploadImage = imageList.filter{ $0.0 != #imageLiteral(resourceName: "iconPlus") }.count > 0
+    
+    if boardDiff == .보드판갤러리 && !isExistUploadImage {
+      callMSGDialog(message: "사진을 한장이상 선택해주세요.")
+      return
+    }
+    
+    
     if boardId != nil {
-      updateBoard()
+      update()
     } else {
-      registBoard()
+      regist()
     }
   }
-
+  
 }
 
 
@@ -471,7 +620,7 @@ extension RegistCommunityBoardViewController: UITextViewDelegate {
 extension RegistCommunityBoardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      imageList.append((image , 1))
+      imageList.append((image , 0))
       
       collectionView.reloadData()
       picker.dismiss(animated: true, completion: nil)
@@ -491,7 +640,7 @@ extension RegistCommunityBoardViewController: UICollectionViewDelegate, UICollec
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return self.imageList.count
+    return self.imageList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -520,5 +669,12 @@ extension RegistCommunityBoardViewController: UICollectionViewDelegate, UICollec
       return
     }
     openAlbum()
+  }
+}
+extension RegistCommunityBoardViewController: TapTheme{
+  func tapDetail(themeId: Int, themeName: String, themeCompany: String) {
+    self.themeId = themeId
+    self.themeName = themeName
+    self.companyName = themeCompany
   }
 }

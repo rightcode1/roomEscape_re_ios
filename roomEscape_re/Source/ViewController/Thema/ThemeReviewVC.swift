@@ -10,7 +10,8 @@ import Cosmos
 import Alamofire
 import SwiftyJSON
 
-class ThemeReviewVC: BaseViewController {
+class ThemeReviewVC: BaseViewController{
+  
   
   @IBOutlet weak var reviewRatingView: CosmosView!
   @IBOutlet weak var reviewRatingLabel: UILabel!
@@ -192,11 +193,19 @@ extension ThemeReviewVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 extension ThemeReviewVC: ReviewCellMyButtonsDelegate{
+  func didReportUser(_ reviewId: Int, _ index: IndexPath) {
+    let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "themePopup") as! ThemeReportVC
+    vc.reviewId = reviewId
+    vc.index = index.row
+    vc.delegate = self
+    self.present(vc, animated: true, completion: nil)
+  }
+  
   func didGoUserReview(_ index: IndexPath) {
       let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
       vc.isOther = true
     vc.userName = reviewList[index.row].userName
-      self.navigationController?.pushViewController(vc, animated: true)
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func didRemoveButtonTapped(_ index: IndexPath) {
@@ -223,6 +232,13 @@ extension ThemeReviewVC: SortFilterDelegate{
   }
   
   
+}
+extension ThemeReviewVC: ReviewProtoDelegate {
+  func reportReview(_ index: Int) {
+    reviewList.remove(at: index)
+    reviewTableView.reloadData()
+    self.showToast(message: "리뷰 신고 완료하였습니다.")
+  }
 }
 
 

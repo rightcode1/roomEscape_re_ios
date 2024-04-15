@@ -8,15 +8,18 @@
 import UIKit
 
 
-class JoinVC: BaseViewController {
+class JoinVC: BaseViewController{
   
   @IBOutlet weak var idTextField: UITextField!
+  @IBOutlet var emailCheck: UIButton!
   
   @IBOutlet weak var pwTextField: UITextField!
   @IBOutlet weak var pwCheckTextField: UITextField!
   
   @IBOutlet weak var phoneNumTextField: UITextField!
+  @IBOutlet var phoneCheck: UIButton!
   @IBOutlet weak var codeTextField: UITextField!
+  @IBOutlet var certifiCheck: UIButton!
   
   @IBOutlet weak var ownerNameTextField: UITextField!
 
@@ -29,6 +32,29 @@ class JoinVC: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    idTextField.rx.text.orEmpty
+      .map({ $0.isValidateEmail() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+        emailCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
+    
+    phoneNumTextField.rx.text.orEmpty
+      .map({ $0.isPhone() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+          phoneCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
+    
+    codeTextField.rx.text.orEmpty
+      .map({ $0.isValidateCode() })
+      .bind(onNext: { [weak self] b in
+        guard let self = self else { return }
+        certifiCheck.backgroundColor = b ? #colorLiteral(red: 1, green: 0.6134027839, blue: 0, alpha: 1) : #colorLiteral(red: 0.4784423709, green: 0.4784183502, blue: 0.4784329534, alpha: 1)
+      })
+      .disposed(by: disposeBag)
 
   }
   
@@ -42,6 +68,10 @@ class JoinVC: BaseViewController {
   func checId() {
     if idTextField.text! == "" {
       self.callMSGDialog(message: "아이디를 입력해주세요.")
+      return
+    }
+    if !idTextField.text!.isValidateEmail(){
+      self.callMSGDialog(message: "이메일 형식을 확인해주세요.")
       return
     }
     
@@ -65,7 +95,6 @@ class JoinVC: BaseViewController {
   }
   
   func sendOneTimeCode() {
-    
     if phoneNumTextField.text! == "" {
       self.callMSGDialog(message: "핸드폰번호를 입력해주세요.")
       return

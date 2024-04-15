@@ -39,6 +39,7 @@ class ThemeReviewListCell: UITableViewCell {
   weak var delegate: ReviewCellMyButtonsDelegate?
   
   var index: IndexPath?
+  var reviewId: Int?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -59,6 +60,7 @@ class ThemeReviewListCell: UITableViewCell {
   }
   
   @IBAction func removeButtonTapped(_ sender: Any) {
+    print(index)
     delegate?.didRemoveButtonTapped(index!)
   }
   
@@ -66,6 +68,7 @@ class ThemeReviewListCell: UITableViewCell {
     themeImageView.kf.setImage(with: URL(string: data.theme?.thumbnail ?? ""))
     themeNameLabel.text = data.theme?.title
     cafeNameLabel.text = data.theme?.companyName
+    reviewId = data.id
     
     difficultyStackView.arrangedSubviews[0].isHidden = data.level != .매우쉬움
     difficultyStackView.arrangedSubviews[1].isHidden = data.level != .쉬움

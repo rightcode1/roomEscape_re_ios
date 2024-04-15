@@ -10,7 +10,7 @@ import Alamofire
 
 enum NotificationApi: ApiRouter {
   
-  case registNotificationToken(notificationToken: String)
+  case registNotificationToken(param: NotificationRequest)
   
   case notificationInfo(notificationToken: String)
   
@@ -50,9 +50,9 @@ enum NotificationApi: ApiRouter {
     urlRequest.httpMethod = method.rawValue
     
     switch self {
-      case .registNotificationToken(let notificationToken):
-        urlRequest = try URLEncoding.default.encode(urlRequest, with: ["notificationToken": notificationToken])
-        urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
+      case .registNotificationToken(let param):
+      urlRequest = try URLEncoding.httpBody.encode(urlRequest, with: makeParams(param))
+      urlRequest.addValue(DataHelperTool.token ?? "", forHTTPHeaderField: "Authorization")
         
       case .notificationInfo(let notificationToken):
         urlRequest = try URLEncoding.queryString.encode(urlRequest, with: ["notificationToken": notificationToken])

@@ -88,13 +88,14 @@ struct ThemeReview: Codable {
   let level: ReviewLavel
   let success: SuccessDiff
   let extraTime, remainingTime: String?
+  let reportCount: Int
   let userHint: Int?
   let content: String
   let isGrade: Bool
   let isLike: Bool
   let likeCount: Int
   let createdAt: String
-  let theme: ReviewTheme?
+  let theme: Theme?
   let company: ReviewCompany?
   let comments: [comments]?
 }
@@ -110,7 +111,7 @@ struct ReviewCompany: Codable {
 }
 
 // MARK: - ReviewTheme
-struct ReviewTheme: Codable {
+struct Theme: Codable {
   let companyName: String
   let id: Int
   let category: String

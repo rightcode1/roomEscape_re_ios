@@ -24,6 +24,7 @@ class HomeVC: BaseViewController {
   @IBOutlet weak var categoryView: UIView!
   
   @IBOutlet weak var recommendThemeCollectionViewHeight: NSLayoutConstraint!
+  @IBOutlet weak var homeCollectionViewHeight: NSLayoutConstraint!
   
   @IBOutlet weak var bannerCountLabel: UILabel!
   @IBOutlet weak var bannerCountBackView: UIView!
@@ -39,11 +40,11 @@ class HomeVC: BaseViewController {
     (UIImage(named: "hard")!, "hard"),
     (UIImage(named: "horror")!, "공포"),
     (UIImage(named: "adult")!, "19금"),
-    (UIImage(named: "different")!, "different"),
     (UIImage(named: "map")!, "map"),
-    (UIImage(named: "community")!, "community"),
+    (UIImage(named: "together")!, "together"),
+    (UIImage(named: "ranking")!, "ranking"),
     (UIImage(named: "event")!, "event"),
-    (UIImage(named: "qanda")!, "qanda")
+    (UIImage(named: "qanda")!, "qanda"),
   ]
   
   let manager = CLLocationManager()
@@ -54,6 +55,7 @@ class HomeVC: BaseViewController {
   var themeList: [ThemaListData] = []
   
   var cafeList: [CompanyListData] = []
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,12 +75,14 @@ class HomeVC: BaseViewController {
     recommendCafe()
     //     3번쨰 콜렉션뷰 높이
     initRecommendThemeCollecitonViewHeight()
+    initHomeCollecitonViewHeight()
     
     initLayoutViews()
     
     initBannerAdvertisement()
     setMyLocation()
     initrx()
+    
   }
   
   func setMyLocation() {
@@ -115,6 +119,16 @@ class HomeVC: BaseViewController {
     categoryView.layer.cornerRadius = 10
     categoryView.layer.borderWidth = 0.5
     categoryView.layer.borderColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0).cgColor
+  }
+  func initHomeCollecitonViewHeight() {
+    let phoneWidth = UIScreen.main.bounds.width
+    let categorySize = (phoneWidth - 56) / 5
+    let diff = categorySize / 61
+    let height = diff * 50
+    
+    
+    
+    homeCollectionViewHeight.constant = height * 3 + 26.5 * 2 + 20
   }
   
   func initRecommendThemeCollecitonViewHeight() {
@@ -284,7 +298,7 @@ class HomeVC: BaseViewController {
         print("\(apiurl) responseJson: \(json)")
         if let data = jsonData, let value = try? decoder.decode(AdvertiseDetailResponse.self, from: data) {
           if value.statusCode == 200 {
-              
+            
           }
         }
         break
@@ -421,39 +435,53 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
         }
       } else {
         let vc = UIStoryboard.init(name: "Common", bundle: nil).instantiateViewController(withIdentifier: "advertisement") as! AdvertisementViewController
-          vc.id = dict.id
+        vc.id = dict.id
         self.navigationController?.pushViewController(vc, animated: true)
       }
     }
     
     if categoryCollectionView == collectionView {
       let dict = categoryImageArray[indexPath.row]
-        if(dict.1 == "qanda"){
-            if let url = URL(string: "http://pf.kakao.com/_JxmVGb/chat") {
-              UIApplication.shared.open(url, options: [:])
-            }
-        }else if(dict.1 == "map"){
-          let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "MapVC") as! MapVC
-          self.navigationController?.pushViewController(vc, animated: true)
-        }else if(dict.1 == "community"){
-            tabBarController?.selectedIndex = 3
-        }else if(dict.1 == "event"){
-              let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "EventVC") as! EventVC
-              self.navigationController?.pushViewController(vc, animated: true)
-        }else if(dict.1 == "different"){
-            selectedAddressFromCafeVC = dict.1
-            tabBarController?.selectedIndex = 0
-        }else{
-          selectedAddressFromHomeVC = dict.1
-          tabBarController?.selectedIndex = 1
-        }
+      if(dict.1 == "qanda"){
+        let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
+        self.goViewController(vc: vc)
+//        if let url = URL(string: "http://pf.kakao.com/_JxmVGb/chat") {
+//          UIApplication.shared.open(url, options: [:])
+//        }
+      }else if (dict.1 == "ranking"){
+        let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ranking") as! RankingVC
+        self.navigationController?.pushViewController(vc, animated: true)
+      }else if (dict.1 == "together"){
+        let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "together") as! TogetherVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        print("Ad did dismiss full screen content.")
+        //          showAD()
+      }else if(dict.1 == "map"){
+        let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "MapVC") as! MapVC
+        self.navigationController?.pushViewController(vc, animated: true)
+      }
+      //      else if(dict.1 == "community"){
+      //            tabBarController?.selectedIndex = 3
+      //        }
+      else if(dict.1 == "event"){
+        let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "EventVC") as! EventVC
+        self.navigationController?.pushViewController(vc, animated: true)
+      }
+      //        else if(dict.1 == "different"){
+      //            selectedAddressFromCafeVC = dict.1
+      //            tabBarController?.selectedIndex = 0
+      //        }
+      else{
+        selectedAddressFromHomeVC = dict.1
+        tabBarController?.selectedIndex = 1
+      }
     }
     
     if recommendThemeCollectionView == collectionView {
       let dict = themeList[indexPath.row]
       let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     }
     
     if recommendCafeCollectionView == collectionView {
@@ -461,7 +489,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
       
       let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     }
   }
 }

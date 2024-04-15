@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -160,19 +160,31 @@
 		CBDEDFCC27AA6A7500312F07 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDEDFCB27AA6A7500312F07 /* SearchVC.swift */; };
 		DF0092B62847987800D8A04E /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0092B52847987800D8A04E /* SettingVC.swift */; };
 		DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */; };
+		DF13DBA42BC3BA6B0076BDEF /* CommunityThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */; };
+		DF2246232BAD67BE00FA82CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */; };
 		DF383A1528475DB400F89E5F /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF383A1428475DB400F89E5F /* MapVC.swift */; };
+		DF437E602AC3B92F00A657F0 /* ThemeReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF437E5F2AC3B92F00A657F0 /* ThemeReportVC.swift */; };
 		DF451F73281C09C70072A9D8 /* EventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF451F72281C09C70072A9D8 /* EventVC.swift */; };
 		DF451F75281C0B530072A9D8 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF451F74281C0B530072A9D8 /* EventCell.swift */; };
 		DF5858AA2A31C12800F793D4 /* CommunitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */; };
 		DF64CA1D287C1D6000F08143 /* LevelMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */; };
 		DF7488D128505F03007BEC3D /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7488D028505F03007BEC3D /* UpdateViewController.swift */; };
 		DF96042229FA7667008DA83A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF96042129FA7667008DA83A /* TabBarViewController.swift */; };
+		DF9835652BC39843001901F0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF9835642BC39843001901F0 /* Storyboard.storyboard */; };
+		DF9A041B2BBF9F47006CB312 /* ThemaDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041A2BBF9F47006CB312 /* ThemaDetailInfoCell.swift */; };
+		DF9A041D2BBF9F69006CB312 /* ThemaDetailReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041C2BBF9F69006CB312 /* ThemaDetailReviewCell.swift */; };
+		DF9A041F2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041E2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift */; };
+		DFA688982B83138E00D01B53 /* TogetherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA688972B83138E00D01B53 /* TogetherListVC.swift */; };
+		DFA6889A2B83204B00D01B53 /* RankingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA688992B83204B00D01B53 /* RankingVC.swift */; };
+		DFA6889C2B832FCD00D01B53 /* TogetherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA6889B2B832FCD00D01B53 /* TogetherVC.swift */; };
 		DFB8D91828D1C96A00BC4FC6 /* SortFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */; };
+		DFC862B22BC7710300A6285F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC862B12BC7710300A6285F /* UILabel+Extension.swift */; };
 		DFC9FE0728FD41470020E6B3 /* GraduationDeatilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */; };
 		DFC9FE0928FD462D0020E6B3 /* GraduationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */; };
 		DFC9FE0B28FD5C640020E6B3 /* DeleteThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0A28FD5C640020E6B3 /* DeleteThemeVC.swift */; };
 		DFC9FE0D28FD645C0020E6B3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC9FE0C28FD645C0020E6B3 /* SwiftUI.framework */; };
 		DFDA7E9B292DE77100C1ED68 /* PieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA7E9A292DE77100C1ED68 /* PieTableViewCell.swift */; };
+		DFDFE1482B98360500BFB1C6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = DFDFE1472B98360500BFB1C6 /* GoogleMobileAds */; };
 		DFEAFEB4285F5684006BD890 /* AgreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEAFEB3285F5684006BD890 /* AgreeVC.swift */; };
 		DFEAFEB6285F56D8006BD890 /* registerAgreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEAFEB5285F56D8006BD890 /* registerAgreeVC.swift */; };
 /* End PBXBuildFile section */
@@ -380,14 +392,25 @@
 		DF0092AE28476D6100D8A04E /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		DF0092B52847987800D8A04E /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationChartVC.swift; sourceTree = "<group>"; };
+		DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityThemeListViewController.swift; sourceTree = "<group>"; };
+		DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF383A1428475DB400F89E5F /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		DF437E5F2AC3B92F00A657F0 /* ThemeReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeReportVC.swift; sourceTree = "<group>"; };
 		DF451F72281C09C70072A9D8 /* EventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVC.swift; sourceTree = "<group>"; };
 		DF451F74281C0B530072A9D8 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchViewController.swift; sourceTree = "<group>"; };
 		DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuVC.swift; sourceTree = "<group>"; };
 		DF7488D028505F03007BEC3D /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		DF96042129FA7667008DA83A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DF9835642BC39843001901F0 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		DF9A041A2BBF9F47006CB312 /* ThemaDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailInfoCell.swift; sourceTree = "<group>"; };
+		DF9A041C2BBF9F69006CB312 /* ThemaDetailReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailReviewCell.swift; sourceTree = "<group>"; };
+		DF9A041E2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailCommunityCell.swift; sourceTree = "<group>"; };
+		DFA688972B83138E00D01B53 /* TogetherListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherListVC.swift; sourceTree = "<group>"; };
+		DFA688992B83204B00D01B53 /* RankingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingVC.swift; sourceTree = "<group>"; };
+		DFA6889B2B832FCD00D01B53 /* TogetherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherVC.swift; sourceTree = "<group>"; };
 		DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterViewController.swift; sourceTree = "<group>"; };
+		DFC862B12BC7710300A6285F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationDeatilVC.swift; sourceTree = "<group>"; };
 		DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationCell.swift; sourceTree = "<group>"; };
 		DFC9FE0A28FD5C640020E6B3 /* DeleteThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteThemeVC.swift; sourceTree = "<group>"; };
@@ -408,6 +431,7 @@
 				CB0D995227C8AE1300E5B483 /* QuartzCore.framework in Frameworks */,
 				CB0D995827C8AE4300E5B483 /* libsqlite3.tbd in Frameworks */,
 				CB0D995027C8AE0B00E5B483 /* CoreLocation.framework in Frameworks */,
+				DFDFE1482B98360500BFB1C6 /* GoogleMobileAds in Frameworks */,
 				CB0D995627C8AE3300E5B483 /* libxml2.tbd in Frameworks */,
 				4E001B5C18BEE4FB847C0979 /* Pods_roomEscape_re.framework in Frameworks */,
 				CB0D994E27C8AE0200E5B483 /* SystemConfiguration.framework in Frameworks */,
@@ -449,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				CB1642C827C6134E007B4499 /* Cell */,
+				DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */,
 				C4E6D9F52761E06300445F00 /* CommunityVC.swift */,
 				CB1642D427C613F6007B4499 /* CommunityListViewController.swift */,
 				CB1642D327C613F6007B4499 /* CommunityDetailViewController.swift */,
@@ -482,6 +507,9 @@
 				C454CA6127635D6800339429 /* MainCell.swift */,
 				C454CA6327635DB800339429 /* FeeCell.swift */,
 				CB5E2A1027ABA6F600341CB5 /* ReviewCell.swift */,
+				DF9A041A2BBF9F47006CB312 /* ThemaDetailInfoCell.swift */,
+				DF9A041C2BBF9F69006CB312 /* ThemaDetailReviewCell.swift */,
+				DF9A041E2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift */,
 			);
 			path = DetailThemeCell;
 			sourceTree = "<group>";
@@ -506,6 +534,7 @@
 				C454CA5E2763405400339429 /* DetailThemaVC.swift */,
 				CB736AF127ABBF340093102E /* ThemeReviewVC.swift */,
 				CB736AF327ABCF2A0093102E /* RegistThemeReviewVC.swift */,
+				DF437E5F2AC3B92F00A657F0 /* ThemeReportVC.swift */,
 			);
 			path = Thema;
 			sourceTree = "<group>";
@@ -527,6 +556,9 @@
 				CBDEDFCB27AA6A7500312F07 /* SearchVC.swift */,
 				DF451F72281C09C70072A9D8 /* EventVC.swift */,
 				DF383A1428475DB400F89E5F /* MapVC.swift */,
+				DFA688972B83138E00D01B53 /* TogetherListVC.swift */,
+				DFA688992B83204B00D01B53 /* RankingVC.swift */,
+				DFA6889B2B832FCD00D01B53 /* TogetherVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -655,6 +687,7 @@
 		CB3D0F802740EC1E00A84E1B /* roomEscape_re */ = {
 			isa = PBXGroup;
 			children = (
+				DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */,
 				DFF718202850A00600573E17 /* roomEscape_re.entitlements */,
 				CB3D0F962740EE7D00A84E1B /* Source */,
 				CB3D0F952740EE7600A84E1B /* Resource */,
@@ -681,6 +714,7 @@
 				C4E6D9F12761DED500445F00 /* Community.storyboard */,
 				C4E6D9F32761DEDE00445F00 /* My.storyboard */,
 				CB736AF527ABD92B0093102E /* Common.storyboard */,
+				DF9835642BC39843001901F0 /* Storyboard.storyboard */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -755,6 +789,7 @@
 				CBB6FCD02741018D0013F278 /* ViewcontrollerExtention.swift */,
 				CBDEDFC727A9527000312F07 /* Utils.swift */,
 				CB2A17A327D0838500F61E5B /* PresentationController.swift */,
+				DFC862B12BC7710300A6285F /* UILabel+Extension.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -950,6 +985,9 @@
 			dependencies = (
 			);
 			name = roomEscape_re;
+			packageProductDependencies = (
+				DFDFE1472B98360500BFB1C6 /* GoogleMobileAds */,
+			);
 			productName = roomEscape_re;
 			productReference = CB3D0F7E2740EC1E00A84E1B /* roomEscape_re.app */;
 			productType = "com.apple.product-type.application";
@@ -977,6 +1015,9 @@
 				Base,
 			);
 			mainGroup = CB3D0F752740EC1E00A84E1B;
+			packageReferences = (
+				DFDFE1462B98360500BFB1C6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = CB3D0F7F2740EC1E00A84E1B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -992,6 +1033,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E6D9F22761DED500445F00 /* Community.storyboard in Resources */,
+				DF9835652BC39843001901F0 /* Storyboard.storyboard in Resources */,
 				C40F5EA02761D769002875D7 /* TabBar.storyboard in Resources */,
 				CB0D99D027C8AEFE00E5B483 /* shadow_balloon.png in Resources */,
 				CBB6FCB22740FCA20013F278 /* Login.storyboard in Resources */,
@@ -1001,6 +1043,7 @@
 				CB0D99DE27C8AEFE00E5B483 /* point_sprite.png in Resources */,
 				C4FFB7D72762301000192E36 /* Home.storyboard in Resources */,
 				CB0D99D427C8AEFE00E5B483 /* map_pinup@3x.png in Resources */,
+				DF2246232BAD67BE00FA82CF /* GoogleService-Info.plist in Resources */,
 				CB0D99DF27C8AEFE00E5B483 /* map_pinup_custom.png in Resources */,
 				CB0D99D827C8AEFE00E5B483 /* map_pin_red@3x.png in Resources */,
 				CB0D99E127C8AEFE00E5B483 /* noimage256.png in Resources */,
@@ -1087,6 +1130,7 @@
 			files = (
 				C4E6D9F62761E06300445F00 /* CommunityVC.swift in Sources */,
 				DF383A1528475DB400F89E5F /* MapVC.swift in Sources */,
+				DFA688982B83138E00D01B53 /* TogetherListVC.swift in Sources */,
 				C4FFB7D927623AB100192E36 /* CustomTabBar.swift in Sources */,
 				CBB6FD03274102010013F278 /* ApiManager.swift in Sources */,
 				CBDEDFC627A9500100312F07 /* WishListVC.swift in Sources */,
@@ -1104,6 +1148,7 @@
 				CB86705527E1E9F4009C5CD8 /* NoticeListVC.swift in Sources */,
 				C454CA6227635D6800339429 /* MainCell.swift in Sources */,
 				CBB6FCD3274101970013F278 /* Date+Extension.swift in Sources */,
+				DF437E602AC3B92F00A657F0 /* ThemeReportVC.swift in Sources */,
 				CB5E2A1127ABA6F600341CB5 /* ReviewCell.swift in Sources */,
 				CB86705327E1D32D009C5CD8 /* ChangePasswordVC.swift in Sources */,
 				CBB6FCD1274101970013F278 /* DataHelper.swift in Sources */,
@@ -1125,6 +1170,7 @@
 				CB3D0F862740EC1E00A84E1B /* ViewController.swift in Sources */,
 				DF96042229FA7667008DA83A /* TabBarViewController.swift in Sources */,
 				CBB6FCD7274101970013F278 /* UIImage+Extension.swift in Sources */,
+				DFC862B22BC7710300A6285F /* UILabel+Extension.swift in Sources */,
 				CBB6FD07274102010013F278 /* Environment.swift in Sources */,
 				DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */,
 				CBB6FD08274102010013F278 /* NotificationResponse.swift in Sources */,
@@ -1142,6 +1188,7 @@
 				C4E6D9F82761E0EB00445F00 /* MyVC.swift in Sources */,
 				CBB6FCD8274101970013F278 /* BaseViewController.swift in Sources */,
 				CBB6FCE82741019F0013F278 /* FindIDVC.swift in Sources */,
+				DF9A041F2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift in Sources */,
 				CBB6FD02274102010013F278 /* EtcResponse.swift in Sources */,
 				CBB6FCE62741019F0013F278 /* LoginVC.swift in Sources */,
 				CBB6FCE72741019F0013F278 /* JoinVC.swift in Sources */,
@@ -1149,7 +1196,10 @@
 				CB1642D727C613F6007B4499 /* CommunityDetailViewController.swift in Sources */,
 				CBDEDFC827A9527000312F07 /* Utils.swift in Sources */,
 				CB5ADFCD27ACFC720034BBC0 /* CafeReviewVC.swift in Sources */,
+				DF13DBA42BC3BA6B0076BDEF /* CommunityThemeListViewController.swift in Sources */,
+				DF9A041D2BBF9F69006CB312 /* ThemaDetailReviewCell.swift in Sources */,
 				CB86705927E1EEB8009C5CD8 /* NoticeDetailVC.swift in Sources */,
+				DF9A041B2BBF9F47006CB312 /* ThemaDetailInfoCell.swift in Sources */,
 				CBB6FD0D274102010013F278 /* ApiService.swift in Sources */,
 				C4FFB7D427622DA900192E36 /* RecommendCafeCell.swift in Sources */,
 				CBB6FCD4274101970013F278 /* UITextField+Extension.swift in Sources */,
@@ -1160,6 +1210,7 @@
 				DF451F73281C09C70072A9D8 /* EventVC.swift in Sources */,
 				CBDEDFC227A9400500312F07 /* CafeListCell.swift in Sources */,
 				CB736AF927ABDAE70093102E /* CustomTimePickerViewController.swift in Sources */,
+				DFA6889A2B83204B00D01B53 /* RankingVC.swift in Sources */,
 				C4ED505027609CE90028E759 /* ThemaVC.swift in Sources */,
 				C4ED50552760A5920028E759 /* GuCell.swift in Sources */,
 				C4FFB7BE276215CD00192E36 /* ThemaListRequest.swift in Sources */,
@@ -1176,6 +1227,7 @@
 				DF451F75281C0B530072A9D8 /* EventCell.swift in Sources */,
 				C4FFB7C92762182900192E36 /* CategoryCell.swift in Sources */,
 				DFB8D91828D1C96A00BC4FC6 /* SortFilterViewController.swift in Sources */,
+				DFA6889C2B832FCD00D01B53 /* TogetherVC.swift in Sources */,
 				CB736AFB27ABDDBF0093102E /* SelectCalendarDateViewController.swift in Sources */,
 				DF64CA1D287C1D6000F08143 /* LevelMenuVC.swift in Sources */,
 				CB736AF427ABCF2A0093102E /* RegistThemeReviewVC.swift in Sources */,
@@ -1360,19 +1412,20 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = roomEscape_re/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "전국방탈출";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.7;
+				MARKETING_VERSION = 6.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -1394,19 +1447,20 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = roomEscape_re/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "전국방탈출";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.7;
+				MARKETING_VERSION = 6.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -1441,6 +1495,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DFDFE1462B98360500BFB1C6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DFDFE1472B98360500BFB1C6 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFDFE1462B98360500BFB1C6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB3D0F762740EC1E00A84E1B /* Project object */;
 }

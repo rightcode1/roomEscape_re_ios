@@ -129,7 +129,7 @@ extension DeleteThemeVC: UITableViewDataSource, UITableViewDelegate {
     
     let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
     vc.id = dict.id
-    self.navigationController?.pushViewController(vc, animated: true)
+    self.goViewController(vc: vc)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

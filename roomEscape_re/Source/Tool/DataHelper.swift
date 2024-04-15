@@ -19,11 +19,13 @@ class DataHelper<T> {
     case reportUserList = "reportUserList"
     case userNickname = "userNickname"
     case userAppId = "userAppId"
+    case adCount = "adCount"
     case popupDate = "popupDate"
     case isSawGuide = "isSawGuide"
     case newOrderCount = "totalOrderCount"
     case playTimeType = "playTimeType"
     case themeListFilter = "themeListFilter"
+    case pushToken = "pushToken"
   }
   
   class func value(forKey key: DataKeys) -> T? {
@@ -45,6 +47,10 @@ class DataHelper<T> {
     temp.insert(value, at: 0)
     let data = try! JSONEncoder().encode(temp)
     UserDefaults.standard.set(data, forKey: DataKeys.reportUserList.rawValue)
+  }
+  class func appendAdCount(){
+    var count = (DataHelper<Int>.value(forKey: .adCount) ?? 1) + 1
+    UserDefaults.standard.set(count, forKey : DataKeys.adCount.rawValue)
   }
   
   class func setThemeListFilter(_ value: ThemeListRequest) {
@@ -99,6 +105,10 @@ class DataHelperTool {
     guard let userAppId = DataHelper<Int>.value(forKey: .userAppId) else { return nil }
     return userAppId
   }
+  static var adCount: Int? {
+    guard let adCount = DataHelper<Int>.value(forKey: .adCount) else { return nil }
+    return adCount
+  }
   
   static var userNickname: String? {
     guard let userNickname = DataHelper<String>.value(forKey: .userNickname) else { return nil }
@@ -124,6 +134,11 @@ class DataHelperTool {
     guard let newOrderCount = DataHelper<Int>.value(forKey: .newOrderCount) else { return nil }
     return newOrderCount
   }
+  static var pushToken: String?{
+      guard let pushToken = DataHelper<String>.value(forKey: .pushToken) else { return nil }
+      return pushToken
+  }
+
   
   static var themeListFilter: ThemeListRequest? {
     guard let themeListFilterData = DataHelper<Data>.value(forKey: .themeListFilter) else { return nil }

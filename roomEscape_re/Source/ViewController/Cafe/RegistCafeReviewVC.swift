@@ -26,7 +26,7 @@ class RegistCafeReviewVC: UIViewController {
     }
   }
   
-  var contentTextViewPlaceHolder: String = "후기 입력"
+  var contentTextViewPlaceHolder: String = "내용을 입력해주세요."
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -117,6 +117,7 @@ class RegistCafeReviewVC: UIViewController {
   }
   
 }
+
 extension RegistCafeReviewVC: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
     textViewSetupView()

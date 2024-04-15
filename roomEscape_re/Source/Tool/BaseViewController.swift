@@ -13,12 +13,15 @@ import RxGesture
 import Alamofire
 import SwiftyJSON
 import UserNotifications
+import GoogleMobileAds
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
   
   // MARK: Rx
   
   var disposeBag = DisposeBag()
+  private var interstitial: GADInterstitialAd?
+  private var vc : UIViewController?
   
   @IBInspectable var localizedText: String = "" {
     didSet {
@@ -32,6 +35,11 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
       }
     }
   }
+  func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+         }
   
   func userInfo(result: @escaping (UserInfoResponse) -> Void) {
     ApiService.request(router: UserApi.userInfo, success: { (response: ApiResponse<UserInfoResponse>) in
@@ -164,6 +172,65 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
       }
     }
   }
+  func goViewController(vc: UIViewController){
+    self.vc = vc
+    if (DataHelperTool.adCount ?? 0 % 10 == 0 || DataHelperTool.adCount == 1) && (vc is CafeDetailVC || vc is DetailThemaVC){
+      showAD()
+    }else{
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
+  }
+  
+  func showAD(){
+    if interstitial != nil{
+      self.interstitial?.present(fromRootViewController: self)
+    }else{
+      isInterstitial(true)
+    }
+  }
+  func isInterstitial(_ isLogding: Bool){
+    if isLogding{
+      showHUD()
+    }
+    let request = GADRequest()
+    GADInterstitialAd.load(withAdUnitID: "ca-app-pub-6757436006436446/1087298264",
+                                request: request,
+                      completionHandler: { [self] ad, error in
+                        if let error = error {
+                          dismissHUD()
+                          interstitial = nil
+                          print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                          self.navigationController?.pushViewController(vc!, animated: true)
+                          return
+                        }
+      interstitial = ad
+      interstitial?.fullScreenContentDelegate = self
+      dismissHUD()
+      if isLogding{
+        self.interstitial?.present(fromRootViewController: self)
+      }
+                      })
+  }
+}
+extension BaseViewController: GADFullScreenContentDelegate {
+  /// Tells the delegate that the ad failed to present full screen content.
+  func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    interstitial = nil
+    self.navigationController?.pushViewController(vc!, animated: true)
+    print("Ad did fail to present full screen content.")
+  }
+
+  /// Tells the delegate that the ad will present full screen content.
+  func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    print("Ad will present full screen content.")
+  }
+
+  /// Tells the delegate that the ad dismissed full screen content.
+  func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    print("Ad did dismiss full screen content.")
+    self.navigationController?.pushViewController(vc!, animated: true)
+    interstitial = nil
+}
 }
 
 

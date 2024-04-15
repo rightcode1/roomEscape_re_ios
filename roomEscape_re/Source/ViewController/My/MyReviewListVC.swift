@@ -50,7 +50,6 @@ class MyReviewListVC: BaseViewController {
     }else if !isOther{
       themeReviewList()
     }else{
-      themeReviewList()
     }
   }
   
@@ -179,11 +178,12 @@ class MyReviewListVC: BaseViewController {
         
         if let data = jsonData, let value = try? decoder.decode(DefualtThemeReviewResponse.self, from: data) {
           if value.statusCode == 200 {
-            self.reviewList[index.row] = value.list[index.row]
             if stata == "삭제"{
               self.reviewList.remove(at: index.row)
               self.reviewTableView.deleteRows(at: [index], with: .none)
+              self.reviewCountLabel.text = "\(value.list.count)개의 리뷰"
             }else{
+              self.reviewList[index.row] = value.list[index.row]
               self.reviewTableView.reloadRows(at: [index], with: .none)
             }
             if(self.reviewList.count == value.list.count){
@@ -265,16 +265,19 @@ extension MyReviewListVC: UITableViewDelegate, UITableViewDataSource {
     let dict = reviewList[indexPath.row]
     let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
     vc.id = dict.themeId
-    self.navigationController?.pushViewController(vc, animated: true)
+    self.goViewController(vc: vc)
   }
   
 }
 extension MyReviewListVC:ReviewCellMyButtonsDelegate{
+  func didReportUser(_ reviewId: Int, _ index: IndexPath) {
+  }
+  
   func didGoUserReview(_ index: IndexPath) {
         let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "MyReviewListVC") as! MyReviewListVC
         vc.isOther = true
       vc.searchTextField.text = reviewList[index.row].userName
-        self.navigationController?.pushViewController(vc, animated: true)
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func didRemoveButtonTapped(_ index: IndexPath) {

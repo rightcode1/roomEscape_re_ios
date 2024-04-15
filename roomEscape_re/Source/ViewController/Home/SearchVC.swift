@@ -270,13 +270,13 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
       
       let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     } else {
       let dict = cafeList[indexPath.row]
       
       let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
       vc.id = dict.id
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     }
   }
   

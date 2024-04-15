@@ -22,7 +22,7 @@ protocol CompanySelectDelegate {
   func selectCompany(id: Int, name: String)
 }
 
-class MapVC: UIViewController, UITextFieldDelegate {
+class MapVC: BaseViewController, UITextFieldDelegate {
   
   @IBOutlet var mapView: MTMapView! {
     didSet {
@@ -211,7 +211,7 @@ class MapVC: UIViewController, UITextFieldDelegate {
     if selectedCampsiteInfo != nil {
       let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
       vc.id = selectedCampsiteInfo?.0 ?? 0
-      self.navigationController?.pushViewController(vc, animated: true)
+      self.goViewController(vc: vc)
     }
   }
   
@@ -269,6 +269,6 @@ extension MapVC: MTMapViewDelegate {
     let dict = CompanyList[poiItem.tag]
     let vc = UIStoryboard.init(name: "Cafe", bundle: nil).instantiateViewController(withIdentifier: "cafeDetail") as! CafeDetailVC
     vc.id = dict.id
-    self.navigationController?.pushViewController(vc, animated: true)
+    self.goViewController(vc: vc)
   }
 }

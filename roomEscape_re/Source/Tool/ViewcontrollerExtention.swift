@@ -154,7 +154,7 @@ extension UIViewController {
   //      self.callYesNoMSGDialog(message: "로그인이 필요한 화면입니다.\n로그인 하시겠습니까?") {
   //        let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
   //        vc.loginDelegate = self as? LoginCheckDelegate
-  //        self.navigationController?.pushViewController(vc, animated: true)
+  //        self.goViewController(vc: vc)
   //      }
   //    }
   
@@ -212,7 +212,7 @@ extension UIViewController {
     toastLabel.layer.cornerRadius = 12;
     toastLabel.clipsToBounds = true
     self.view.addSubview(toastLabel)
-    UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
+    UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
       toastLabel.alpha = 0.0
     },
     completion: { (isCompleted) in
