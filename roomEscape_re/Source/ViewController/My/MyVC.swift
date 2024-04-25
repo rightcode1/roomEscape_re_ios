@@ -36,9 +36,15 @@ class MyVC: BaseViewController {
   @IBOutlet var graduationView: UIView!
   @IBOutlet var deleteView: UIView!
   
+  @IBOutlet var alarmView: UIView!
+  @IBOutlet var subView: UIView!
+  @IBOutlet var subLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    if (DataHelperTool.isSub ?? false){
+      subLabel.text = "구독중"
+    }
     bindInput()
   }
   
@@ -131,11 +137,27 @@ class MyVC: BaseViewController {
       .disposed(by: disposeBag)
     
     deleteView.rx.tapGesture().when(.recognized)
-    .bind(onNext: { [weak self] _ in
-      let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "DeleteThemeVC") as! DeleteThemeVC
-      self?.navigationController?.pushViewController(vc, animated: true)
-    })
-    .disposed(by: disposeBag)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "My", bundle: nil).instantiateViewController(withIdentifier: "DeleteThemeVC") as! DeleteThemeVC
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
+    
+    
+    alarmView.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "AlarmListViewController") as! AlarmListViewController
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
+    
+    
+    subView.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
   }
   
 }

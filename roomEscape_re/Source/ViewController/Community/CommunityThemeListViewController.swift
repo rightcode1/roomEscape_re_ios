@@ -14,12 +14,18 @@ protocol TapTheme{
   func tapDetail(themeId: Int,themeName:String ,themeCompany:String)
 }
 
+protocol AlarmTapTheme{
+  func tapDetail()
+}
+
 class CommunityThemeListViewController: BaseViewController{
+  
   
   @IBOutlet var mainTableView: UITableView!
   @IBOutlet var searchTextField: UITextField!
   var themeList: [ThemaListData] = []
   var delegate: TapTheme?
+  var isAlarm = false
   
   override func viewDidLoad() {
     mainTableView.delegate = self
@@ -33,6 +39,18 @@ class CommunityThemeListViewController: BaseViewController{
     initThemeList(searchTextField.text)
   }
   
+//  func alarmThemeRegister(id: Int) {
+//    self.showHUD()
+//    var param = RegistAlarmTheme(themeId: id, diff: ["양도/교환","일행구하기"])
+//    ApiService.request(router: AlarmApi.alarmThemeRegister(param: param) , success: { (response: ApiResponse<DefaultResponse>) in
+//      guard response.value != nil else {
+//        return
+//      }
+//      self.dismissHUD()
+//    }) { (error) in
+//      self.dismissHUD()
+//    }
+//  }
   
   func initThemeList(_ searchKeyword: String?) {
     let apiurl = "/v1/theme/list"
@@ -104,12 +122,22 @@ extension CommunityThemeListViewController: UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let dict = themeList[indexPath.row]
 
-    delegate?.tapDetail(themeId: dict.id, themeName: dict.title, themeCompany: dict.companyName)
-    backPress()
+    if isAlarm{
+        let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "alarmThemePopup") as! AlarmThemePopupViewController
+      vc.theme = dict
+      vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
+    }else{
+      delegate?.tapDetail(themeId: dict.id, themeName: dict.title, themeCompany: dict.companyName)
+      backPress()
+    }
   }
   
 }
-extension CommunityThemeListViewController: UITextFieldDelegate {
+extension CommunityThemeListViewController: UITextFieldDelegate , ThemeAlarmProtocol{
+  func themeAlarm() {
+    backPress()
+  }
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     themeList.removeAll()
     self.view.endEditing(true)
@@ -117,3 +145,4 @@ extension CommunityThemeListViewController: UITextFieldDelegate {
       return true
   }
 }
+

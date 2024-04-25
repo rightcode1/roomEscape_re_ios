@@ -20,16 +20,20 @@ enum AuthApi: ApiRouter {
   case findId(param: FindMyIdRequest)
   case changePassword(param: ChangePasswordRequest)
   case userUpdate(param: UserUpdateRequest)
+  case iosSub(param: IosSubRequest)
+  case sub(purchaseToken: String)
   
   var method: HTTPMethod{
     switch self{
       case .isExistLoginId,
            .sendCode,
            .findId,
-           .confirm:
+           .confirm,
+           .sub:
         return .get
       case .login,
            .join,
+           .iosSub,
            .changePassword:
         return .post
     case .userUpdate:
@@ -41,6 +45,8 @@ enum AuthApi: ApiRouter {
     switch self{
       case .login : return "/v1/auth/login"
       case .join: return "/v1/auth/join"
+      case .sub: return "/sub"
+      case .iosSub: return "/iosSub"
         
       case .isExistLoginId: return "/v1/auth/existLoginId"
         
@@ -63,7 +69,10 @@ enum AuthApi: ApiRouter {
     urlRequest.httpMethod = method.rawValue
     
     switch self {
-      
+      case .iosSub(let param) :
+        urlRequest = try URLEncoding.default.encode(urlRequest, with: makeParams(param))
+      case .sub(let purchaseToken) :
+        urlRequest = try URLEncoding.default.encode(urlRequest, with: ["purchaseToken": purchaseToken])
       case .login(let loginId, let password) :
         urlRequest = try URLEncoding.default.encode(urlRequest, with: ["loginId": loginId, "password": password])
         

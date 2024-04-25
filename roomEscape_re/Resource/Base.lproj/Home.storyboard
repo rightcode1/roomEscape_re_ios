@@ -47,16 +47,16 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNa-ZS-IQm">
-                                                                <rect key="frame" x="79" y="19" width="284" height="30"/>
+                                                                <rect key="frame" x="79" y="19" width="248" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색어를 입력해주세요." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djk-aF-Rsm">
-                                                                        <rect key="frame" x="11" y="6" width="242" height="18"/>
+                                                                        <rect key="frame" x="11" y="6" width="206" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" systemColor="systemGrayColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ach-GT-YBl">
-                                                                        <rect key="frame" x="263" y="9" width="12" height="12"/>
+                                                                        <rect key="frame" x="227" y="9" width="12" height="12"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="ach-GT-YBl" secondAttribute="height" multiplier="1:1" id="zWq-RR-F1H"/>
@@ -76,6 +76,28 @@
                                                                     <constraint firstAttribute="bottom" secondItem="ach-GT-YBl" secondAttribute="bottom" constant="9" id="gYh-MA-qDQ"/>
                                                                     <constraint firstAttribute="height" constant="30" id="yA8-9q-fcg"/>
                                                                     <constraint firstItem="ach-GT-YBl" firstAttribute="leading" secondItem="Djk-aF-Rsm" secondAttribute="trailing" constant="10" id="yOz-jb-3Yj"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zml-0g-jLO">
+                                                                <rect key="frame" x="335" y="21" width="26" height="26"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_alarm" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-9l-bLJ">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="26" id="qTw-JV-ZwN"/>
+                                                                            <constraint firstAttribute="width" constant="26" id="wit-4l-CyI"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="26" id="64w-7g-YUS"/>
+                                                                    <constraint firstAttribute="height" constant="26" id="D0A-qs-emp"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="9hb-9l-bLJ" secondAttribute="bottom" id="UYv-H0-FlB"/>
+                                                                    <constraint firstItem="9hb-9l-bLJ" firstAttribute="top" secondItem="Zml-0g-jLO" secondAttribute="top" id="YOt-NI-bUu"/>
+                                                                    <constraint firstAttribute="width" secondItem="Zml-0g-jLO" secondAttribute="height" multiplier="1:1" id="qGV-su-8LZ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="9hb-9l-bLJ" secondAttribute="trailing" id="saV-UR-cDl"/>
+                                                                    <constraint firstItem="9hb-9l-bLJ" firstAttribute="leading" secondItem="Zml-0g-jLO" secondAttribute="leading" id="yGJ-mS-RM9"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBI-JB-G44">
@@ -106,13 +128,15 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="Zml-0g-jLO" firstAttribute="top" secondItem="vBI-JB-G44" secondAttribute="top" id="7YP-sC-4W9"/>
+                                                            <constraint firstItem="vBI-JB-G44" firstAttribute="leading" secondItem="Zml-0g-jLO" secondAttribute="trailing" constant="10" id="8jz-cL-Vva"/>
                                                             <constraint firstItem="DNa-ZS-IQm" firstAttribute="centerY" secondItem="dGk-GK-IlS" secondAttribute="centerY" id="8uo-05-0Sy"/>
                                                             <constraint firstItem="DNa-ZS-IQm" firstAttribute="top" secondItem="eyF-ZT-0jS" secondAttribute="top" constant="19" id="GLi-Pu-CdT"/>
                                                             <constraint firstItem="dGk-GK-IlS" firstAttribute="leading" secondItem="eyF-ZT-0jS" secondAttribute="leading" constant="23" id="Ohb-Po-jZM"/>
                                                             <constraint firstItem="vBI-JB-G44" firstAttribute="centerY" secondItem="DNa-ZS-IQm" secondAttribute="centerY" id="cRu-sy-wnj"/>
                                                             <constraint firstAttribute="bottom" secondItem="DNa-ZS-IQm" secondAttribute="bottom" constant="18" id="etR-I2-kYk"/>
-                                                            <constraint firstItem="vBI-JB-G44" firstAttribute="leading" secondItem="DNa-ZS-IQm" secondAttribute="trailing" constant="8" id="k6s-LQ-3X7"/>
                                                             <constraint firstAttribute="trailing" secondItem="vBI-JB-G44" secondAttribute="trailing" constant="17" id="rFo-pb-vjS"/>
+                                                            <constraint firstItem="Zml-0g-jLO" firstAttribute="leading" secondItem="DNa-ZS-IQm" secondAttribute="trailing" constant="8" id="txO-Mc-q5C"/>
                                                             <constraint firstItem="DNa-ZS-IQm" firstAttribute="leading" secondItem="dGk-GK-IlS" secondAttribute="trailing" constant="8" id="v4H-Yp-TPM"/>
                                                             <constraint firstItem="vBI-JB-G44" firstAttribute="top" secondItem="eyF-ZT-0jS" secondAttribute="top" constant="21" id="xLa-2J-wQv"/>
                                                         </constraints>
@@ -717,6 +741,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
+                        <outlet property="alarmButton" destination="9hb-9l-bLJ" id="2RG-lY-geN"/>
                         <outlet property="bannerCollectionView" destination="orY-7e-XW1" id="gb8-pz-hoR"/>
                         <outlet property="bannerCountBackView" destination="q2i-S3-Foh" id="L5F-q8-OAt"/>
                         <outlet property="bannerCountLabel" destination="ZHu-GJ-bkl" id="33n-og-hFJ"/>
@@ -1501,7 +1526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZu-CB-KUE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728.985507246377" y="93.75"/>
+            <point key="canvasLocation" x="1577" y="-40"/>
         </scene>
         <!--주변 업체-->
         <scene sceneID="RRg-Pk-MaY">
@@ -3023,6 +3048,7 @@
         <image name="gangnam" width="61" height="50"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="homeLogo" width="165" height="82.5"/>
+        <image name="home_alarm" width="52" height="52"/>
         <image name="isWishEmpty" width="23" height="23"/>
         <image name="isWishFull" width="23" height="23"/>
         <image name="moreIcon" width="10" height="10"/>

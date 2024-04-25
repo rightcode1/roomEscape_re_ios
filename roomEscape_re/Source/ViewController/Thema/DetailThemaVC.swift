@@ -154,13 +154,6 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
       })
       .disposed(by: disposeBag)
     
-  registCommunityButton.rx.tapGesture().when(.recognized)
-    .bind(onNext: { [weak self] _ in
-      let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "RegistCommunityBoardViewController") as! RegistCommunityBoardViewController
-      self?.navigationController?.pushViewController(vc, animated: true)
-    })
-    .disposed(by: disposeBag)
-    
     communityCategoryLabel1.rx.tapGesture().when(.recognized)
         .bind(onNext: { [weak self] _ in
           self?.boardDiff = .양도교환

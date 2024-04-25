@@ -159,6 +159,9 @@
 		CBDEDFCA27AA602C00312F07 /* CafeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDEDFC927AA602C00312F07 /* CafeDetailVC.swift */; };
 		CBDEDFCC27AA6A7500312F07 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDEDFCB27AA6A7500312F07 /* SearchVC.swift */; };
 		DF0092B62847987800D8A04E /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0092B52847987800D8A04E /* SettingVC.swift */; };
+		DF0BBF502BD211310054E240 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0BBF4F2BD211310054E240 /* StoreKit.framework */; };
+		DF0BBF522BD624400054E240 /* AlarmThemePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BBF512BD624400054E240 /* AlarmThemePopupViewController.swift */; };
+		DF0BBF542BD62E9D0054E240 /* AlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BBF532BD62E9D0054E240 /* AlarmRequest.swift */; };
 		DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */; };
 		DF13DBA42BC3BA6B0076BDEF /* CommunityThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */; };
 		DF2246232BAD67BE00FA82CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */; };
@@ -169,14 +172,19 @@
 		DF5858AA2A31C12800F793D4 /* CommunitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */; };
 		DF64CA1D287C1D6000F08143 /* LevelMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */; };
 		DF7488D128505F03007BEC3D /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7488D028505F03007BEC3D /* UpdateViewController.swift */; };
+		DF7F9FEB2BD0BFE900100F85 /* HomePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7F9FEA2BD0BFE900100F85 /* HomePopupViewController.swift */; };
 		DF96042229FA7667008DA83A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF96042129FA7667008DA83A /* TabBarViewController.swift */; };
 		DF9835652BC39843001901F0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF9835642BC39843001901F0 /* Storyboard.storyboard */; };
 		DF9A041B2BBF9F47006CB312 /* ThemaDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041A2BBF9F47006CB312 /* ThemaDetailInfoCell.swift */; };
 		DF9A041D2BBF9F69006CB312 /* ThemaDetailReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041C2BBF9F69006CB312 /* ThemaDetailReviewCell.swift */; };
 		DF9A041F2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A041E2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift */; };
+		DF9A38732BD0B38500EFF9E8 /* Alarm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF9A38722BD0B38500EFF9E8 /* Alarm.storyboard */; };
+		DF9A38752BD0BB7E00EFF9E8 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A38742BD0BB7E00EFF9E8 /* AlarmViewController.swift */; };
 		DFA688982B83138E00D01B53 /* TogetherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA688972B83138E00D01B53 /* TogetherListVC.swift */; };
 		DFA6889A2B83204B00D01B53 /* RankingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA688992B83204B00D01B53 /* RankingVC.swift */; };
 		DFA6889C2B832FCD00D01B53 /* TogetherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA6889B2B832FCD00D01B53 /* TogetherVC.swift */; };
+		DFB2E2D82BD0FE9A006964C5 /* AlarmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */; };
+		DFB2E2DA2BD102AA006964C5 /* AlarmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2E2D92BD102AA006964C5 /* AlarmApi.swift */; };
 		DFB8D91828D1C96A00BC4FC6 /* SortFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */; };
 		DFC862B22BC7710300A6285F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC862B12BC7710300A6285F /* UILabel+Extension.swift */; };
 		DFC9FE0728FD41470020E6B3 /* GraduationDeatilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */; };
@@ -391,6 +399,9 @@
 		DF0092AD28476D6100D8A04E /* map_pin_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_shadow.png; sourceTree = "<group>"; };
 		DF0092AE28476D6100D8A04E /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		DF0092B52847987800D8A04E /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		DF0BBF4F2BD211310054E240 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DF0BBF512BD624400054E240 /* AlarmThemePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmThemePopupViewController.swift; sourceTree = "<group>"; };
+		DF0BBF532BD62E9D0054E240 /* AlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRequest.swift; sourceTree = "<group>"; };
 		DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationChartVC.swift; sourceTree = "<group>"; };
 		DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityThemeListViewController.swift; sourceTree = "<group>"; };
 		DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -401,14 +412,19 @@
 		DF5858A92A31C12800F793D4 /* CommunitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchViewController.swift; sourceTree = "<group>"; };
 		DF64CA1C287C1D6000F08143 /* LevelMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuVC.swift; sourceTree = "<group>"; };
 		DF7488D028505F03007BEC3D /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		DF7F9FEA2BD0BFE900100F85 /* HomePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePopupViewController.swift; sourceTree = "<group>"; };
 		DF96042129FA7667008DA83A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		DF9835642BC39843001901F0 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DF9A041A2BBF9F47006CB312 /* ThemaDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailInfoCell.swift; sourceTree = "<group>"; };
 		DF9A041C2BBF9F69006CB312 /* ThemaDetailReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailReviewCell.swift; sourceTree = "<group>"; };
 		DF9A041E2BBF9FA4006CB312 /* ThemaDetailCommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaDetailCommunityCell.swift; sourceTree = "<group>"; };
+		DF9A38722BD0B38500EFF9E8 /* Alarm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alarm.storyboard; sourceTree = "<group>"; };
+		DF9A38742BD0BB7E00EFF9E8 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		DFA688972B83138E00D01B53 /* TogetherListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherListVC.swift; sourceTree = "<group>"; };
 		DFA688992B83204B00D01B53 /* RankingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingVC.swift; sourceTree = "<group>"; };
 		DFA6889B2B832FCD00D01B53 /* TogetherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherVC.swift; sourceTree = "<group>"; };
+		DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewController.swift; sourceTree = "<group>"; };
+		DFB2E2D92BD102AA006964C5 /* AlarmApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmApi.swift; sourceTree = "<group>"; };
 		DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterViewController.swift; sourceTree = "<group>"; };
 		DFC862B12BC7710300A6285F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationDeatilVC.swift; sourceTree = "<group>"; };
@@ -429,6 +445,7 @@
 				DFC9FE0D28FD645C0020E6B3 /* SwiftUI.framework in Frameworks */,
 				CB0D995427C8AE2600E5B483 /* libc++.tbd in Frameworks */,
 				CB0D995227C8AE1300E5B483 /* QuartzCore.framework in Frameworks */,
+				DF0BBF502BD211310054E240 /* StoreKit.framework in Frameworks */,
 				CB0D995827C8AE4300E5B483 /* libsqlite3.tbd in Frameworks */,
 				CB0D995027C8AE0B00E5B483 /* CoreLocation.framework in Frameworks */,
 				DFDFE1482B98360500BFB1C6 /* GoogleMobileAds in Frameworks */,
@@ -446,6 +463,7 @@
 		196E5A1A697379DBABAE8068 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF0BBF4F2BD211310054E240 /* StoreKit.framework */,
 				DFC9FE0C28FD645C0020E6B3 /* SwiftUI.framework */,
 				CB0D99A727C8AEFE00E5B483 /* DaumMap.embeddedframework */,
 				CB0D995727C8AE4000E5B483 /* libsqlite3.tbd */,
@@ -715,6 +733,7 @@
 				C4E6D9F32761DEDE00445F00 /* My.storyboard */,
 				CB736AF527ABD92B0093102E /* Common.storyboard */,
 				DF9835642BC39843001901F0 /* Storyboard.storyboard */,
+				DF9A38722BD0B38500EFF9E8 /* Alarm.storyboard */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -809,15 +828,16 @@
 		CBB6FCBD274101760013F278 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C4FFB7D827623AB100192E36 /* CustomTabBar.swift */,
 				CBB6FCB02740FC900013F278 /* Splash */,
 				CBB6FCAF2740FC8A0013F278 /* Login */,
-				C4FFB7D827623AB100192E36 /* CustomTabBar.swift */,
 				CBDEDFBD27A93CBD00312F07 /* Cafe */,
 				C4ED504E27609CC00028E759 /* Thema */,
 				C4FFB7C0276217C800192E36 /* Home */,
 				C40F5EA52761D959002875D7 /* Community */,
 				C40F5EA62761D962002875D7 /* My */,
 				CB736AF727ABD9360093102E /* Common */,
+				DF9A38762BD0BB8200EFF9E8 /* Alarm */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -849,6 +869,7 @@
 				C454CA65276369FD00339429 /* ThemaDetailRequest.swift */,
 				CB736AFC27ABEF3A0093102E /* ReviewRequest.swift */,
 				CB1642DB27C61543007B4499 /* BoardRequest.swift */,
+				DF0BBF532BD62E9D0054E240 /* AlarmRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -862,6 +883,7 @@
 				CBB6FCF7274101E90013F278 /* VersionApi.swift */,
 				CB1642D927C6153A007B4499 /* BoardApi.swift */,
 				CB86705627E1EB15009C5CD8 /* NoticeBoardAPI.swift */,
+				DFB2E2D92BD102AA006964C5 /* AlarmApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -967,6 +989,17 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		DF9A38762BD0BB8200EFF9E8 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DF9A38742BD0BB7E00EFF9E8 /* AlarmViewController.swift */,
+				DF7F9FEA2BD0BFE900100F85 /* HomePopupViewController.swift */,
+				DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */,
+				DF0BBF512BD624400054E240 /* AlarmThemePopupViewController.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1050,6 +1083,7 @@
 				CB0D99CE27C8AEFE00E5B483 /* map_pinup_custom@3x.png in Resources */,
 				CB3D0F8E2740EC2100A84E1B /* LaunchScreen.storyboard in Resources */,
 				CB2A17A227D082E900F61E5B /* ThemeFilterPopupView.xib in Resources */,
+				DF9A38732BD0B38500EFF9E8 /* Alarm.storyboard in Resources */,
 				CB0D99E227C8AEFE00E5B483 /* map_present_direction.png in Resources */,
 				CB0D99E427C8AEFE00E5B483 /* map_present.png in Resources */,
 				C4ED504D27608C550028E759 /* Thema.storyboard in Resources */,
@@ -1164,6 +1198,7 @@
 				C454CA5F2763405400339429 /* DetailThemaVC.swift in Sources */,
 				CB86705727E1EB15009C5CD8 /* NoticeBoardAPI.swift in Sources */,
 				CBB6FD0C274102010013F278 /* VersionApi.swift in Sources */,
+				DFB2E2DA2BD102AA006964C5 /* AlarmApi.swift in Sources */,
 				CBB6FCE92741019F0013F278 /* FindPWVC.swift in Sources */,
 				CB1642CE27C61387007B4499 /* CommunityBoardCommentListCell.swift in Sources */,
 				DFEAFEB4285F5684006BD890 /* AgreeVC.swift in Sources */,
@@ -1192,6 +1227,7 @@
 				CBB6FD02274102010013F278 /* EtcResponse.swift in Sources */,
 				CBB6FCE62741019F0013F278 /* LoginVC.swift in Sources */,
 				CBB6FCE72741019F0013F278 /* JoinVC.swift in Sources */,
+				DFB2E2D82BD0FE9A006964C5 /* AlarmListViewController.swift in Sources */,
 				DFEAFEB6285F56D8006BD890 /* registerAgreeVC.swift in Sources */,
 				CB1642D727C613F6007B4499 /* CommunityDetailViewController.swift in Sources */,
 				CBDEDFC827A9527000312F07 /* Utils.swift in Sources */,
@@ -1213,7 +1249,9 @@
 				DFA6889A2B83204B00D01B53 /* RankingVC.swift in Sources */,
 				C4ED505027609CE90028E759 /* ThemaVC.swift in Sources */,
 				C4ED50552760A5920028E759 /* GuCell.swift in Sources */,
+				DF0BBF542BD62E9D0054E240 /* AlarmRequest.swift in Sources */,
 				C4FFB7BE276215CD00192E36 /* ThemaListRequest.swift in Sources */,
+				DF9A38752BD0BB7E00EFF9E8 /* AlarmViewController.swift in Sources */,
 				C4FFB7D627622FA600192E36 /* BannerCell.swift in Sources */,
 				CBB6FCEB274101B30013F278 /* SplashVC.swift in Sources */,
 				CB1642D027C61387007B4499 /* CommunityBoardListCell.swift in Sources */,
@@ -1242,6 +1280,7 @@
 				C4FFB7BC276215C700192E36 /* ThemaListResponse.swift in Sources */,
 				CB1642DA27C6153A007B4499 /* BoardApi.swift in Sources */,
 				DF5858AA2A31C12800F793D4 /* CommunitySearchViewController.swift in Sources */,
+				DF0BBF522BD624400054E240 /* AlarmThemePopupViewController.swift in Sources */,
 				C4ED50572760A5CB0028E759 /* GenreCell.swift in Sources */,
 				CB1642D827C613F6007B4499 /* RegistCommunityBoardViewController.swift in Sources */,
 				CBB6FCD9274101970013F278 /* ViewcontrollerExtention.swift in Sources */,
@@ -1253,6 +1292,7 @@
 				DFC9FE0928FD462D0020E6B3 /* GraduationCell.swift in Sources */,
 				CB1642E127C6450D007B4499 /* MyReviewListVC.swift in Sources */,
 				CB3D0F822740EC1E00A84E1B /* AppDelegate.swift in Sources */,
+				DF7F9FEB2BD0BFE900100F85 /* HomePopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,7 +1452,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 73;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1425,7 +1465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.0;
+				MARKETING_VERSION = 6.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -1447,7 +1487,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 73;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1460,7 +1500,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.0;
+				MARKETING_VERSION = 6.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";

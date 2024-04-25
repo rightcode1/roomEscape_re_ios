@@ -26,6 +26,7 @@ class DataHelper<T> {
     case playTimeType = "playTimeType"
     case themeListFilter = "themeListFilter"
     case pushToken = "pushToken"
+    case isSub = "isSub"
   }
   
   class func value(forKey key: DataKeys) -> T? {
@@ -137,6 +138,10 @@ class DataHelperTool {
   static var pushToken: String?{
       guard let pushToken = DataHelper<String>.value(forKey: .pushToken) else { return nil }
       return pushToken
+  }
+  static var isSub: Bool? {
+    guard let isSub = DataHelper<Bool>.value(forKey: .isSub) else { return nil }
+    return isSub
   }
 
   

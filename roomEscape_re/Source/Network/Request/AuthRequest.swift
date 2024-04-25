@@ -55,10 +55,16 @@ struct ChangePasswordRequest: Codable {
   var tel: String
   
 }
+struct IosSubRequest: Codable {
+  var receiptData: String
+  var isTest: Bool
+}
 struct UserUpdateRequest: Codable {
   var name: String?
   var password: String?
   var isReviewSecret: Bool?
+  var androidPurchaseToken: String?
+  var iosPurchaseToken: String?
 }
 
 struct reviewLikeRequest: Codable {

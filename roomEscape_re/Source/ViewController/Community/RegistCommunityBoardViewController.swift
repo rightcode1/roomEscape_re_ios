@@ -195,6 +195,7 @@ class RegistCommunityBoardViewController: BaseViewController {
     exchangButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         if self?.boardId != nil{
+          self?.showToast(message: "게시판 유형은 수정할 수 없습니다.")
           return
         }
         self?.boardDiff = .양도교환
@@ -204,6 +205,7 @@ class RegistCommunityBoardViewController: BaseViewController {
     getChildernButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         if self?.boardId != nil{
+          self?.showToast(message: "게시판 유형은 수정할 수 없습니다.")
           return
         }
         self?.boardDiff = .일행구하기
@@ -213,6 +215,7 @@ class RegistCommunityBoardViewController: BaseViewController {
     freeBoardButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         if self?.boardId != nil{
+          self?.showToast(message: "게시판 유형은 수정할 수 없습니다.")
           return
         }
         self?.boardDiff = .자유게시판
@@ -222,6 +225,7 @@ class RegistCommunityBoardViewController: BaseViewController {
     boardImageButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         if self?.boardId != nil{
+          self?.showToast(message: "게시판 유형은 수정할 수 없습니다.")
           return
         }
         self?.boardDiff = .보드판갤러리
@@ -230,6 +234,7 @@ class RegistCommunityBoardViewController: BaseViewController {
     infoRoomButton.rx.tapGesture().when(.recognized)
       .bind(onNext: { [weak self] _ in
         if self?.boardId != nil{
+          self?.showToast(message: "게시판 유형은 수정할 수 없습니다.")
           return
         }
         self?.boardDiff = .방탈출정보

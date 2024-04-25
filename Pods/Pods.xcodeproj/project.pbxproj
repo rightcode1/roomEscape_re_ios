@@ -13026,7 +13026,7 @@
 			baseConfigurationReference = 89F69C1FA0AB48FAC822725730F055D8 /* XLPagerTabStrip.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/XLPagerTabStrip";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = XLPagerTabStrip;
 				INFOPLIST_FILE = "Target Support Files/XLPagerTabStrip/ResourceBundle-XLPagerTabStrip-XLPagerTabStrip-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13131,7 +13131,7 @@
 			baseConfigurationReference = 17E48C93FDA7EEC6024A8F92C1871128 /* PromisesObjC.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PromisesObjC";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FBLPromises;
 				INFOPLIST_FILE = "Target Support Files/PromisesObjC/ResourceBundle-FBLPromises_Privacy-PromisesObjC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13148,7 +13148,7 @@
 			baseConfigurationReference = B437DB32E6F335900E5A2AE75D6125E4 /* FirebaseCoreInternal.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCoreInternal";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseCoreInternal;
 				INFOPLIST_FILE = "Target Support Files/FirebaseCoreInternal/ResourceBundle-FirebaseCoreInternal_Privacy-FirebaseCoreInternal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13165,7 +13165,7 @@
 			baseConfigurationReference = 0A14F2584B577D327BBB9A267CDE01C9 /* DKPhotoGallery.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DKPhotoGallery";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = DKPhotoGallery;
 				INFOPLIST_FILE = "Target Support Files/DKPhotoGallery/ResourceBundle-DKPhotoGallery-DKPhotoGallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13319,7 +13319,7 @@
 			baseConfigurationReference = 3BDBE16E8D5AB2992756F92D480667C3 /* FirebaseInstallations.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseInstallations";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseInstallations;
 				INFOPLIST_FILE = "Target Support Files/FirebaseInstallations/ResourceBundle-FirebaseInstallations_Privacy-FirebaseInstallations-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13371,7 +13371,7 @@
 			baseConfigurationReference = BFDD26D93D70ADEAAA3480C0778C676C /* nanopb.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/nanopb";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = nanopb;
 				INFOPLIST_FILE = "Target Support Files/nanopb/ResourceBundle-nanopb_Privacy-nanopb-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13388,7 +13388,7 @@
 			baseConfigurationReference = E1876D1C7DAA6F8F55ED83BC4749269C /* DKImagePickerController.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DKImagePickerController";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = DKImagePickerController;
 				INFOPLIST_FILE = "Target Support Files/DKImagePickerController/ResourceBundle-DKImagePickerController-DKImagePickerController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13475,7 +13475,7 @@
 			baseConfigurationReference = 3FA1EAE96013130729661F8484F5D6EA /* DKImagePickerController.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DKImagePickerController";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = DKImagePickerController;
 				INFOPLIST_FILE = "Target Support Files/DKImagePickerController/ResourceBundle-DKImagePickerController-DKImagePickerController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13890,7 +13890,7 @@
 			baseConfigurationReference = 0517A23AC773086A996CA7957C88A963 /* FirebaseMessaging.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMessaging";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseMessaging;
 				INFOPLIST_FILE = "Target Support Files/FirebaseMessaging/ResourceBundle-FirebaseMessaging_Privacy-FirebaseMessaging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13976,7 +13976,7 @@
 			baseConfigurationReference = 06D00F92C20F025E472C3B47957494C2 /* GoogleUtilities.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleUtilities";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = GoogleUtilities;
 				INFOPLIST_FILE = "Target Support Files/GoogleUtilities/ResourceBundle-GoogleUtilities_Privacy-GoogleUtilities-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -13993,7 +13993,7 @@
 			baseConfigurationReference = B99717AE1A359AA43C142D05DEF8E899 /* GoogleDataTransport.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleDataTransport";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = GoogleDataTransport;
 				INFOPLIST_FILE = "Target Support Files/GoogleDataTransport/ResourceBundle-GoogleDataTransport_Privacy-GoogleDataTransport-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14010,7 +14010,7 @@
 			baseConfigurationReference = 1529A7E25D1315C099CDD4DFB810DF21 /* GoogleDataTransport.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleDataTransport";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = GoogleDataTransport;
 				INFOPLIST_FILE = "Target Support Files/GoogleDataTransport/ResourceBundle-GoogleDataTransport_Privacy-GoogleDataTransport-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14254,7 +14254,7 @@
 			baseConfigurationReference = DDF00C3AD2DA171A9712A37A1290BABF /* PromisesObjC.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PromisesObjC";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FBLPromises;
 				INFOPLIST_FILE = "Target Support Files/PromisesObjC/ResourceBundle-FBLPromises_Privacy-PromisesObjC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14307,7 +14307,7 @@
 			baseConfigurationReference = 48911D8E6799799D153E0BF88983C678 /* FirebaseCore.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCore";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseCore;
 				INFOPLIST_FILE = "Target Support Files/FirebaseCore/ResourceBundle-FirebaseCore_Privacy-FirebaseCore-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14621,7 +14621,7 @@
 			baseConfigurationReference = 985C9D12D3EBA3C4D8601228E47217E4 /* FirebaseMessaging.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMessaging";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseMessaging;
 				INFOPLIST_FILE = "Target Support Files/FirebaseMessaging/ResourceBundle-FirebaseMessaging_Privacy-FirebaseMessaging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14724,7 +14724,7 @@
 			baseConfigurationReference = F5372D25CECFBAE01AF92063215AFF15 /* DKPhotoGallery.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DKPhotoGallery";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = DKPhotoGallery;
 				INFOPLIST_FILE = "Target Support Files/DKPhotoGallery/ResourceBundle-DKPhotoGallery-DKPhotoGallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -14775,7 +14775,7 @@
 			baseConfigurationReference = B70A4F08CBF3A1C29E805F17265C93E1 /* XLPagerTabStrip.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/XLPagerTabStrip";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = XLPagerTabStrip;
 				INFOPLIST_FILE = "Target Support Files/XLPagerTabStrip/ResourceBundle-XLPagerTabStrip-XLPagerTabStrip-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -15138,7 +15138,7 @@
 			baseConfigurationReference = B2E3A6F132CEF5971BE0011818A18E78 /* CropViewController.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CropViewController";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = CropViewController;
 				INFOPLIST_FILE = "Target Support Files/CropViewController/ResourceBundle-TOCropViewControllerBundle-CropViewController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -15190,7 +15190,7 @@
 			baseConfigurationReference = 48D60253AD07FB882E7DC4264A1F3BE5 /* CropViewController.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CropViewController";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = CropViewController;
 				INFOPLIST_FILE = "Target Support Files/CropViewController/ResourceBundle-TOCropViewControllerBundle-CropViewController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -15635,7 +15635,7 @@
 			baseConfigurationReference = 77A88D0B0E21F11491E5870C258DA29C /* Segmentio.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Segmentio";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = Segmentio;
 				INFOPLIST_FILE = "Target Support Files/Segmentio/ResourceBundle-Segmentio-Segmentio-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -15794,7 +15794,7 @@
 			baseConfigurationReference = 46126E31F7A8F53CDC2122A8B735B47B /* FirebaseCoreInternal.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCoreInternal";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseCoreInternal;
 				INFOPLIST_FILE = "Target Support Files/FirebaseCoreInternal/ResourceBundle-FirebaseCoreInternal_Privacy-FirebaseCoreInternal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -16017,7 +16017,7 @@
 			baseConfigurationReference = E88634BDB479F1331D4784C63FF6428F /* Segmentio.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Segmentio";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = Segmentio;
 				INFOPLIST_FILE = "Target Support Files/Segmentio/ResourceBundle-Segmentio-Segmentio-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -16034,7 +16034,7 @@
 			baseConfigurationReference = DAA2F05EE2CDABBAE2F50B88226B8F7A /* FirebaseCore.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseCore";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseCore;
 				INFOPLIST_FILE = "Target Support Files/FirebaseCore/ResourceBundle-FirebaseCore_Privacy-FirebaseCore-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -16120,7 +16120,7 @@
 			baseConfigurationReference = 1AF5FE728D10D928E7BBAA0ACAAF5E57 /* nanopb.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/nanopb";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = nanopb;
 				INFOPLIST_FILE = "Target Support Files/nanopb/ResourceBundle-nanopb_Privacy-nanopb-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -16273,7 +16273,7 @@
 			baseConfigurationReference = 9BC88B990989949BC9B02A4CE9F778A5 /* FirebaseInstallations.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseInstallations";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = FirebaseInstallations;
 				INFOPLIST_FILE = "Target Support Files/FirebaseInstallations/ResourceBundle-FirebaseInstallations_Privacy-FirebaseInstallations-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -16290,7 +16290,7 @@
 			baseConfigurationReference = 3ADCE27F2531EBFF5499C3211500D0E2 /* GoogleUtilities.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleUtilities";
-				DEVELOPMENT_TEAM = 8J9SLVACCV;
+				DEVELOPMENT_TEAM = 7Y2KKQAP7B;
 				IBSC_MODULE = GoogleUtilities;
 				INFOPLIST_FILE = "Target Support Files/GoogleUtilities/ResourceBundle-GoogleUtilities_Privacy-GoogleUtilities-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SplashVC: BaseViewController {
   
@@ -76,6 +78,11 @@ class SplashVC: BaseViewController {
     }) { (error) in
       DispatchQueue.main.async {
         self.dismissHUD()
+        if DataHelperTool.userId != nil && DataHelperTool.userPw != nil && DataHelperTool.playTimeType != nil && DataHelperTool.token != nil && DataHelperTool.userNickname != nil && DataHelperTool.userAppId != nil {
+          self.login()
+        } else {
+          self.moveToLogin()
+        }
       }
     }
   }
@@ -88,21 +95,53 @@ class SplashVC: BaseViewController {
       guard let value = response.value else {
         return
       }
-      self.dismissHUD()
       if value.statusCode > 200 {
+        DispatchQueue.main.async {
+          self.dismissHUD()
+        }
         self.moveToLogin()
       }else if value.statusCode == 202{
+        DispatchQueue.main.async {
+          self.dismissHUD()
+        }
         DataHelper.set("bearer \(value.message )", forKey: .token)
         let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
         self.navigationController?.pushViewController(vc, animated: true)
       } else {
         DataHelper.set("bearer \(value.token ?? "")", forKey: .token)
           self.userInfo { value in
-            self.goTabBar()
+            if value.statusCode > 200{
+              DispatchQueue.main.async {
+                self.dismissHUD()
+              }
+              self.moveToLogin()
+              return
+            }
+            var iosPurchaseToken  = ""
+            var iosReceiptToken = ""
+            iosReceiptToken = self.getReceiptData() ?? ""
+            if value.data?.iosPurchaseToken == nil || value.data?.iosPurchaseToken == ""{
+              iosPurchaseToken = iosReceiptToken
+            }else{
+              iosPurchaseToken = value.data?.iosPurchaseToken ?? ""
+            }
+            
+            if iosPurchaseToken == iosReceiptToken{
+              iosPurchaseToken = iosReceiptToken
+            }
+            
+            self.subCheck(iosReceipt: iosPurchaseToken) { success in
+              DispatchQueue.main.async {
+                self.dismissHUD()
+              }
+              self.goTabBar()
           }
+        }
       }
     }) { (error) in
-      self.dismissHUD()
+      DispatchQueue.main.async {
+        self.dismissHUD()
+      }
       self.moveToLogin()
     }
   }

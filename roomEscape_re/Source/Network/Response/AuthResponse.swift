@@ -34,3 +34,13 @@ struct FindIdResponse: Codable {
 struct FindIdData: Codable {
   let loginId: String
 }
+struct AosSubResponse: Codable {
+  let subscriptionState: String
+}
+struct IosSubResponse: Codable {
+  let latest_receipt_info: [LatestReceiptInfo]
+}
+
+struct LatestReceiptInfo: Codable {
+  let expires_date: String
+}

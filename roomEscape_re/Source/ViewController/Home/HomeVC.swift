@@ -12,7 +12,8 @@ import SwiftyJSON
 import Cosmos
 import Kingfisher
 
-class HomeVC: BaseViewController {
+class HomeVC: BaseViewController{
+  
   
   @IBOutlet weak var categoryCollectionView: UICollectionView!
   @IBOutlet weak var bannerCollectionView: UICollectionView!
@@ -28,6 +29,7 @@ class HomeVC: BaseViewController {
   
   @IBOutlet weak var bannerCountLabel: UILabel!
   @IBOutlet weak var bannerCountBackView: UIView!
+  @IBOutlet var alarmButton: UIImageView!
   
   var categoryImageArray: [(UIImage, String)] = [
     (UIImage(named: "gangnam")!, "강남"),
@@ -57,8 +59,14 @@ class HomeVC: BaseViewController {
   var cafeList: [CompanyListData] = []
   
   
+  
+  let dateFormatter = DateFormatter()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    if !(DataHelperTool.isSub ?? false){
+      showPopUp()
+    }
     categoryCollectionView.delegate = self
     categoryCollectionView.dataSource = self
     
@@ -278,6 +286,12 @@ class HomeVC: BaseViewController {
         self?.navigationController?.pushViewController(vc, animated: true)
       })
       .disposed(by: disposeBag)
+    alarmButton.rx.tapGesture().when(.recognized)
+      .bind(onNext: { [weak self] _ in
+        let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "AlarmListViewController") as! AlarmListViewController
+        self?.navigationController?.pushViewController(vc, animated: true)
+      })
+      .disposed(by: disposeBag)
   }
   func tapDetail(id:Int) {
     let apiurl = "/v1/advertisement/detail"
@@ -443,11 +457,9 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     if categoryCollectionView == collectionView {
       let dict = categoryImageArray[indexPath.row]
       if(dict.1 == "qanda"){
-        let vc = UIStoryboard.init(name: "Thema", bundle: nil).instantiateViewController(withIdentifier: "DetailThemaVC") as! DetailThemaVC
-        self.goViewController(vc: vc)
-//        if let url = URL(string: "http://pf.kakao.com/_JxmVGb/chat") {
-//          UIApplication.shared.open(url, options: [:])
-//        }
+        if let url = URL(string: "http://pf.kakao.com/_JxmVGb/chat") {
+          UIApplication.shared.open(url, options: [:])
+        }
       }else if (dict.1 == "ranking"){
         let vc = UIStoryboard.init(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ranking") as! RankingVC
         self.navigationController?.pushViewController(vc, animated: true)
@@ -492,6 +504,30 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
       self.goViewController(vc: vc)
     }
   }
+  func showPopUp(){
+    if DataHelperTool.popupDate != nil  {
+      self.dateFormatter.dateFormat = "MMdd"
+      var currentday = self.dateFormatter.string(from: Date())
+      let popupDay = DataHelperTool.popupDate
+      if let currentDate = dateFormatter.date(from: currentday), let popupDate = dateFormatter.date(from: popupDay!) {
+        let calendar = Calendar.current
+        if let difference = calendar.dateComponents([.day], from: currentDate, to: popupDate).day {
+          if difference >= 3 {
+            showSubPopup()
+          }
+        }
+      }
+    } else {
+      self.showSubPopup()
+    }
+  }
+  
+  func showSubPopup() {
+    let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "homePopup") as! HomePopupViewController
+    vc.delegate = self
+    self.present(vc, animated: true, completion: nil)
+    
+  }
 }
 extension HomeVC: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -519,6 +555,12 @@ extension HomeVC: CLLocationManagerDelegate {
     }
   }
   
+}
+extension HomeVC : HomePopupDelegate{
+  func tapPopup() {
+    let vc = UIStoryboard.init(name: "Alarm", bundle: nil).instantiateViewController(withIdentifier: "AlarmViewController") as! AlarmViewController
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
 }
 
 

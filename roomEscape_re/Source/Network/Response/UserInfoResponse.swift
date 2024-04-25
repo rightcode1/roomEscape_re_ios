@@ -20,6 +20,7 @@ struct UserInfoData: Codable {
   let id, reviewCount ,successReviewCount,noHintSuccessReviewCount: Int
   let loginId, tel, name, role: String
   let active, isReviewSecret: Bool
+  let androidPurchaseToken, iosPurchaseToken: String?
 }
 
 struct UserListResponse: Codable {
