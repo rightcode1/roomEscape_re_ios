@@ -84,6 +84,7 @@ struct SubResponseReview: Codable {
 struct ThemeReview: Codable {
   let id, themeId, userId, reviewLevel: Int
   let userName, playDate: String
+  let reviewCount: Int
   let grade: Double
   let level: ReviewLavel
   let success: SuccessDiff

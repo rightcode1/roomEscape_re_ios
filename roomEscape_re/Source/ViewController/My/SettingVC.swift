@@ -13,7 +13,7 @@ import SwiftyJSON
 class SettingVC :BaseViewController{
   @IBOutlet weak var nameField: UITextField!
   @IBOutlet var pwdField: UITextField!
-  @IBOutlet var levelImageVIew: UIImageView!
+  @IBOutlet var gradeLabel: UILabel!
   @IBOutlet var nickNameLabel: UILabel!
   @IBOutlet var reviewCountLabel: UILabel!
   @IBOutlet var tapReview: UISwitch!
@@ -51,75 +51,40 @@ class SettingVC :BaseViewController{
     
     
     initUI()
-    themeReviewList()
   }
   
   func initUI() {
     self.userInfo { value in
       guard let data = value.data else {
-        self.levelImageVIew.image = UIImage(named: "noneProfile")
+        self.gradeLabel.text = "0"
         self.nickNameLabel.text = "로그인이 필요합니다."
         return
       }
       
-      self.levelImageVIew.image = UIImage(named: "userLevelImage\(1)")
+      if (data.reviewCount >= 1 && data.reviewCount <= 10){
+        self.gradeLabel.text = "1+"
+      }else if(data.reviewCount >= 11 && data.reviewCount <= 50){
+        self.gradeLabel.text = "11+"
+      }else if(data.reviewCount >= 51 && data.reviewCount <= 100){
+        self.gradeLabel.text = "51+"
+      }else if(data.reviewCount >= 101 && data.reviewCount <= 200){
+        self.gradeLabel.text = "101+"
+      }else if(data.reviewCount >= 201 && data.reviewCount <= 300){
+        self.gradeLabel.text = "201+"
+      }else if(data.reviewCount >= 301 && data.reviewCount <= 500){
+        self.gradeLabel.text = "301+"
+      }else if(data.reviewCount >= 501 && data.reviewCount <= 1000){
+        self.gradeLabel.text = "501+"
+      }else if(data.reviewCount >= 1001){
+        self.gradeLabel.text = "1001+"
+      }else {
+        self.gradeLabel.text = "0"
+      }
       self.nickNameLabel.text = data.name
       self.nameField.text = data.name
       self.tapReview.isOn = data.isReviewSecret
-      //      self.reviewCountLabel.text = "리뷰 \(data.)"
+            self.reviewCountLabel.text = "리뷰 \(data.reviewCount)"
       
-    }
-  }
-  func themeReviewList() {
-    let apiurl = "/v1/themeReview/list"
-    
-    let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
-    let requestURL = url
-      .appending("page", value:"1")
-      .appending("limit", value: "1")
-      .appending("userId", value: "\(DataHelperTool.userAppId ?? 0)")
-    
-    var request = URLRequest(url: requestURL)
-    request.httpMethod = HTTPMethod.get.rawValue
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    
-    AF.request(request).responseJSON { (response) in
-      switch response.result {
-      case .success(let value):
-        let decoder = JSONDecoder()
-        let json = JSON(value)
-        let jsonData = try? json.rawData()
-        print("\(apiurl) responseJson: \(json)")
-        
-        if let data = jsonData, let value = try? decoder.decode(ThemeReviewResponse.self, from: data) {
-          if value.statusCode == 200 {
-            self.count = value.list.count
-            self.reviewCountLabel.text = "리뷰 \(value.list.count)개"
-            if (value.list.count >= 0 && value.list.count <= 10){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage1")
-            }else if(value.list.count >= 11 && value.list.count <= 50){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage2")
-            }else if(value.list.count >= 51 && value.list.count <= 100){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage3")
-            }else if(value.list.count >= 101 && value.list.count <= 200){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage4")
-            }else if(value.list.count >= 201 && value.list.count <= 300){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage5")
-            }else if(value.list.count >= 301 && value.list.count <= 500){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage6")
-            }else if(value.list.count >= 501 && value.list.count <= 1000){
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage7")
-            }else {
-              self.levelImageVIew.image = #imageLiteral(resourceName: "userLevelImage8")
-            }
-          }
-        }
-        break
-      case .failure:
-        print("error: \(response.error!)")
-        break
-      }
     }
   }
   

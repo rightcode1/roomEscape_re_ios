@@ -24,10 +24,10 @@ class TogetherListVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
   var areaList: [AreaList] = [.전국, .서울, .경기, .인천, .충청, .경상, .전라, .강원, .제주]
   var page: Int = 1
   var check: Bool = false
-  let genreList: [GenreList] = [.entire, .horror, .adult, .whodunnit, .action, .mellow, .adventure, .sfFantasy, .outdoor]
+  let genreList: [GenreList] = [.전체,.공포,.스릴러,.미스터리,.추리,.범죄,.잠입,.액션,.드라마,.감성,.로맨스,.모험,.코미디,.판타지,.SF,.아케이드,.역사,.음악,.성인,.야외,.기타]
   
   var selectedArea: AreaList = .전국
-  var selectedGenre: GenreList = .entire
+  var selectedGenre: GenreList = .전체
   var getListId: Int = 0
   var userIds: String = ""
   
@@ -64,7 +64,7 @@ class TogetherListVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
       .appending("limit", value: "10")
     // 필터 적용
       .appending("area1", value: selectedArea == .전국 ? nil : selectedArea.rawValue)
-      .appending("category", value: selectedGenre == .entire ? nil : selectedGenre.rawValue)
+      .appending("category", value: selectedGenre == .전체 ? nil : selectedGenre.rawValue)
       .appending("userIds", value: userIds)
     
     var request = URLRequest(url: requestURL)
@@ -194,7 +194,7 @@ extension TogetherListVC: UICollectionViewDataSource, UICollectionViewDelegate {
       let area = areaList[indexPath.row]
       
       selectedArea = area
-      selectedGenre = .entire
+      selectedGenre = .전체
       areaCollectionView.reloadData()
       genreCollectionView.reloadData()
       self.page=1

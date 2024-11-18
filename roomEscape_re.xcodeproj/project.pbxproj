@@ -164,7 +164,7 @@
 		DF0BBF542BD62E9D0054E240 /* AlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BBF532BD62E9D0054E240 /* AlarmRequest.swift */; };
 		DF0F3F8628FC60D600BDBF96 /* GraduationChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */; };
 		DF13DBA42BC3BA6B0076BDEF /* CommunityThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */; };
-		DF2246232BAD67BE00FA82CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */; };
+		DF3730852C785AE100BA0482 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF3730842C785AE100BA0482 /* GoogleService-Info.plist */; };
 		DF383A1528475DB400F89E5F /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF383A1428475DB400F89E5F /* MapVC.swift */; };
 		DF437E602AC3B92F00A657F0 /* ThemeReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF437E5F2AC3B92F00A657F0 /* ThemeReportVC.swift */; };
 		DF451F73281C09C70072A9D8 /* EventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF451F72281C09C70072A9D8 /* EventVC.swift */; };
@@ -186,6 +186,7 @@
 		DFB2E2D82BD0FE9A006964C5 /* AlarmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */; };
 		DFB2E2DA2BD102AA006964C5 /* AlarmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2E2D92BD102AA006964C5 /* AlarmApi.swift */; };
 		DFB8D91828D1C96A00BC4FC6 /* SortFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */; };
+		DFBFFF992BF71895006FC96A /* SubScribePopupVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBFFF982BF71895006FC96A /* SubScribePopupVIewController.swift */; };
 		DFC862B22BC7710300A6285F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC862B12BC7710300A6285F /* UILabel+Extension.swift */; };
 		DFC9FE0728FD41470020E6B3 /* GraduationDeatilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */; };
 		DFC9FE0928FD462D0020E6B3 /* GraduationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */; };
@@ -404,7 +405,7 @@
 		DF0BBF532BD62E9D0054E240 /* AlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRequest.swift; sourceTree = "<group>"; };
 		DF0F3F8528FC60D600BDBF96 /* GraduationChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationChartVC.swift; sourceTree = "<group>"; };
 		DF13DBA32BC3BA6B0076BDEF /* CommunityThemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityThemeListViewController.swift; sourceTree = "<group>"; };
-		DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF3730842C785AE100BA0482 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF383A1428475DB400F89E5F /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		DF437E5F2AC3B92F00A657F0 /* ThemeReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeReportVC.swift; sourceTree = "<group>"; };
 		DF451F72281C09C70072A9D8 /* EventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVC.swift; sourceTree = "<group>"; };
@@ -426,6 +427,7 @@
 		DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewController.swift; sourceTree = "<group>"; };
 		DFB2E2D92BD102AA006964C5 /* AlarmApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmApi.swift; sourceTree = "<group>"; };
 		DFB8D91728D1C96A00BC4FC6 /* SortFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterViewController.swift; sourceTree = "<group>"; };
+		DFBFFF982BF71895006FC96A /* SubScribePopupVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubScribePopupVIewController.swift; sourceTree = "<group>"; };
 		DFC862B12BC7710300A6285F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		DFC9FE0628FD41470020E6B3 /* GraduationDeatilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationDeatilVC.swift; sourceTree = "<group>"; };
 		DFC9FE0828FD462D0020E6B3 /* GraduationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduationCell.swift; sourceTree = "<group>"; };
@@ -705,7 +707,7 @@
 		CB3D0F802740EC1E00A84E1B /* roomEscape_re */ = {
 			isa = PBXGroup;
 			children = (
-				DF2246222BAD67BE00FA82CF /* GoogleService-Info.plist */,
+				DF3730842C785AE100BA0482 /* GoogleService-Info.plist */,
 				DFF718202850A00600573E17 /* roomEscape_re.entitlements */,
 				CB3D0F962740EE7D00A84E1B /* Source */,
 				CB3D0F952740EE7600A84E1B /* Resource */,
@@ -996,6 +998,7 @@
 				DF7F9FEA2BD0BFE900100F85 /* HomePopupViewController.swift */,
 				DFB2E2D72BD0FE9A006964C5 /* AlarmListViewController.swift */,
 				DF0BBF512BD624400054E240 /* AlarmThemePopupViewController.swift */,
+				DFBFFF982BF71895006FC96A /* SubScribePopupVIewController.swift */,
 			);
 			path = Alarm;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 			files = (
 				C4E6D9F22761DED500445F00 /* Community.storyboard in Resources */,
 				DF9835652BC39843001901F0 /* Storyboard.storyboard in Resources */,
+				DF3730852C785AE100BA0482 /* GoogleService-Info.plist in Resources */,
 				C40F5EA02761D769002875D7 /* TabBar.storyboard in Resources */,
 				CB0D99D027C8AEFE00E5B483 /* shadow_balloon.png in Resources */,
 				CBB6FCB22740FCA20013F278 /* Login.storyboard in Resources */,
@@ -1076,7 +1080,6 @@
 				CB0D99DE27C8AEFE00E5B483 /* point_sprite.png in Resources */,
 				C4FFB7D72762301000192E36 /* Home.storyboard in Resources */,
 				CB0D99D427C8AEFE00E5B483 /* map_pinup@3x.png in Resources */,
-				DF2246232BAD67BE00FA82CF /* GoogleService-Info.plist in Resources */,
 				CB0D99DF27C8AEFE00E5B483 /* map_pinup_custom.png in Resources */,
 				CB0D99D827C8AEFE00E5B483 /* map_pin_red@3x.png in Resources */,
 				CB0D99E127C8AEFE00E5B483 /* noimage256.png in Resources */,
@@ -1276,6 +1279,7 @@
 				DF7488D128505F03007BEC3D /* UpdateViewController.swift in Sources */,
 				C47E68152760A7A200CDB45A /* ContentCell.swift in Sources */,
 				CBB6FCE0274101970013F278 /* ImageViewZoom.swift in Sources */,
+				DFBFFF992BF71895006FC96A /* SubScribePopupVIewController.swift in Sources */,
 				C454CA6427635DB800339429 /* FeeCell.swift in Sources */,
 				C4FFB7BC276215C700192E36 /* ThemaListResponse.swift in Sources */,
 				CB1642DA27C6153A007B4499 /* BoardApi.swift in Sources */,
@@ -1452,7 +1456,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1465,7 +1469,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.3;
+				MARKETING_VERSION = 6.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -1487,7 +1491,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = roomEscape_re/roomEscape_re.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = 8J9SLVACCV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1500,7 +1504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.3;
+				MARKETING_VERSION = 6.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yologuys.NationalEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";

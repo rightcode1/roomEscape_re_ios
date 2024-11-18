@@ -169,23 +169,130 @@
                                 <rect key="frame" x="0.0" y="104" width="393" height="664"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jja-Hw-M8U">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1452"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="805"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-Kb-29d">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1452"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="805"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm_1" translatesAutoresizingMaskIntoConstraints="NO" id="m6b-Gm-zai">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="890.66666666666663"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="491.33333333333331"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="m6b-Gm-zai" secondAttribute="height" multiplier="360:816" id="Rlj-aI-3MT"/>
+                                                            <constraint firstAttribute="width" secondItem="m6b-Gm-zai" secondAttribute="height" multiplier="720:900" id="Rlj-aI-3MT"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm_2" translatesAutoresizingMaskIntoConstraints="NO" id="cS8-If-PNd">
-                                                        <rect key="frame" x="0.0" y="890.66666666666652" width="393" height="561.33333333333348"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-XN-eQZ">
+                                                        <rect key="frame" x="0.0" y="491.33333333333337" width="393" height="180"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품을 선택해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYe-on-UyM">
+                                                                <rect key="frame" x="15" y="25" width="142" height="20.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yz2-HK-K6I">
+                                                                <rect key="frame" x="15" y="60.333333333333265" width="363" height="70.666666666666686"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hxt-AQ-Y3K">
+                                                                        <rect key="frame" x="47.000000000000007" y="14.999999999999996" width="88.666666666666686" height="40.666666666666657"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1개월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-U0-pYF">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="88.666666666666671" height="20.333333333333332"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20.329999999999998" id="hlu-Ne-Xj6"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000원 / 월 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJt-NA-Usz">
+                                                                                <rect key="frame" x="0.0" y="20.333333333333371" width="88.666666666666671" height="20.333333333333329"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20.329999999999998" id="l7O-dv-POv"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                <color key="textColor" red="0.3803921938" green="0.38431376220000002" blue="0.3803921938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subCheckOff" translatesAutoresizingMaskIntoConstraints="NO" id="dy9-4L-fOO">
+                                                                        <rect key="frame" x="15" y="15" width="25" height="25"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="25" id="jni-yO-BaL"/>
+                                                                            <constraint firstAttribute="width" constant="25" id="nwv-O5-Uig"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="dy9-4L-fOO" firstAttribute="top" secondItem="yz2-HK-K6I" secondAttribute="top" constant="15" id="dBL-lj-FFu"/>
+                                                                    <constraint firstItem="hxt-AQ-Y3K" firstAttribute="leading" secondItem="dy9-4L-fOO" secondAttribute="trailing" constant="7" id="eOc-dg-jQp"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="hxt-AQ-Y3K" secondAttribute="bottom" constant="15" id="p2k-ph-73X"/>
+                                                                    <constraint firstItem="dy9-4L-fOO" firstAttribute="leading" secondItem="yz2-HK-K6I" secondAttribute="leading" constant="15" id="qTI-ZV-Ogt"/>
+                                                                    <constraint firstItem="hxt-AQ-Y3K" firstAttribute="top" secondItem="dy9-4L-fOO" secondAttribute="top" id="snU-Ud-Ayz"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="cS8-If-PNd" secondAttribute="height" multiplier="360:514" id="0qt-3M-OFB"/>
+                                                            <constraint firstItem="yz2-HK-K6I" firstAttribute="top" secondItem="uYe-on-UyM" secondAttribute="bottom" constant="15" id="50z-vn-m2a"/>
+                                                            <constraint firstAttribute="trailing" secondItem="yz2-HK-K6I" secondAttribute="trailing" constant="15" id="dRz-Nh-g9B"/>
+                                                            <constraint firstItem="yz2-HK-K6I" firstAttribute="leading" secondItem="wgi-XN-eQZ" secondAttribute="leading" constant="15" id="eHM-uf-ZE1"/>
+                                                            <constraint firstAttribute="height" constant="180" id="efr-iN-isI"/>
+                                                            <constraint firstItem="uYe-on-UyM" firstAttribute="top" secondItem="wgi-XN-eQZ" secondAttribute="top" constant="25" id="j22-e5-Xyt"/>
+                                                            <constraint firstItem="uYe-on-UyM" firstAttribute="leading" secondItem="wgi-XN-eQZ" secondAttribute="leading" constant="15" id="loJ-q8-aoS"/>
                                                         </constraints>
-                                                    </imageView>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPs-Ng-pi9">
+                                                        <rect key="frame" x="0.0" y="671.33333333333337" width="393" height="133.66666666666663"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-rp-SdR">
+                                                                <rect key="frame" x="15" y="35" width="363" height="63.666666666666657"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3g-A4-5QC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="363" height="49.666666666666664"/>
+                                                                        <string key="text">Subscription Terms: After free trial, Calm yearly subscription is $0.49, cument perill ends Payments charge to your unes necou Unan poron of free trial is forfeited after purchase.</string>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="qLZ-at-Gf0">
+                                                                        <rect key="frame" x="0.0" y="49.666666666666629" width="363" height="14"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed0-Uv-t7t">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="32.333333333333336" height="13.333333333333334"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                                <string key="userLabel">Subscription Terms: After free trial, Calm yearly subscription is $69.99, cument perill ends Payments charge to your unes necou Unan poron of free trial is forfeited after purchase. Terms and Privacy Policy</string>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-8f-LfL">
+                                                                                <rect key="frame" x="42.333333333333343" y="0.0" width="73" height="13.333333333333334"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                                <string key="userLabel">Subscription Terms: After free trial, Calm yearly subscription is $69.99, cument perill ends Payments charge to your unes necou Unan poron of free trial is forfeited after purchase. Terms and Privacy Policy</string>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="oKO-8f-LfL" firstAttribute="top" secondItem="qLZ-at-Gf0" secondAttribute="top" id="PuV-LO-zNb"/>
+                                                                            <constraint firstItem="Ed0-Uv-t7t" firstAttribute="leading" secondItem="qLZ-at-Gf0" secondAttribute="leading" id="f2d-Qw-OfN"/>
+                                                                            <constraint firstItem="oKO-8f-LfL" firstAttribute="leading" secondItem="Ed0-Uv-t7t" secondAttribute="trailing" constant="10" id="gIb-Wf-QSt"/>
+                                                                            <constraint firstAttribute="height" constant="14" id="jgs-qz-bMU"/>
+                                                                            <constraint firstItem="Ed0-Uv-t7t" firstAttribute="top" secondItem="qLZ-at-Gf0" secondAttribute="top" id="uHY-d0-Vng"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.97647058819999999" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="PpM-rp-SdR" firstAttribute="leading" secondItem="OPs-Ng-pi9" secondAttribute="leading" constant="15" id="4EI-TZ-aYe"/>
+                                                            <constraint firstAttribute="bottom" secondItem="PpM-rp-SdR" secondAttribute="bottom" constant="35" id="Jk3-4g-9Tz"/>
+                                                            <constraint firstItem="PpM-rp-SdR" firstAttribute="top" secondItem="OPs-Ng-pi9" secondAttribute="top" constant="35" id="JqC-k7-rBY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PpM-rp-SdR" secondAttribute="trailing" constant="15" id="xmc-lc-3yZ"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -251,8 +358,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backPressButton" destination="c4t-dQ-Rti" id="icc-JD-elT"/>
+                        <outlet property="privacyLabel" destination="oKO-8f-LfL" id="ofC-Jn-Da0"/>
+                        <outlet property="subCheckButton" destination="dy9-4L-fOO" id="rTf-aD-Wyn"/>
+                        <outlet property="subProductBackView" destination="yz2-HK-K6I" id="CJH-YK-aSZ"/>
                         <outlet property="subRestoreButton" destination="eXM-py-CHk" id="xkn-Gi-r2R"/>
                         <outlet property="subScribe" destination="hDv-fc-G6b" id="fnH-0B-YYS"/>
+                        <outlet property="termsLabel" destination="Ed0-Uv-t7t" id="wzs-7g-1WF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC0-kC-kCk" sceneMemberID="firstResponder"/>
@@ -1232,18 +1344,90 @@
             </objects>
             <point key="canvasLocation" x="1476" y="5"/>
         </scene>
+        <!--Sub Scribe PopupV Iew Controller-->
+        <scene sceneID="QX6-i7-ct4">
+            <objects>
+                <viewController storyboardIdentifier="SubScribePopupVIewController" id="FBH-nw-Syi" customClass="SubScribePopupVIewController" customModule="roomEscape_re" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gQB-QC-cQH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uoj-CR-c3V">
+                                <rect key="frame" x="20" y="83.333333333333314" width="353" height="685.33333333333348"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrG-R9-WiM">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="625.33333333333337"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subscribe" translatesAutoresizingMaskIntoConstraints="NO" id="x3L-Oa-7VI">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="625.33333333333337"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="x3L-Oa-7VI" secondAttribute="height" multiplier="720:1275" id="19t-8K-vHz"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="x3L-Oa-7VI" firstAttribute="top" secondItem="zrG-R9-WiM" secondAttribute="top" id="88H-4B-fca"/>
+                                            <constraint firstItem="x3L-Oa-7VI" firstAttribute="leading" secondItem="zrG-R9-WiM" secondAttribute="leading" id="8Vc-O4-utc"/>
+                                            <constraint firstAttribute="bottom" secondItem="x3L-Oa-7VI" secondAttribute="bottom" id="PJf-NQ-m05"/>
+                                            <constraint firstAttribute="trailing" secondItem="x3L-Oa-7VI" secondAttribute="trailing" id="ZuI-br-qli"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksg-7w-dEo">
+                                        <rect key="frame" x="0.0" y="625.33333333333326" width="353" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRG-4g-Mmf">
+                                                <rect key="frame" x="0.0" y="10" width="353" height="50"/>
+                                                <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="SfX-0o-7No"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="구독하기">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="7.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="registerButton:" destination="pII-pj-hc1" eventType="touchUpInside" id="LFO-iZ-YpN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="BRG-4g-Mmf" firstAttribute="leading" secondItem="ksg-7w-dEo" secondAttribute="leading" id="Cgu-UT-g1R"/>
+                                            <constraint firstAttribute="trailing" secondItem="BRG-4g-Mmf" secondAttribute="trailing" id="HTj-Ev-MBV"/>
+                                            <constraint firstItem="BRG-4g-Mmf" firstAttribute="top" secondItem="ksg-7w-dEo" secondAttribute="top" constant="10" id="Oke-m8-d4D"/>
+                                            <constraint firstAttribute="bottom" secondItem="BRG-4g-Mmf" secondAttribute="bottom" id="YS3-rQ-JXP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sQX-Rf-gsh"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.2986662638" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uoj-CR-c3V" secondAttribute="trailing" constant="20" id="his-HC-IAS"/>
+                            <constraint firstItem="uoj-CR-c3V" firstAttribute="centerY" secondItem="gQB-QC-cQH" secondAttribute="centerY" id="shU-74-2gD"/>
+                            <constraint firstItem="uoj-CR-c3V" firstAttribute="leading" secondItem="sQX-Rf-gsh" secondAttribute="leading" constant="20" id="ufw-0q-cZD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tabSub" destination="BRG-4g-Mmf" id="N6E-4n-m79"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bxd-no-ZdN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19" y="667"/>
+        </scene>
     </scenes>
-    <designables>
-        <designable name="HW0-2z-TfL">
-            <size key="intrinsicContentSize" width="57" height="9"/>
-        </designable>
-        <designable name="ia2-6o-E37">
-            <size key="intrinsicContentSize" width="57" height="9"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="alarm_1" width="720" height="1633"/>
-        <image name="alarm_2" width="720" height="1302"/>
+        <image name="alarm_1" width="720" height="901"/>
         <image name="alarm_dialog" width="720" height="650"/>
         <image name="alarm_diff1" width="87" height="90"/>
         <image name="alarm_diff2" width="87" height="90"/>
@@ -1251,6 +1435,8 @@
         <image name="isWishFull" width="23" height="23"/>
         <image name="starEmpty" width="32.666667938232422" height="31"/>
         <image name="starFull" width="32.666667938232422" height="31"/>
+        <image name="subCheckOff" width="44" height="44"/>
+        <image name="subscribe" width="720" height="1275"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

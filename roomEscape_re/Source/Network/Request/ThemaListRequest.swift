@@ -44,15 +44,27 @@ enum AreaList: String, Codable {
 }
 
 enum GenreList: String, Codable {
-  case entire = "전체"
-  case horror = "공포"
-  case adult = "19금"
-  case whodunnit = "추리"
-  case action = "액션"
-  case mellow = "감성"
-  case adventure = "모험"
-  case sfFantasy = "SF/판타지"
-  case outdoor = "야외"
+  case 전체 = "전체"
+  case 공포 = "공포"
+  case 스릴러 = "스릴러"
+  case 미스터리 = "미스터리"
+  case 추리 = "추리"
+  case 범죄 = "범죄"
+  case 잠입 = "잠입"
+  case 액션 = "액션"
+  case 드라마 = "드라마"
+  case 감성 = "감성"
+  case 로맨스 = "로맨스"
+  case 모험 = "모험"
+  case 코미디 = "코미디"
+  case 판타지 = "판타지"
+  case SF = "SF"
+  case 아케이드 = "아케이드"
+  case 역사 = "역사"
+  case 음악 = "음악"
+  case 성인 = "19금"
+  case 야외 = "야외"
+  case 기타 = "?"
 }
 
 enum ThemeSort: String, Codable {

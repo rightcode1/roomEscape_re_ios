@@ -26,7 +26,7 @@ class ReviewCell: UITableViewCell {
   @IBOutlet var commentLabel: UILabel!
   @IBOutlet var commentContent: UILabel!
   
-  @IBOutlet weak var gradeImageView: UIImageView!
+  @IBOutlet weak var gradLabel: UILabel!
   @IBOutlet weak var userNameLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   
@@ -185,7 +185,25 @@ class ReviewCell: UITableViewCell {
         
       }
     }
-    self.gradeImageView.image = UIImage(named: "userLevelImage\(data.reviewLevel)")
+    if (data.reviewCount >= 1 && data.reviewCount <= 10){
+      self.gradLabel.text = "1+"
+    }else if(data.reviewCount >= 11 && data.reviewCount <= 50){
+      self.gradLabel.text = "11+"
+    }else if(data.reviewCount >= 51 && data.reviewCount <= 100){
+      self.gradLabel.text = "51+"
+    }else if(data.reviewCount >= 101 && data.reviewCount <= 200){
+      self.gradLabel.text = "101+"
+    }else if(data.reviewCount >= 201 && data.reviewCount <= 300){
+      self.gradLabel.text = "201+"
+    }else if(data.reviewCount >= 301 && data.reviewCount <= 500){
+      self.gradLabel.text = "301+"
+    }else if(data.reviewCount >= 501 && data.reviewCount <= 1000){
+      self.gradLabel.text = "501+"
+    }else if(data.reviewCount >= 1001){
+      self.gradLabel.text = "1001+"
+    }else {
+      self.gradLabel.text = "0"
+    }
   }
   
   func reviewLike(_ reviewId: Int){

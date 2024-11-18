@@ -161,7 +161,6 @@ class RegistThemeReviewVC: UIViewController {
         let decoder = JSONDecoder()
         let json = JSON(value)
         let jsonData = try? json.rawData()
-        
         print("\(apiUrl) responseJson: \(json)")
         
         if let data = jsonData, let value = try? decoder.decode(DefaultResponse.self, from: data) {

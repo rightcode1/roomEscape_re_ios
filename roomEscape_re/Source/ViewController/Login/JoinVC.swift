@@ -61,7 +61,7 @@ class JoinVC: BaseViewController{
   func finishRegistHandler() {
     self.dismissHUD()
     callOkActionMSGDialog(message: "회원가입이 완료되었습니다.") {
-      self.backPress()
+      self.backTwo()
     }
   }
   
@@ -179,7 +179,7 @@ class JoinVC: BaseViewController{
     }
 
     if ownerNameTextField.text! == "" {
-      self.callMSGDialog(message: "사업자명을 입력해주세요.")
+      self.callMSGDialog(message: "사용자 닉네임을 입력해주세요.")
       return
     }
 

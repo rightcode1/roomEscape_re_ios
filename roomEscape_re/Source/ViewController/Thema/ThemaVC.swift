@@ -27,7 +27,7 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
   var areaList: [AreaList] = [.전국, .서울, .경기, .인천, .충청, .경상, .전라, .강원, .제주]
   var page: Int = 1
   var check: Bool = false
-  let genreList: [GenreList] = [.entire, .horror, .adult, .whodunnit, .action, .mellow, .adventure, .sfFantasy, .outdoor]
+  let genreList: [GenreList] = [.전체,.공포,.스릴러,.미스터리,.추리,.범죄,.잠입,.액션,.드라마,.감성,.로맨스,.모험,.코미디,.판타지,.SF,.아케이드,.역사,.음악,.성인,.야외,.기타]
   
   var selectedArea: AreaList = .전국
   
@@ -38,7 +38,7 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
   var themeFilter = ThemeListRequest()
   var request = ThemeFilterRequest()
   
-  var selectedGenre: GenreList = .entire
+  var selectedGenre: GenreList = .전체
   
   var getListId: Int = 0
   
@@ -50,7 +50,9 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
     super.viewDidLoad()
     initDelegateDatasource()
     contentTableView.isScrollEnabled = true
-    recommendTheme()
+    if selectedAddressFromHomeVC == nil{
+      recommendTheme()
+    }
     initAddress()
   }
   
@@ -60,37 +62,41 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
         if(selectedAddressFromHomeVC=="강남"||selectedAddressFromHomeVC=="홍대"||selectedAddressFromHomeVC=="신촌"||selectedAddressFromHomeVC=="건대"||selectedAddressFromHomeVC=="대학로"){
           selectedArea = .서울
           selectedAddress = selectedAddressFromHomeVC ?? "전체"
-          selectedGenre = .entire
+          selectedGenre = .전체
         }else if(selectedAddressFromHomeVC=="new"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .entire
+          selectedGenre = .전체
           self.themeFilter.type = [.신규테마]
         }else if(selectedAddressFromHomeVC=="easy"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .entire
+          selectedGenre = .전체
           self.themeFilter.level = [.one,.two]
         }else if(selectedAddressFromHomeVC=="hard"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .entire
+          selectedGenre = .전체
           self.themeFilter.level = [.five, .four]
         }else if(selectedAddressFromHomeVC=="공포"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .horror
+          selectedGenre = .공포
         }else if(selectedAddressFromHomeVC=="19금"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .adult
+          selectedGenre = .성인
         }else if(selectedAddressFromHomeVC=="different"){
           selectedAddress = "전체"
           selectedArea = .전국
-          selectedGenre = .entire
+          selectedGenre = .전체
           self.themeFilter.type[0] = .이색컨텐츠
         }
         DataHelper<ThemeListRequest>.setThemeListFilter(self.themeFilter)
+        check = false
+        self.page=1
+        self.themeList.removeAll();
+        self.contentTableView.reloadData();
         recommendTheme()
         initAddress()
         guCollectionView.reloadData()
@@ -216,7 +222,6 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
     self.filter()
     self.showHUD()
     let apiurl = "/v1/theme/list"
-    print("requestURL: \(request.sort)")
     let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
     let requestURL = url
       .appending("page", value:"1")
@@ -224,7 +229,7 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
       .appending("premium", value:"true")
       .appending("area1", value: selectedArea == .전국 ? nil : selectedArea.rawValue)
       .appending("area2", value: selectedAddress == "전체" ? nil : selectedAddress)
-      .appending("category", value: selectedGenre == .entire ? nil : selectedGenre.rawValue)
+      .appending("category2", value: selectedGenre == .전체 ? nil : selectedGenre.rawValue)
     // 필터 적용
       .appending("sort", value: request.sort  )
       .appending("type", value: request.type )
@@ -275,7 +280,7 @@ class ThemaVC: BaseViewController, WishDelegate, UIScrollViewDelegate {
     // 필터 적용
       .appending("area1", value: selectedArea == .전국 ? nil : selectedArea.rawValue)
       .appending("area2", value: selectedAddress == "전체" ? nil : selectedAddress)
-      .appending("category", value: selectedGenre == .entire ? nil : selectedGenre.rawValue)
+      .appending("category2", value: selectedGenre == .전체 ? nil : selectedGenre.rawValue)
       .appending("sort", value: request.sort )
       .appending("type", value: request.type )
       .appending("rate", value: request.rate )
@@ -505,16 +510,16 @@ extension ThemaVC: UICollectionViewDataSource, UICollectionViewDelegate {
       
       selectedArea = area
       selectedAddress = "전체"
-      selectedGenre = .entire
+      selectedGenre = .전체
       areaCollectionView.reloadData()
       genreCollectionView.reloadData()
       
       initAddress()
-      
+      check = false
       self.page=1
       self.themeList.removeAll()
       contentTableView.reloadData()
-      contentTableView.setContentOffset(CGPoint(x: 0, y:0), animated: true)
+//      contentTableView.setContentOffset(CGPoint(x: 0, y:0), animated: true)
       recommendTheme()
       
     } else if collectionView == self.guCollectionView {
@@ -523,6 +528,7 @@ extension ThemaVC: UICollectionViewDataSource, UICollectionViewDelegate {
       
       selectedAddress = gu
       guCollectionView.reloadData()
+      check = false
       self.page=1
       self.themeList.removeAll()
       contentTableView.reloadData()
@@ -535,6 +541,7 @@ extension ThemaVC: UICollectionViewDataSource, UICollectionViewDelegate {
       
       selectedGenre = genre
       genreCollectionView.reloadData()
+      check = false
       self.page=1
       self.themeList.removeAll()
       contentTableView.reloadData()

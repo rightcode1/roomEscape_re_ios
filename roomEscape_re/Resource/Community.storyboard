@@ -746,6 +746,7 @@
                         <outlet property="collectionView" destination="M4S-e7-ihm" id="GFw-2d-CDJ"/>
                         <outlet property="registBoardButton" destination="2Ee-5m-1M8" id="9x2-9W-31V"/>
                         <outlet property="searchNavigationView" destination="CT3-ZM-iGc" id="opG-VN-Mvi"/>
+                        <outlet property="searchTextField" destination="Xxg-Yi-h9V" id="gnv-Kc-Gdl"/>
                         <outlet property="searchView" destination="rPC-MQ-h0n" id="Fy1-yg-mmB"/>
                         <outlet property="selectView0" destination="P5f-5d-cww" id="zqR-Wk-RqV"/>
                         <outlet property="selectView1" destination="AWf-F2-Q6q" id="4Mu-87-aCo"/>

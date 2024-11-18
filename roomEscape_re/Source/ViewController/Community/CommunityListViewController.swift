@@ -25,6 +25,7 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
   @IBOutlet var searchView: UIView!
   @IBOutlet var searchNavigationView: UIView!
   //  @IBOutlet var initSearchButton: UIButton!
+  @IBOutlet var searchTextField: UITextField!
   
   @IBOutlet var categoryView: UIView!
   @IBOutlet var categoryHeightView: NSLayoutConstraint!
@@ -173,6 +174,7 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
     }else{
       initBoardList()
     }
+    searchTextField.delegate = self
   }
   private func registerXib() {
     let nibName = UINib(nibName: cellIdentifier, bundle: nil)
@@ -333,7 +335,7 @@ class CommunityListViewController: BaseViewController,UIScrollViewDelegate {
       .disposed(by: disposeBag)
   }
   @IBAction func search(_ sender: Any) {
-    initBoardList()
+    initBoardList(searchTextField.text)
   }
   @IBAction func tapSearch(_ sender: Any) {
     let vc = UIStoryboard.init(name: "Community", bundle: nil).instantiateViewController(withIdentifier: "communityListVC") as! CommunityListViewController
@@ -507,4 +509,14 @@ extension CommunityListViewController: UICollectionViewDelegateFlowLayout {
     return 10
   }
   
+}
+
+extension CommunityListViewController: UITextFieldDelegate{
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    if !textField.text!.isEmpty {
+      self.initBoardList(searchTextField.text)
+    }
+    return true
+  }
 }

@@ -26,6 +26,7 @@ class SplashVC: BaseViewController {
     DispatchQueue.main.async {
       self.showHUD()
     }
+    
     ApiService.request(router: VersionApi.version, success: { [self] (response: ApiResponse<VersionResponse>) in
       guard let value = response.value else {
         return

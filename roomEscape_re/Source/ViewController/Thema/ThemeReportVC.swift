@@ -26,6 +26,7 @@ class ThemeReportVC: UIViewController {
     if ReportTextField.text!.isEmpty{
       return
     }
+    showHUD()
       let apiurl = "/v1/report/register"
       let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
       let requestURL = url
@@ -49,13 +50,18 @@ class ThemeReportVC: UIViewController {
           
           if let data = jsonData, let value = try? decoder.decode(DefaultResponse.self, from: data) {
             if value.statusCode == 200 {
+              self.dismissHUD()
               self.dismiss(animated: true)
+            }else{
+              self.dismissHUD()
+              self.showToast(message: value.message);
+        
           }
           
           break
         }
         case .failure(_):
-          
+          self.dismissHUD()
           print("error: \(response.error!)")
           break
         }

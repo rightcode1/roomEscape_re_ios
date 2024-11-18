@@ -103,6 +103,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     return recieptString
   }
   
+  
   func subCheck(iosReceipt : String?, result: @escaping (Bool) -> Void){
     if iosReceipt == nil || iosReceipt == ""{
       DataHelper.set(false, forKey: .isSub)
@@ -113,7 +114,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let param = IosSubRequest (
       receiptData: iosReceipt!,
-      isTest: true
+      isTest: false
     )
     
     var request = URLRequest(url: URL(string: "\(ApiEnvironment.baseUrl)/iosSub")!)
@@ -152,12 +153,17 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
             updateSubToken(diff: "ios", token: "")
             result(false)
           }
+        }else{
+          showToast(message: "영수증 검증에러")
+          DataHelper.set(false, forKey: .isSub)
+          result(false)
+          print("ios 영수증 검사 에러!!!")
         }
         break
       case .failure:
         DataHelper.set(false, forKey: .isSub)
         result(false)
-        print("ios 영수증 검사 에러")
+        print("ios 영수증 검사 에러!!!")
         break
       }
     }

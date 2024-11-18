@@ -50,9 +50,6 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
   @IBOutlet weak var communityTableView: UITableView!
   @IBOutlet weak var communityTableViewHeightConstraint: NSLayoutConstraint!
   
-  @IBOutlet weak var communityTotalLabel: UILabel!
-  
-  @IBOutlet var registCommunityButton: UIButton!
   //company
   @IBOutlet var companyBackView: UIView!
   @IBOutlet var companyThumbnail: UIImageView!
@@ -110,14 +107,13 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     super.viewDidLoad()
     detailThema()
     DataHelper<Any>.appendAdCount()
-    navigationController?.navigationBar.isHidden = false
     setSelectCategory(communityCategoryButton1,communityCategoryLabel1)
     registDelegateDatasource()
     initrx()
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    navigationController?.isNavigationBarHidden = false
+    navigationController?.navigationBar.isHidden = false
     themeReviewList()
     themeCommunityList()
   }
@@ -326,7 +322,7 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
     reviewRatingView.rating = data.grade
     reviewRatingLabel.text = "\(data.grade)"
 
-    wishScoreLabel.text = "\(data.wishCount)"
+    wishScoreLabel.text = "(\(data.wishCount))"
     
     initLevelStackView(data.level)
     
@@ -442,7 +438,6 @@ class DetailThemaVC: BaseViewController, ReviewCellMyButtonsDelegate {
         if let data = jsonData, let value = try? decoder.decode(BoardListResponse.self, from: data) {
           if value.statusCode == 200 {
               self.boardsList.removeAll()
-              self.communityTotalLabel.text = "총 (\(value.list.count))"
               self.boardsList = value.list.rows
               
               self.communityTableView.reloadData()

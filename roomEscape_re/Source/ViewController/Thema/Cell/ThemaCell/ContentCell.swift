@@ -19,6 +19,7 @@ class ContentCell: UITableViewCell {
   
   
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var categoryLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var starRatesView: CosmosView!
   @IBOutlet weak var starScoreLabel: UILabel!
@@ -50,7 +51,6 @@ class ContentCell: UITableViewCell {
 
   func initLevelStackView(_ level: Int) {
     let hiddenCount = 5 - level
-    
     for i in 0..<level {
       levelStackView.arrangedSubviews[i].isHidden = false
     }
@@ -73,23 +73,12 @@ class ContentCell: UITableViewCell {
     }
     contentImageView.kf.setImage(with: URL(string: "\(data.thumbnail ?? "")"))
     
-    if data.typeNew == false {
-      newImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      newImageView.isHidden = false
-    }
+    newImageView.isHidden = !data.typeNew
+    differentImageView.isHidden = !data.typeDifferent
+    newDiffBackView.isHidden = !(data.typeDifferent || data.typeNew)
     
-    if data.typeDifferent == false {
-      differentImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      differentImageView.isHidden = false
-    }
-    
-    titleLabel.text = "\(data.title)  \(data.category)"
-    titleLabel.changeTextStyle(changeText: data.category)
-//    conceptLabel.text = data.category
+    titleLabel.text = "\(data.title)"
+    categoryLabel.text = "\(data.category)"
     locationLabel.text = data.companyName
     starRatesView.settings.fillMode = .half
 
@@ -110,23 +99,14 @@ class ContentCell: UITableViewCell {
      
     contentImageView.kf.setImage(with: URL(string: "\(data.thumbnail ?? "")"))
     
-    if data.typeNew == false {
-      newImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      newImageView.isHidden = false
-    }
     
-    if data.typeDifferent == false {
-      differentImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      differentImageView.isHidden = false
-    }
+    newDiffBackView.isHidden = !(data.typeDifferent || data.typeNew)
+    newImageView.isHidden = !data.typeNew
+    differentImageView.isHidden = !data.typeDifferent
     
     
-    titleLabel.text = "\(data.title)  \(data.category)"
-    titleLabel.changeTextStyle(changeText: data.category)
+    titleLabel.text = "\(data.title)"
+    categoryLabel.text = "\(data.category)"
 //    conceptLabel.text = data.category
     locationLabel.text = data.companyName
     starRatesView.settings.fillMode = .half
@@ -153,23 +133,14 @@ class ContentCell: UITableViewCell {
      
     contentImageView.kf.setImage(with: URL(string: "\(data.thumbnail ?? "")"))
     
-    if data.typeNew == false {
-      newImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      newImageView.isHidden = false
-    }
     
-    if data.typeDifferent == false {
-      differentImageView.isHidden = true
-      newDiffBackView.isHidden = true
-    } else {
-      differentImageView.isHidden = false
-    }
+    newImageView.isHidden = !data.typeNew
+    differentImageView.isHidden = !data.typeDifferent
+    newDiffBackView.isHidden = !(data.typeDifferent || data.typeNew)
     
     
-    titleLabel.text = "\(data.title)  \(data.category)"
-    titleLabel.changeTextStyle(changeText: data.category)
+    titleLabel.text = "\(data.title)"
+    categoryLabel.text = "\(data.category)"
 //    conceptLabel.text = data.category
     locationLabel.text = data.companyName
     starRatesView.settings.fillMode = .half

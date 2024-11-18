@@ -13,7 +13,7 @@ class ThemeReviewListCell: UITableViewCell {
   @IBOutlet weak var themeNameLabel: UILabel!
   @IBOutlet weak var cafeNameLabel: UILabel!
   
-  @IBOutlet weak var gradeImageView: UIImageView!
+  @IBOutlet weak var gradeLabel: UILabel!
   @IBOutlet weak var userNameLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   
@@ -69,6 +69,26 @@ class ThemeReviewListCell: UITableViewCell {
     themeNameLabel.text = data.theme?.title
     cafeNameLabel.text = data.theme?.companyName
     reviewId = data.id
+    
+    if (data.reviewCount >= 1 && data.reviewCount <= 10){
+      self.gradeLabel.text = "1+"
+    }else if(data.reviewCount >= 11 && data.reviewCount <= 50){
+      self.gradeLabel.text = "11+"
+    }else if(data.reviewCount >= 51 && data.reviewCount <= 100){
+      self.gradeLabel.text = "51+"
+    }else if(data.reviewCount >= 101 && data.reviewCount <= 200){
+      self.gradeLabel.text = "101+"
+    }else if(data.reviewCount >= 201 && data.reviewCount <= 300){
+      self.gradeLabel.text = "201+"
+    }else if(data.reviewCount >= 301 && data.reviewCount <= 500){
+      self.gradeLabel.text = "301+"
+    }else if(data.reviewCount >= 501 && data.reviewCount <= 1000){
+      self.gradeLabel.text = "501+"
+    }else if(data.reviewCount >= 1001){
+      self.gradeLabel.text = "1001+"
+    }else {
+      self.gradeLabel.text = "0"
+    }
     
     difficultyStackView.arrangedSubviews[0].isHidden = data.level != .매우쉬움
     difficultyStackView.arrangedSubviews[1].isHidden = data.level != .쉬움

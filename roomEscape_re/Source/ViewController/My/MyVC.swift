@@ -8,7 +8,7 @@
 import UIKit
 
 class MyVC: BaseViewController {
-  @IBOutlet var gradeImageView: UIImageView!
+  @IBOutlet var gradeLabel: UILabel!
   @IBOutlet var userNameLabel: UILabel!
   
   @IBOutlet var myReviewView: UIView!
@@ -65,7 +65,7 @@ class MyVC: BaseViewController {
     self.userInfo { value in
       guard let data = value.data else {
         self.hintView.isHidden = true
-        self.gradeImageView.image = UIImage(named: "noneProfile")
+        self.gradeLabel.text = "0+"
         self.userNameLabel.text = "로그인이 필요합니다."
         return
       }
@@ -76,14 +76,32 @@ class MyVC: BaseViewController {
       self.shadow(view: self.noHintView, radius: 10, offset: CGSize(width: 0, height: 2))
       
       self.hintRate.text = "\(value.data?.successRate ?? 0)%"
-      self.hintReviewCount.text = "성공테마 리뷰 : \(value.data?.successReviewCount ?? 0)\n작성테마 리뷰 : \(value.data?.reviewCount ?? 0)"
+      self.hintReviewCount.text = "성공테마 리뷰 : \(value.data?.successReviewCount ?? 0)\n작성테마 리뷰 : \(value.data!.reviewCount ?? 0)"
       
       
       self.noHintRate.text = "\(value.data?.noHintSuccessRate ?? 0)%"
-      self.noHintReviewCount.text = "노힌트한 테마리뷰 : \(value.data?.noHintSuccessReviewCount ?? 0)\n작성테마 리뷰 : \(value.data?.reviewCount ?? 0)"
-      
-      self.gradeImageView.image = UIImage(named: "userLevelImage\(1)")
+      self.noHintReviewCount.text = "노힌트한 테마리뷰 : \(value.data?.noHintSuccessReviewCount ?? 0)\n작성테마 리뷰 : \(value.data!.reviewCount ?? 0)"
       self.userNameLabel.text = data.name
+      
+      if (value.data!.reviewCount >= 1 && value.data!.reviewCount <= 10){
+        self.gradeLabel.text = "1+"
+      }else if(value.data!.reviewCount >= 11 && value.data!.reviewCount <= 50){
+        self.gradeLabel.text = "11+"
+      }else if(value.data!.reviewCount >= 51 && value.data!.reviewCount <= 100){
+        self.gradeLabel.text = "51+"
+      }else if(value.data!.reviewCount >= 101 && value.data!.reviewCount <= 200){
+        self.gradeLabel.text = "101+"
+      }else if(value.data!.reviewCount >= 201 && value.data!.reviewCount <= 300){
+        self.gradeLabel.text = "201+"
+      }else if(value.data!.reviewCount >= 301 && value.data!.reviewCount <= 500){
+        self.gradeLabel.text = "301+"
+      }else if(value.data!.reviewCount >= 501 && value.data!.reviewCount <= 1000){
+        self.gradeLabel.text = "501+"
+      }else if(value.data!.reviewCount >= 1001){
+        self.gradeLabel.text = "1001+"
+      }else {
+        self.gradeLabel.text = "0"
+      }
     }
   }
   

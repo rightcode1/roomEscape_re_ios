@@ -273,7 +273,7 @@ class CommunityDetailViewController: BaseViewController {
     case "4":
       gradeLabel.text = "101+"
     case "5":
-      gradeLabel.text = "301+"
+      gradeLabel.text = "201+"
     case "6":
       gradeLabel.text = "301+"
     case "7":
@@ -281,8 +281,9 @@ class CommunityDetailViewController: BaseViewController {
     case "8":
       gradeLabel.text = "1001+"
     default:
-      gradeLabel.text = "none"
+      gradeLabel.text = "0"
     }
+    
     commentCount.text = "\(data.commentCount)"
     
     switch data.category {

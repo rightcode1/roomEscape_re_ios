@@ -22,7 +22,7 @@ class MyReviewListVC: BaseViewController {
   @IBOutlet var backButton: UIButton!
   @IBOutlet var sortButton: UILabel!
   
-  var selectSort: String = "최신순"
+  var selectSort: String = "등록내림차순"
   
   var index: IndexPath?
   var detailData: ThemaDetailData?
@@ -104,7 +104,7 @@ class MyReviewListVC: BaseViewController {
   func themeReviewList() {
     self.showHUD()
     let apiurl = "/v1/themeReview/list"
-    
+    print("filter :\(selectSort)")
     let url = URL(string: "\(ApiEnvironment.baseUrl)\(apiurl)")!
     let requestURL : URL
     if(isOther){
@@ -119,6 +119,7 @@ class MyReviewListVC: BaseViewController {
         .appending("page", value:"\(page)")
         .appending("limit", value: "10")
         .appending("userId", value: isOther ? nil : "\(DataHelperTool.userAppId ?? 0)")
+        .appending("sort", value:selectSort)
     }
     var request = URLRequest(url: requestURL)
     request.httpMethod = HTTPMethod.get.rawValue
@@ -209,7 +210,32 @@ class MyReviewListVC: BaseViewController {
       .bind(onNext: { [weak self] _ in
         let vc = UIStoryboard.init(name: "Common", bundle: nil).instantiateViewController(withIdentifier: "SortFilterViewController") as! SortFilterViewController
         vc.delegate = self
-        vc.selectSort = self?.selectSort ?? "최신순"
+        vc.sortList = ["작성일 ▲","작성일 ▼","플레이날짜 ▲","플레이날짜 ▼","기록순","평점순","추천순"]
+          switch self?.selectSort {
+          case "등록오름차순":
+            vc.selectSort = "작성일 ▲"
+            break
+          case "등록내림차순":
+            vc.selectSort = "작성일 ▼"
+            break
+          case "플레이오름차순":
+            vc.selectSort = "플레이날짜 ▲"
+            break
+          case "플레이내림차순":
+            vc.selectSort = "플레이날짜 ▼"
+            break
+          case "기록순":
+            vc.selectSort = self?.selectSort ?? "기록순"
+            break
+          case "평점순":
+            vc.selectSort = self?.selectSort ?? "평점순"
+            break
+          case "추천순":
+            vc.selectSort = self?.selectSort ?? "추천순"
+            break
+          default:
+            break
+          }
         self?.present(vc, animated: true, completion: nil)
       }).disposed(by: disposeBag)
     
@@ -325,10 +351,34 @@ extension MyReviewListVC:ReviewCellMyButtonsDelegate{
 
 extension MyReviewListVC: SortFilterDelegate{
   func setFilter(sort: String) {
-    selectSort = sort
+    switch sort{
+    case "작성일 ▲":
+      selectSort = "등록오름차순"
+      break
+    case "작성일 ▼":
+      selectSort = "등록내림차순"
+      break
+    case "플레이날짜 ▲":
+      selectSort = "플레이오름차순"
+      break
+    case "플레이날짜 ▼":
+      selectSort = "플레이내림차순"
+      break
+    case "기록순":
+      selectSort = sort
+      break
+    case "평점순":
+      selectSort = sort
+      break
+    case "추천순":
+      selectSort = sort
+      break
+    default:
+      break
+    }
     page = 1
-    reviewList.removeAll()
     sortButton.text = sort
+    reviewList.removeAll()
     themeReviewList()
   }
 }

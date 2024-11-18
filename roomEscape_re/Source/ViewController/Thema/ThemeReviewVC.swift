@@ -42,14 +42,14 @@ class ThemeReviewVC: BaseViewController{
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    navigationController?.isNavigationBarHidden = true
+    navigationController?.navigationBar.isHidden = true
     themeReviewList()
   }
   
   func initWithThemeDetailData(_ data: ThemaDetailData) {
     reviewRatingView.rating = data.grade
     reviewRatingView.settings.fillMode = .half
-    reviewRatingLabel.text = "\(data.grade)"
+    reviewRatingLabel.text = "\(data.grade)점"
   }
   
   func removeReview(_ reviewId: Int) {
@@ -111,7 +111,7 @@ class ThemeReviewVC: BaseViewController{
         if let data = jsonData, let value = try? decoder.decode(ThemeReviewResponse.self, from: data) {
           if value.statusCode == 200 {
               self.reviewList.append(contentsOf: value.list.rows)
-            self.reviewCountLabel.text = "\(value.list.count)"
+            self.reviewCountLabel.text = "(\(value.list.count))"
             self.reviewTableView.reloadData()
               if(self.reviewList.count == value.list.count){
                   self.check = false
