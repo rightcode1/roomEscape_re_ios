@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct InAppProducts {
   public static let product = "1000_room_sub"

@@ -170,6 +170,7 @@ PODS:
     - IGListDiffKit (= 4.0.0)
   - IQKeyboardManagerSwift (6.4.2)
   - JGProgressHUD (2.2)
+  - KakaoMapsSDK (2.10.4)
   - Kingfisher (6.3.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -229,6 +230,7 @@ DEPENDENCIES:
   - IGListKit
   - IQKeyboardManagerSwift (= 6.4.2)
   - JGProgressHUD
+  - KakaoMapsSDK
   - Kingfisher (from `https://github.com/onevcat/Kingfisher.git`, branch `version6-xcode13`)
   - Moya
   - Moya/RxSwift
@@ -273,6 +275,7 @@ SPEC REPOS:
     - IGListKit
     - IQKeyboardManagerSwift
     - JGProgressHUD
+    - KakaoMapsSDK
     - Moya
     - nanopb
     - PopupDialog
@@ -330,6 +333,7 @@ SPEC CHECKSUMS:
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   IQKeyboardManagerSwift: 79a3ec200dfb41cb66a89b8575417b5378107c5d
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+  KakaoMapsSDK: 6ceb9740762945bcefb1cdb61123e48abf6e6a5d
   Kingfisher: 8b783c3d7be73a99b2172a743a5bc0a4dd331d79
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
@@ -350,6 +354,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: c23901a415261cf8deeb78a90716b51b95b12dde
+PODFILE CHECKSUM: b471eff197003fb59cdc15c860981836ac76357b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

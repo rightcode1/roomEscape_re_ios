@@ -9,10 +9,12 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Cosmos
+import KakaoMapsSDK
 
-class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegate {
+class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegate, MapControllerDelegate {
   
   
+  @IBOutlet var mapView: KMViewContainer!
   @IBOutlet weak var wishBarButton: UIBarButtonItem!
   
   @IBOutlet weak var thumbnailView: UIView!
@@ -31,7 +33,6 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
   @IBOutlet weak var contentTableView: UITableView!
   @IBOutlet weak var contentTableViewHeightConstraint: NSLayoutConstraint!
   
-  @IBOutlet var locationMapView: MTMapView!
   @IBOutlet weak var addressLabel: UILabel!
   
   @IBOutlet weak var reviewRatingView: CosmosView!
@@ -59,6 +60,9 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
   var themeList: [ThemaListData] = []
   
   var reviewList: [CompanyReview] = []
+  var mapController: KMController?
+  var _auth = false
+  var kakaoMap: KakaoMap?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -104,27 +108,85 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
     
     wishCountLabel.text = "\(data.wishCount)"
     contentLabel.text = data.intro
-    
-    let locationInfo = (Double(data.latitude) ?? 37.5057804, Double(data.longitude) ?? 127.0262161)
-    let initialPointGeo = MTMapPointGeo(latitude: locationInfo.0,
-                                        longitude: locationInfo.1)
-    locationMapView.setMapCenter(MTMapPoint(geoCoord: initialPointGeo), animated: false)
-    locationMapView.setZoomLevel(1, animated: false)
-    var poiItems = [MTMapPOIItem]()
-    
-    let myPointItme = MTMapPOIItem()
-    myPointItme.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: locationInfo.0, longitude: locationInfo.1))
-    myPointItme.markerType = MTMapPOIItemMarkerType.customImage
-    myPointItme.tag = -1
-    
-    myPointItme.customImage = #imageLiteral(resourceName: "myLocationMarker").resizeToWidth(newWidth: 25)
-    
-    poiItems.append(myPointItme)
-    
-    locationMapView.addPOIItems(poiItems)
     addressLabel.text = data.address
     
     mainCollectionView.reloadData()
+  }
+  
+  func addViews() {
+      // MapviewInfo생성.
+      // viewName과 사용할 viewInfoName, defaultPosition과 level을 설정한다.
+      let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: MapPoint(longitude: Double(cafeDetailData.longitude)!, latitude: Double(cafeDetailData.latitude)!), defaultLevel: 18)
+          
+      // mapviewInfo를 파라미터로 mapController를 통해 생성한 뷰의 객체를 얻어온다.
+      // 정상적으로 생성되면 MapControllerDelegate의 addViewSucceeded가 호출되고, 실패하면 addViewFailed가 호출된다.
+      mapController?.addView(mapviewInfo)
+  }
+
+  //addView 성공 이벤트 delegate. 추가적으로 수행할 작업을 진행한다.
+  func addViewSucceeded(_ viewName: String, viewInfoName: String) {
+      print("OK") //추가 성공. 성공시 추가적으로 수행할 작업을 진행한다.
+    _auth = true
+    // 여기에서만 getView 호출
+    if let view = mapController?.getView(viewName) as? KakaoMap {
+      kakaoMap = view
+      initMapLayer()
+      self.initMarkers(Double(cafeDetailData.longitude)!, Double(cafeDetailData.latitude)!)
+    } else {
+        print("Failed to get map view.")
+    }
+  }
+
+  //addView 실패 이벤트 delegate. 실패에 대한 오류 처리를 진행한다.
+  func addViewFailed(_ viewName: String, viewInfoName: String) {
+      print("Failed")
+  }
+  
+  // MapControllerDelegate. 인증에 성공했을 경우 호출.
+  func authenticationSucceeded() {
+    mapController?.activateEngine()
+  }
+  
+  func authenticationFailed(_ errorCode: Int, desc: String) {
+      print("error code: \(errorCode)")
+      print("\(desc)")
+
+      // 추가 실패 처리 작업
+      mapController?.prepareEngine() //인증 재시도
+  }
+  
+  func initMap() {
+    mapController = KMController(viewContainer: mapView)
+    mapController!.delegate = self
+    mapController?.prepareEngine() //엔진 prepare
+  }
+  
+  func initMapLayer(){
+    let manager = kakaoMap!.getLabelManager()
+    let layerOption = LabelLayerOptions(layerID: "PoiLayer", competitionType: .none, competitionUnit: .symbolFirst, orderType: .rank, zOrder: 0)
+    manager.addLabelLayer(option: layerOption)
+  }
+  
+  func initMarkers(_ longtitude: Double, _ latitude: Double) {
+      let manager = kakaoMap?.getLabelManager()
+      let layer = manager?.getLabelLayer(layerID: "PoiLayer")
+      
+      // 고유한 StyleID 생성
+      let iconImage = UIImage(named: "myLocationMarker")?.resizeToWidth(newWidth: 20)
+      let iconStyle = PoiIconStyle(symbol: iconImage, anchorPoint: CGPoint(x: 0.0, y: 0.5))
+      let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
+      let poiStyle = PoiStyle(styleID: "CurrentLocationStyle", styles: [perLevelStyle])
+      manager?.addPoiStyle(poiStyle)
+      
+      let poi = MapPoint(longitude: longtitude, latitude: latitude)
+      let poiOption = PoiOptions(styleID: "CurrentLocationStyle",poiID: "\(id)")
+      poiOption.rank = 0
+      
+      // Poi 생성 및 스타일 적용
+      let poi1 = layer?.addPoi(option: poiOption, at: poi) // 스타일 변경 강제 반영
+
+      poi1?.show()
+
   }
   
   func detailCafe() {
@@ -150,6 +212,7 @@ class CafeDetailVC: BaseViewController, WishDelegate, ReviewCellMyButtonsDelegat
         if let data = jsonData, let value = try? decoder.decode(CompanyDetailResponse.self, from: data) {
           if value.statusCode == 200 {
             self.initWithCompanyDetailData(value.data)
+            self.initMap()
           }
         }
         break

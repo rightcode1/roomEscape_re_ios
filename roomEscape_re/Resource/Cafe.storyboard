@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n2m-xr-IRS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n2m-xr-IRS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1383,7 +1383,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-xi-OCj">
                                                         <rect key="frame" x="0.0" y="50.5" width="414" height="310.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swv-AS-vuG" customClass="MTMapView">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swv-AS-vuG" customClass="KMViewContainer">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
@@ -2033,8 +2033,8 @@
                         <outlet property="distanceLabel" destination="Ymf-fQ-0r7" id="2us-nD-wim"/>
                         <outlet property="imageCountLabel" destination="S3t-7z-7QU" id="BAo-mz-vF2"/>
                         <outlet property="imageLabelBackView" destination="wdP-pp-JGe" id="DE6-T3-7vd"/>
-                        <outlet property="locationMapView" destination="swv-AS-vuG" id="M0m-Ev-s1a"/>
                         <outlet property="mainCollectionView" destination="hyx-oP-Set" id="94P-ST-4W7"/>
+                        <outlet property="mapView" destination="swv-AS-vuG" id="2Lf-Of-30m"/>
                         <outlet property="ratingAndReviewCountLabel" destination="cem-Vz-RLu" id="Sfd-CO-Ltc"/>
                         <outlet property="ratingView" destination="bVF-YS-vZF" id="xcq-oQ-JIF"/>
                         <outlet property="reviewCountLabel" destination="u9B-RE-N6i" id="4TW-66-J1i"/>
@@ -2879,7 +2879,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

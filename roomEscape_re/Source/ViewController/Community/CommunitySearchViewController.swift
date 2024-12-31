@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class CommunitySearchViewController: BaseViewController,UIScrollViewDelegate {
   
   @IBOutlet var scrollView: UIScrollView!

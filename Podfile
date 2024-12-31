@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '13.0'
 
 target 'roomEscape_re' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -13,7 +13,7 @@ target 'roomEscape_re' do
   pod 'RxSwift'
   pod 'RxGesture'
   pod 'RxAlamofire'
-pod 'Charts'
+  pod 'Charts'
   # Firebase
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
@@ -24,6 +24,7 @@ pod 'Charts'
   pod 'CodableAlamofire'
   pod 'Moya'
   pod 'Moya/RxSwift'
+  pod 'KakaoMapsSDK'
 
   # Logs
   pod 'CocoaLumberjack/Swift'

@@ -1,5 +1,15 @@
 {
+  "originHash" : "a6e16e8f274826d5b991090f4c746d3fc602f447db5ab82974507b4dee155ea2",
   "pins" : [
+    {
+      "identity" : "kakaomapssdk-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git",
+      "state" : {
+        "revision" : "ddeadbe5166909370b7518366ad5ebd517452be6",
+        "version" : "2.12.0"
+      }
+    },
     {
       "identity" : "swift-package-manager-google-mobile-ads",
       "kind" : "remoteSourceControl",
@@ -19,5 +29,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

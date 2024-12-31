@@ -9,6 +9,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import GoogleMobileAds
 import Firebase
+import KakaoMapsSDK
 
 var isFirstStart: Bool = true
 
@@ -33,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       UITabBar.appearance().backgroundColor = UIColor.white
     }
     FirebaseApp.configure()
+    SDKInitializer.InitSDK(appKey: "8a051509be29c395e615273bebce38ef")
     
     // 앱 실행 시 사용자에게 알림 허용 권한을 받음
     UNUserNotificationCenter.current().delegate = self
